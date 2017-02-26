@@ -1,5 +1,5 @@
 
-package resteraunt;
+package restaurant;
 
 /**
  *
