@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package resteraunt;
+package restaurant;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
 
-public class Resteraunt {
+public class Restaurant {
 
     public static Map<String, MenuItem> menu = new HashMap<String, MenuItem>();;
     
