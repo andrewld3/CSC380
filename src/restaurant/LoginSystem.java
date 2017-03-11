@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author RandyNguyen
  */
-public class Main {
+public class LoginSystem {
 
     /**
      * @param args the command line arguments
