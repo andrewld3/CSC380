@@ -11,7 +11,7 @@ package restaurant;
  * @author RandyNguyen
  */
 public class AuthorizedUser {
-
+    
         private String username;
         private String pin;
 
@@ -25,7 +25,7 @@ public class AuthorizedUser {
         }
 
         
-        //method checks if username and pin match up 
+        //method checks if username and pin match up.. 
         public boolean IsUserAuthorized() {
             if((username.equals(authLogins[0][0])) && (pin.equals(authLogins[0][1]))) {
                 return true;
