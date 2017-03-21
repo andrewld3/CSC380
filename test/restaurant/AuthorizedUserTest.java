@@ -13,27 +13,47 @@ import static org.junit.Assert.*;
  * @author RandyNguyen
  */
 public class AuthorizedUserTest {
-   
+
     //tests that a correct login will return true
     @Test
     public void testIsUserAuthorized() {
-          AuthorizedUser au = new AuthorizedUser("Randy", "1234");
-          assertEquals(true, au.IsUserAuthorized());
+        AuthorizedUser au = new AuthorizedUser();
+        au.addAuthUser("Randy", "1234");
+        au.addAuthUser("Gareth", "4567");
+        au.addAuthUser("Andrew", "7890");
+
+        String username = "Randy";
+        String pin = "1234";
+
+        assertTrue(au.IsUserAuthorized(username, pin));
     }
-    
+
     //tests that an incorrect username will return false
     @Test
-    public void testIsUserAuthorizedFail(){
-        AuthorizedUser au = new AuthorizedUser("Randeee", "1234");
-        assertEquals(false, au.IsUserAuthorized());
+    public void testIsUserAuthorizedFail() {
+        AuthorizedUser au = new AuthorizedUser();
+        au.addAuthUser("Randy", "1234");
+        au.addAuthUser("Gareth", "4567");
+        au.addAuthUser("Andrew", "7890");
+
+        String username = "Randeee";
+        String pin = "1234";
+
+        assertFalse(au.IsUserAuthorized(username, pin));
     }
-    
+
     //tests that an incorrect pin will return false 
-   @Test
-    public void testIsUserAuthorizedFail2(){
-        AuthorizedUser au = new AuthorizedUser("Randy", "1111");
-        assertEquals(false, au.IsUserAuthorized());
+    @Test
+    public void testIsUserAuthorizedFail2() {
+        AuthorizedUser au = new AuthorizedUser();
+        au.addAuthUser("Randy", "1234");
+        au.addAuthUser("Gareth", "4567");
+        au.addAuthUser("Andrew", "7890");
+
+        String username = "Randy";
+        String pin = "1111";
+
+        assertFalse(au.IsUserAuthorized(username, pin));
     }
-    
-    
+
 }
