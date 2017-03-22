@@ -12,18 +12,9 @@ public class Restaurant {
 
     public static Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
     
-    
     public static void main(String [] args)throws IOException{
-        
         initialize();
-        menu.get("Small Children").printMenu();
     }
-    
-    
-    
-    
-    
-    
     
     public static void initialize()throws IOException{
         File inFile = new File("menu.txt");
@@ -34,15 +25,12 @@ public class Restaurant {
             double price = Double.parseDouble(inFileSC.nextLine());
             int inventory = Integer.parseInt(inFileSC.nextLine());
             loadMenu(name, price, inventory);
-        
-    }
+        }
     }
     
     public static void loadMenu(String name, double price, int inventory){
         
         MenuItem item = new MenuItem(name, price ,inventory);
         menu.put(item.getName(), item);
-        
     }
-    
 }
