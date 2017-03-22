@@ -41,4 +41,10 @@ public class MenuItem {
         return inventoryNumber;
     }
     
+    public void printMenu(){
+        System.out.println(itemName);
+        System.out.println(itemPrice);
+        System.out.println(inventoryNumber);
+    }
+    
 }
