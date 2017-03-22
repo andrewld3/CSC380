@@ -14,7 +14,7 @@ public class TableTest {
 
 		testTable.LoadTable();
 		table.LoadTable();
-		assertEquals("Tables are equal", table.ReturnOrder(), testTable.ReturnOrder());
+		assertArrayEquals("Tables are equal", table.ReturnOrder(), testTable.ReturnOrder());
 	}
 	
 	@Test
