@@ -66,6 +66,8 @@ public class RMS_GUI extends javax.swing.JFrame {
         Login login = new Login();
         
         admin.deleteUser("Chris", "2222");
+        
+        admin.addUser("Patrick", "6666");
       
     }
 }
