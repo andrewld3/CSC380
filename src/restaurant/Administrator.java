@@ -42,41 +42,43 @@ public class Administrator {
 
         FileWriter fileWriter = new FileWriter("userLogin.txt", true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print("\n"+ username + pin);
+        printWriter.print("\n" + username + pin);
         printWriter.close();
         fileWriter.close();
     }
 
     public void deleteUser(String u, String p) throws IOException {
+
         username = u;
         pin = p;
-        
+
         File userAccountFolder = new File("userLogin.txt");
         File temporaryFile = new File("temporaryFile.txt");
-    
+
         BufferedReader buffReader = new BufferedReader(new FileReader(userAccountFolder));
         BufferedWriter buffWriter = new BufferedWriter(new FileWriter(temporaryFile));
-        
+
         String lineToRemoveFromFile = username + pin;
         String lineFromUserFile;
 
-        while ((lineFromUserFile = buffReader.readLine()) != null) {
+        boolean addNewLine = false;
 
-            if (lineFromUserFile.equals(lineToRemoveFromFile)) {
-              continue;
+        while ((lineFromUserFile = buffReader.readLine()) != null) {
+            if (!lineFromUserFile.trim().equals(lineToRemoveFromFile)) {
+                if(addNewLine) {
+                    buffWriter.newLine();
+                }
+                addNewLine = true;
+                buffWriter.write(lineFromUserFile);
             }
-            
-            buffWriter.write(lineFromUserFile + System.getProperty("line.separator"));
         }
         buffWriter.close();
         buffReader.close();
-       
+
         boolean removed = temporaryFile.renameTo(userAccountFolder);
         if (removed == true) {
             System.out.println(username + "'s account has been removed.");
- 
         }
-
     }
 
     public void changePrivilege() {
