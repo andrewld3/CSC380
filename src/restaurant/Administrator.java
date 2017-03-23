@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -103,5 +104,62 @@ public class Administrator {
                 System.out.println(lineFromAdminFile);
             }
         }
+    }
+    
+    public void updateMenu()throws IOException{
+        Scanner kbd = new Scanner(System.in);
+        String userChoice = "";
+        while(userChoice != "q"){
+            System.out.println("q : quit \na : add \nd : delete");
+            userChoice = kbd.nextLine();
+            
+            if(userChoice == "a"){
+                addToMenu();}
+            else if(userChoice.compareTo("d") == 0){
+                deleteFromMenu();}
+            else if(userChoice == "q"){
+                System.out.print("");}
+            else{
+                System.out.println("enter valid choice");}
+        }
+    }
+    
+    public void deleteFromMenu()throws IOException{
+        File menu = new File("menu.txt");
+        Scanner read = new Scanner(menu);
+        Scanner kbd = new Scanner(System.in);
+        ArrayList<String> temp = new ArrayList<String>();
+        
+        System.out.println("enter menu item to remove");
+        String itemToDelete = kbd.nextLine();
+        
+        while(read.hasNext()){
+            temp.add(read.nextLine());
+        }
+        read.close();
+        
+        
+        boolean delete = false;
+        PrintWriter write = new PrintWriter(menu);
+        while(!temp.isEmpty()){
+            if(itemToDelete.compareTo(temp.get(0)) == 0){
+                temp.remove(0);
+                temp.remove(0);
+                temp.remove(0);
+                delete = true;
+            }
+            else{
+                write.println(temp.get(0));
+                temp.remove(0);
+        
+            }
+        }
+        
+        write.close();
+        
+    }
+    
+    public void addToMenu(){
+        
     }
 }
