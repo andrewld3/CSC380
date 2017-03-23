@@ -5,7 +5,8 @@
  */
 package restaurant;
 
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -17,7 +18,7 @@ public class RMS_GUI extends javax.swing.JFrame {
      * Creates new form RMS_GUI
      */
     public RMS_GUI() {
-        initComponents();
+        //initComponents();
     }
 
     /**
@@ -47,8 +48,9 @@ public class RMS_GUI extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String args[]) throws NullPointerException {
+    public static void main(String args[]) throws FileNotFoundException, IOException {
 
         /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
@@ -56,37 +58,18 @@ public class RMS_GUI extends javax.swing.JFrame {
 //                new RMS_GUI().setVisible(true);
 //            }
 //        });
-        AuthorizedUser au = new AuthorizedUser();
-        au.addAuthUser("Randy", "1234");
-        au.addAuthUser("Gareth", "4567");
-        au.addAuthUser("Andrew", "7890");
         
-        //checks users have been added
-        au.printLogins();
+        Administrator admin = new Administrator();
+        admin.addUser("Henry", "4444");
+        admin.addUser("Molly", "5555");
         
-            boolean isLoggedIn = false;
-
-            while (!isLoggedIn) {
-                System.out.print("Username: ");
-                Scanner scanner = new Scanner(System.in);
-                String UsernameTextField = scanner.nextLine();
-                System.out.print("Pin: ");
-                String PinTextField = scanner.nextLine();
-
-                //just a test to see if login is for authorized user, admin, or neither
-                //in actual GUI it will let the user access the system based on there authorization
-                if (au.IsUserAuthorized(UsernameTextField, PinTextField)) {
-                    System.out.println(UsernameTextField + " is logged in as an authorized user.");
-                    isLoggedIn = true;
-                } else {
-                    System.out.println("You have entered an incorrect login. Please try again. Note: Login is case sensitive.");
-                }
-            }
-        }
+        Login login = new Login();
+        
+        admin.deleteUser("Chris", "2222");
+      
     }
+}
 
-// Variables declaration - do not modify
-// End of variables declaration
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
