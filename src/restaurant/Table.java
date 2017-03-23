@@ -41,4 +41,8 @@ public class Table {
 	public double ReturnTotal() {
 		return total;
 	}
+        
+        public void Test() {
+            //test shit.
+        }
 }
