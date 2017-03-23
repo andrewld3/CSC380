@@ -3,33 +3,19 @@ package restaurant;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.Before;
 
 public class TableTest {
-	
-	Table testTable = new Table();
-	Table table = new Table();
-
-	@Test
-	public void testList() {
-
-		testTable.LoadTable();
-		table.LoadTable();
-		assertArrayEquals("Tables are equal", table.ReturnOrder(), testTable.ReturnOrder());
-	}
-	
-	@Test
-	public void testEdit() {
-
-		testTable.LoadTable();
-		table.LoadTable();
-		testTable.EditOrder();
-		assertNotSame("Tables are changed", table.ReturnOrder(), testTable.ReturnOrder());
-	}
-	
-	@Test
-	public void testBill() {
-		testTable.LoadTable();
-		testTable.PrintBill();
-		assertEquals(testTable.ReturnTotal(), 27.2475, 0);
-	}
+    
+    @Before
+    public void initializeTest() {
+        Restaurant test = new Restaurant();
+    }
+    //Create Order
+    //Add Order
+    //Delete Order
+    //Calculate Bill
+    //
+    @Test
+    public void 
 }

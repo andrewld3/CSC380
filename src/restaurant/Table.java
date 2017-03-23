@@ -3,8 +3,6 @@ package restaurant;
 import java.util.Scanner;
 
 public class Table {
-    ///
-	
 	private String[] orderDesc = new String[100];
 	private double[] price = new double[100];
 	private double total;
