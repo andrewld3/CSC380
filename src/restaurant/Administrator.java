@@ -22,6 +22,7 @@ import java.util.Scanner;
  */
 public class Administrator {
 
+    
     FileWriter fileWriter = null;
     PrintWriter printWriter = null;
     BufferedReader buffReader = null;
