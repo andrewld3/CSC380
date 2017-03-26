@@ -8,8 +8,11 @@ package restaurant;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import org.junit.Test;
+import java.io.*;
 import static org.junit.Assert.*;
 
 /**
@@ -144,5 +147,69 @@ public class AdministratorTest {
         //testing is completed so remove test login:
         adm.deleteUser("Test", "1234");
     }
+    
+    @Test
+    public void removeFromMenu()throws IOException{
+                Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+                /*menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+                menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+                menu.put("Corndog", new MenuItem("Corndog", 4.00, 0));
+                menu.put("Steak", new MenuItem("Steak", 1200.00, 3000));
+                menu.put("Small Children", new MenuItem("Small Children", 3.50, 1));*/
+                
+                Map<String, MenuItem> menu2 = new HashMap<String, MenuItem>();
+        
+        File inFile = new File("menu.txt");
+        Scanner inFileSC = new Scanner(inFile);
+        
+        while(inFileSC.hasNext()){
+            String name = inFileSC.nextLine();
+            double price = Double.parseDouble(inFileSC.nextLine());
+            int inventory = Integer.parseInt(inFileSC.nextLine());
+            MenuItem item = new MenuItem(name, price ,inventory);
+            menu2.put(item.getName(), item);
+        }
+        
+        Administrator temp = new Administrator();
+        temp.deleteFromMenu("Hamburger");
+        inFileSC.close();
+        
+        inFileSC = new Scanner(new File("menuTest.txt"));
+        
+        while(inFileSC.hasNext()){
+            String name = inFileSC.nextLine();
+            double price = Double.parseDouble(inFileSC.nextLine());
+            int inventory = Integer.parseInt(inFileSC.nextLine());
+            MenuItem item = new MenuItem(name, price ,inventory);
+            menu.put(item.getName(), item);
+        }
+        
+        inFileSC.close();
+        
+        assertEquals(menu.get("Hamburger"), null);
+        assertEquals(menu2.get("Hamburger").getName(), "Hamburger");
+    }
+    
+    @Test
+    public void addToMenu()throws IOException{
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        File inFile = new File("menu.txt");
+        Scanner inFileSC = new Scanner(inFile);
+        
+        while(inFileSC.hasNext()){
+            String name = inFileSC.nextLine();
+            double price = Double.parseDouble(inFileSC.nextLine());
+            int inventory = Integer.parseInt(inFileSC.nextLine());
+            MenuItem item = new MenuItem(name, price ,inventory);
+            menu.put(item.getName(), item);
+        }
+        
+        Administrator temp = new Administrator();
+        menu.put("Hamburger", temp.addToMenu("Hamburger", 10.5, 50));
+        assertEquals(menu.get("Hamburger").getName(), "Hamburger");
+        assertEquals(menu.get("Hamburger").getPrice(), 10.5, 0);
+        assertEquals(menu.get("Hamburger").getInventory(), 50, 0);
+    }
+    
     
 }

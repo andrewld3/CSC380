@@ -19,7 +19,7 @@ public class Restaurant {
         
     }
     
-    public static void initialize(Map menu)throws IOException{
+    public static void initialize(Map<String, MenuItem> menu)throws IOException{
         File inFile = new File("menu.txt");
         Scanner inFileSC = new Scanner(inFile);
         
@@ -31,7 +31,7 @@ public class Restaurant {
         }
     }
     
-    public static void loadMenu(String name, double price, int inventory, Map menu){
+    public static void loadMenu(String name, double price, int inventory, Map<String, MenuItem> menu){
         
         MenuItem item = new MenuItem(name, price ,inventory);
         menu.put(item.getName(), item);
