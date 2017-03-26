@@ -1,35 +1,74 @@
 package restaurant;
 
 import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
 public class TableTest {
-	
-	Table testTable = new Table();
-	Table table = new Table();
 
 	@Test
 	public void testList() {
-
-		testTable.LoadTable();
-		table.LoadTable();
-		assertArrayEquals("Tables are equal", table.ReturnOrder(), testTable.ReturnOrder());
+                Table testTable = new Table();
+                Table table = new Table();
+		testTable.addToOrder("Hamburger"); 
+		table.addToOrder("Hamburger");
+		assertTrue(table.ReturnOrder().equals(testTable.ReturnOrder()));
 	}
 	
 	@Test
-	public void testEdit() {
-
-		testTable.LoadTable();
-		table.LoadTable();
-		testTable.EditOrder();
-		assertNotSame("Tables are changed", table.ReturnOrder(), testTable.ReturnOrder());
+	public void testEdit() {   
+                Table testTable = new Table();
+                Table table = new Table();
+		testTable.addToOrder("Hamburger");
+		table.addToOrder("Hamburger");
+		testTable.removeFromOrder("Hamburger");
+		assertFalse(table.ReturnOrder().equals(testTable));
 	}
 	
 	@Test
-	public void testBill() {
-		testTable.LoadTable();
-		testTable.PrintBill();
-		assertEquals(testTable.ReturnTotal(), 27.2475, 0);
+	public void testSubtotal() {
+                Table testTable = new Table();
+            
+                Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+                menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+                menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+                
+		testTable.addToOrder("Hamburger");
+                testTable.addToOrder("Hotdog");
+                
+		assertEquals(testTable.getSubtotal(menu), 14.0, 0);
 	}
+        
+        @Test
+        public void testTax(){
+                Table testTable = new Table();
+            
+                Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+                menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+                menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+                
+		testTable.addToOrder("Hamburger");
+                testTable.addToOrder("Hotdog");
+                
+		assertEquals(testTable.getTax(menu), 1.12, 0);
+        }
+        
+        @Test
+        public void testTotal(){
+            Table testTable = new Table();
+            
+                Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+                menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+                menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+                
+		testTable.addToOrder("Hamburger");
+                testTable.addToOrder("Hotdog");
+                
+		assertEquals(15.12, testTable.ReturnTotal(menu), 0);
+        }
 }

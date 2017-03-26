@@ -1,45 +1,55 @@
 package restaurant;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Table {
     ///
+	private ArrayList<String> orderDesc = new ArrayList<String>();
 	
-	private String[] orderDesc = new String[100];
-	private double[] price = new double[100];
-	private double total;
-	private double tax;
-	private double subtotal;
-	
-	public void LoadTable() {
-	
-		orderDesc[0] = "hamburger";
-		price[0] = 10.98;
-		orderDesc[1] = "cheeseburger";
-		price[1] = 11.99;
-		orderDesc[2] = "pizza";
-		price[2] = 2.98;
+	public Boolean addToOrder(String name) {
+                return orderDesc.add(name);
+		
 	}
 	
-	public void EditOrder() {
-		orderDesc[0] = "pizza";
+	public Boolean removeFromOrder(String name) {
+		return orderDesc.remove(name);
 	}
+        
 	
-	public void PrintBill() {
-		subtotal = price[0] + price[1] + price[2];
-		tax = subtotal *.05;
-		total = subtotal + tax;
-	}
-	
-	public String[] ReturnOrder() {
+        public ArrayList getBillInfo(Map<String, MenuItem> menu){
+            ArrayList<MenuItem> billInfo = new ArrayList<MenuItem>();
+            
+            for(int i = 0; i < orderDesc.size(); i++){
+                billInfo.add(menu.get(orderDesc.get(i)));
+            }
+            
+            return billInfo;
+        }
+        
+	public ArrayList ReturnOrder() {
 		return orderDesc;
 	}
 	
-	public double[] ReturnPrice() {
-		return price;
-	}
+        public double getSubtotal(Map<String, MenuItem> menu){
+            double subtotal = 0;
+            
+            for(int i = 0; i < orderDesc.size(); i++){
+                subtotal = menu.get(orderDesc.get(i)).getPrice() + subtotal;
+            }
+            
+            return subtotal;
+        }
+        
+        public double getTax(Map<String, MenuItem> menu){
+            return .08 * getSubtotal(menu);
+        }
 	
-	public double ReturnTotal() {
-		return total;
+	public double ReturnTotal(Map<String, MenuItem> menu) {
+		return getSubtotal(menu) + getTax(menu);
 	}
 }

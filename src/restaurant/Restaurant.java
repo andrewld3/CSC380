@@ -9,15 +9,17 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Restaurant {
-
-    public static Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+ 
     
     public static void main(String [] args)throws IOException{
-        initialize();
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        initialize(menu);
+        
         Login login = new Login();
+        
     }
     
-    public static void initialize()throws IOException{
+    public static void initialize(Map menu)throws IOException{
         File inFile = new File("menu.txt");
         Scanner inFileSC = new Scanner(inFile);
         
@@ -25,11 +27,11 @@ public class Restaurant {
             String name = inFileSC.nextLine();
             double price = Double.parseDouble(inFileSC.nextLine());
             int inventory = Integer.parseInt(inFileSC.nextLine());
-            loadMenu(name, price, inventory);
+            loadMenu(name, price, inventory, menu);
         }
     }
     
-    public static void loadMenu(String name, double price, int inventory){
+    public static void loadMenu(String name, double price, int inventory, Map menu){
         
         MenuItem item = new MenuItem(name, price ,inventory);
         menu.put(item.getName(), item);
