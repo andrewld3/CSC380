@@ -22,16 +22,11 @@ public class Table {
         
 	
         public ArrayList getBillInfo(Map<String, MenuItem> menu){
-            ArrayList<ArrayList> billInfo = new ArrayList<ArrayList>();
-            ArrayList<Double> prices = new ArrayList<Double>();
+            ArrayList<MenuItem> billInfo = new ArrayList<MenuItem>();
             
             for(int i = 0; i < orderDesc.size(); i++){
-                prices.add(i, menu.get(orderDesc.get(i)).getPrice());
+                billInfo.add(menu.get(orderDesc.get(i)));
             }
-            
-            billInfo.add(orderDesc);
-            billInfo.add(1, prices);
-            
             
             return billInfo;
         }
@@ -55,6 +50,6 @@ public class Table {
         }
 	
 	public double ReturnTotal(Map<String, MenuItem> menu) {
-		return getSubtotal(menu) * 1.08;
+		return getSubtotal(menu) + getTax(menu);
 	}
 }
