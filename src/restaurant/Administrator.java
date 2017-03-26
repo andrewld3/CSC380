@@ -174,7 +174,37 @@ public class Administrator {
             }
         }
     }
+    
+    public void deleteFromMenu(String name)throws IOException{
+        File menu = new File("menu.txt");
+        Scanner read = new Scanner(menu);
+        Scanner kbd = new Scanner(System.in);
+        ArrayList<String> temp = new ArrayList<String>();
 
+        while (read.hasNext()) {
+            temp.add(read.nextLine());
+        }
+        read.close();
+
+        boolean delete = false;
+        File test = new File("menuTest.txt");
+        PrintWriter write = new PrintWriter(test);
+        while (!temp.isEmpty()) {
+            if (name.compareTo(temp.get(0)) == 0) {
+                temp.remove(0);
+                temp.remove(0);
+                temp.remove(0);
+                delete = true;
+            } else {
+                write.println(temp.get(0));
+                temp.remove(0);
+            }
+        }
+
+        write.close();
+        
+    }
+    
     public void deleteFromMenu() throws IOException {
         File menu = new File("menu.txt");
         Scanner read = new Scanner(menu);
@@ -215,6 +245,13 @@ public class Administrator {
         Double price = kbd.nextDouble();
         System.out.println("Enter quantity");
         int inventory = kbd.nextInt();
+        MenuItem newItem = new MenuItem(name, price, inventory);
+        
+        return newItem;
+    }
+    
+    public MenuItem addToMenu(String name, double price, int inventory) {
+        Scanner kbd = new Scanner(System.in);
         MenuItem newItem = new MenuItem(name, price, inventory);
         
         return newItem;
