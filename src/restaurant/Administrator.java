@@ -207,7 +207,16 @@ public class Administrator {
 
     }
 
-    public void addToMenu() {
-
+    public MenuItem addToMenu() {
+        Scanner kbd = new Scanner(System.in);
+        System.out.println("Enter item name ");
+        String name = kbd.nextLine();
+        System.out.println("Enter Price");
+        Double price = kbd.nextDouble();
+        System.out.println("Enter quantity");
+        int inventory = kbd.nextInt();
+        MenuItem newItem = new MenuItem(name, price, inventory);
+        
+        return newItem;
     }
 }
