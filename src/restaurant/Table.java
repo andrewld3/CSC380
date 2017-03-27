@@ -15,65 +15,58 @@ public class Table {
     
     public Table(Map<String, MenuItem> restaurantMenu) {
         menu = restaurantMenu;
-        menu.size();
+        order = new String[menu.size()];
+        orderNum = new int[menu.size()];
+        IterateMenu();
+        SetZeroOrder();
+        
+        for(int i = 0; i < menu.size(); i++) {
+            System.out.println(order[i]);
+            System.out.println(orderNum[i]);
+        }
     }
     
-    private MenuItem FindEntry(String searchTerm) {
+    private String FindEntry(String searchTerm) {
         /*
         Precondition:
             1) Search Term is valid. (Case is modified to lowercase during search)
             2) Menu is properly loaded.
         Postcondition:
-            1) If search term is matched with key, the value (MenuItem Object) will be returned.
-            2) If search term is not matched, the value will be returned null.
+            1) If search term is matched with key, the key will be returned.
+            2) If search term is not matched, the key will be returned null.
         Notes: A null must be checked for by calling function.
         */
         
         Iterator<HashMap.Entry<String, MenuItem>> entries = menu.entrySet().iterator();
-        MenuItem value = null;
+        String value = null;
         
         while (entries.hasNext()) {
             HashMap.Entry<String, MenuItem> entry = entries.next();
             if((entry.getKey().toLowerCase()).compareTo(searchTerm.toLowerCase()) == 0){
-                value = entry.getValue();
+                value = entry.getKey();
             }    
         }
-        return value; //This is a MenuItem object that is either the value in HashMap or null.
+        return value; //This is either the key of the Hashmap or Null
     }
     
-    private void InterateMenu() {
+    private void IterateMenu() {
         Iterator<HashMap.Entry<String, MenuItem>> entries = menu.entrySet().iterator();
-        System.out.println("Available Choices:");
+        int i = 0;
+        
         while (entries.hasNext()) {
             HashMap.Entry<String, MenuItem> entry = entries.next();
-            System.out.println("    " + entry.getKey()); 
+            order[i] = entry.getKey();
+            i++;
         }
-        System.out.println();
+    }
+    
+    private void SetZeroOrder() {
+        for(int i = 0; i < menu.size(); i++)
+            orderNum[i] = 0;
     }
     
     public void AddOrderItem() {
-        String search;
-        Scanner kbd = new Scanner(System.in);
-        MenuItem searchResult, invUpdate;
         
-        //Enter Search Term (will eventually be hardcoded into GUI)
-        System.out.print("Enter Food Item: ");
-        search = kbd.nextLine();
-        kbd.close();
-        searchResult = FindEntry(search);
-        
-        /*//Currently Checks for null, Will be coded out after GUI implementation.
-        if(searchResult != null && searchResult.getInventory() > 0) {
-            //Adds MenuItem Object to the Order HashMap
-            order.put(orderNum, searchResult);
-            orderNum++;
-            orderCount++;
-            //Update Inventory
-            searchResult.setInventory(-1);
-            menu.put(search,searchResult);
-        } else { //Will not be an option once hardcode GUI. Button will be greyed out.
-            System.out.println("Item does not exist or out of stock.");
-        }*/
     }
     
     public void DeleteOrderItem() {
