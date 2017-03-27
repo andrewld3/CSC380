@@ -9,14 +9,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Table {
-    private HashMap<Integer, MenuItem> order = new HashMap<>();
+    private String order[];
+    private int orderNum[];
     private Map<String, MenuItem> menu = new HashMap<>();
-    private int orderCount, orderNum;
     
     public Table(Map<String, MenuItem> restaurantMenu) {
-        orderCount = 0;
-        orderNum = 0;
-        menu = restaurantMenu;        
+        menu = restaurantMenu;
+        menu.size();
     }
     
     private MenuItem FindEntry(String searchTerm) {
@@ -63,7 +62,7 @@ public class Table {
         kbd.close();
         searchResult = FindEntry(search);
         
-        //Currently Checks for null, Will be coded out after GUI implementation.
+        /*//Currently Checks for null, Will be coded out after GUI implementation.
         if(searchResult != null && searchResult.getInventory() > 0) {
             //Adds MenuItem Object to the Order HashMap
             order.put(orderNum, searchResult);
@@ -74,7 +73,7 @@ public class Table {
             menu.put(search,searchResult);
         } else { //Will not be an option once hardcode GUI. Button will be greyed out.
             System.out.println("Item does not exist or out of stock.");
-        }
+        }*/
     }
     
     public void DeleteOrderItem() {
@@ -82,10 +81,7 @@ public class Table {
     }
     
     public void CalculateBill() {
-        double subtotal, tax, tip, total;
-        
-        
-        
+   
     }
     
     public void StoreBill(double billTotal) throws IOException {
@@ -98,6 +94,5 @@ public class Table {
     
     public Map<String, MenuItem> UpdateMenu() {
         return menu;
-    }
-	
+    }	
 }
