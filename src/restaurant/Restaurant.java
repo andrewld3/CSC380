@@ -14,7 +14,6 @@ public class Restaurant {
     
     public static void main(String [] args)throws IOException{
         initialize();
-        Table table = new Table(menu);
     }
     
     public static void initialize()throws IOException{

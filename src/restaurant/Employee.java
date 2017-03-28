@@ -31,7 +31,10 @@ public class Employee {
     }
     
     public void CreateTable() {
-        ChooseTable();
+        int i = 0;
+        i = ChooseTable();
+        tables[i] = new Table(menu);
+        
         /* Researching how to add an individual table into the array. ADT List might be the way */
     }
 
