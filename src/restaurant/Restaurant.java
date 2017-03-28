@@ -12,7 +12,10 @@ public class Restaurant {
  
     
     public static void main(String [] args)throws IOException{
-        initialize();
+        
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        
+        initialize(menu);
         Table test = new Table(menu);
         test.AddOrderItem();
         test.DeleteOrderItem();
