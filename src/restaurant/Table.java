@@ -89,20 +89,42 @@ public class Table {
         }
     }
     
-    private void CalculateBill() {
+    private double CalculateBill() throws IOException{
         double extPrice[] = new double[menu.size()];
+        double tip, subtotal, tax, total;
         MenuItem value;
+        Scanner kbd = new Scanner(System.in);
+        PrintWriter out = new PrintWriter(new FileWriter("bill.txt", true));
         
+        subtotal = 0;
         for(int i = 0; i < menu.size(); i++) {
             if(orderNum[i] > 0) {
                 value = menu.get(order[i]);
                 extPrice[i] = (value.getPrice() * orderNum[i]);
             }
         }
-        
+        System.out.print("Enter Tip Amount");
+        tip = kbd.nextDouble();
+        System.out.println();
         for(int i = 0; i < menu.size(); i++) {
-            
+            subtotal += extPrice[i];
         }
+        tax = (subtotal * .075);
+        total = tax + subtotal + tip;
+        
+        out.println("Bill");
+        for(int i = 0; i < menu.size(); i++) {
+            out.println(orderNum[i] + "   " + order[i]);
+        }
+        out.println();
+        out.println("Subtotal: " + subtotal);
+        out.println("Tax:      " + tax);
+        out.println("Tip:      " + tip);
+        out.println("Total:    " + total);
+        out.println();
+        
+        out.close();
+        return total;
     }
     
     private void StoreBill(double billTotal) throws IOException {
@@ -117,9 +139,11 @@ public class Table {
         return menu;
     }	
 
-    public Map<String, MenuItem> FinishTable() {
-        CalculateBill();
-        StoreBill();
+    public Map<String, MenuItem> FinishTable() throws IOException {
+        double total;
+        
+        total = CalculateBill();
+        StoreBill(total);
         UpdateMenu();
         return menu;
     }
