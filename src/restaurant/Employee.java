@@ -35,15 +35,16 @@ public class Employee {
         i = ChooseTable();
         tables[i] = new Table(menu);
         
-        /* Researching how to add an individual table into the array. ADT List might be the way */
+        
     }
 
-    public void RemoveTable() throws IOException{
+    public Map<String, MenuItem> RemoveTable() throws IOException{
         int i;
         
         i = ChooseTable();
         menu = tables[i].FinishTable();
         tables[i] = null;
+        return menu;
     }
 
     public void OrderFood() {
@@ -58,10 +59,5 @@ public class Employee {
     
     public void SignOut() {
         signOut = System.currentTimeMillis();
-    }
-    
-    public Map<String, MenuItem> UpdateMenu() {
-        return menu;
-    }
-    
+    }   
 }

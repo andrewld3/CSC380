@@ -14,6 +14,10 @@ public class Restaurant {
     
     public static void main(String [] args)throws IOException{
         initialize();
+        Table test = new Table(menu);
+        test.AddOrderItem();
+        test.DeleteOrderItem();
+        test.FinishTable();
     }
     
     public static void initialize()throws IOException{

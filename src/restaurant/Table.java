@@ -84,8 +84,10 @@ public class Table {
         search = kbd.nextLine();
         
         for (int i = 0; i < menu.size(); i++) {
-            if(search.toLowerCase().compareTo(order[i]) == 0)
-                orderNum[i] -=1;
+            if(search.toLowerCase().compareTo(order[i].toLowerCase()) == 0) {
+                orderNum[i] = orderNum[i] - 1;
+                System.out.println("Subtraction");
+            }
         }
     }
     
