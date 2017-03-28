@@ -26,29 +26,6 @@ public class Table {
         }
     }
     
-    private String FindEntry(String searchTerm) {
-        /*
-        Precondition:
-            1) Search Term is valid. (Case is modified to lowercase during search)
-            2) Menu is properly loaded.
-        Postcondition:
-            1) If search term is matched with key, the key will be returned.
-            2) If search term is not matched, the key will be returned null.
-        Notes: A null must be checked for by calling function.
-        */
-        
-        Iterator<HashMap.Entry<String, MenuItem>> entries = menu.entrySet().iterator();
-        String value = null;
-        
-        while (entries.hasNext()) {
-            HashMap.Entry<String, MenuItem> entry = entries.next();
-            if((entry.getKey().toLowerCase()).compareTo(searchTerm.toLowerCase()) == 0){
-                value = entry.getKey();
-            }    
-        }
-        return value; //This is either the key of the Hashmap or Null
-    }
-    
     private void IterateMenu() {
         Iterator<HashMap.Entry<String, MenuItem>> entries = menu.entrySet().iterator();
         int i = 0;
@@ -66,18 +43,69 @@ public class Table {
     }
     
     public void AddOrderItem() {
+        String search;
+        int value;
+        Scanner kbd = new Scanner(System.in);
+        MenuItem compare;
         
+        System.out.println("Avaiable Menu");
+        for(int i = 0; i < menu.size(); i++) {
+            System.out.println(order[i]);
+        }
+        System.out.println();
+        System.out.print("Which Item? ");
+        search = kbd.nextLine();
+        System.out.println();
+        System.out.print("Number: ");
+        value = kbd.nextInt();
+        for(int i = 0; i < menu.size(); i++) {
+            if(search.toLowerCase().compareTo(order[i].toLowerCase()) == 0) {
+                compare = menu.get(search);
+                if(compare.getInventory() > value) {
+                    orderNum[i] += value;
+                    value = value - (2 * value);
+                    compare.setInventory(value);
+                } else
+                    System.out.println("Not Enough Inventory");
+            }
+        }
     }
     
     public void DeleteOrderItem() {
+        Scanner kbd = new Scanner(System.in);
+        String search;
         
+        System.out.println("Choose Item to Remove");
+        for (int i = 0; i < menu.size(); i++) {
+            if(orderNum[i] > 0)
+                System.out.println(order[i]);
+        }
+        System.out.print("Choose Item: ");
+        search = kbd.nextLine();
+        
+        for (int i = 0; i < menu.size(); i++) {
+            if(search.toLowerCase().compareTo(order[i]) == 0)
+                orderNum[i] -=1;
+        }
     }
     
-    public void CalculateBill() {
-   
+    private void CalculateBill() {
+        double extPrice[] = new double[menu.size()];
+        MenuItem value;
+        
+        for(int i = 0; i < menu.size(); i++) {
+            if(orderNum[i] > 0) {
+                value = menu.get(order[i]);
+                extPrice[i] = (value.getPrice() * orderNum[i]);
+            }
+        }
+        
+        for(int i = 0; i < menu.size(); i++) {
+            
+        }
     }
     
-    public void StoreBill(double billTotal) throws IOException {
+    private void StoreBill(double billTotal) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter("billsummary.txt", true));
         
         out.println("current date");
@@ -85,7 +113,14 @@ public class Table {
         out.close();
     }
     
-    public Map<String, MenuItem> UpdateMenu() {
+    private Map<String, MenuItem> UpdateMenu() {
         return menu;
     }	
+
+    public Map<String, MenuItem> FinishTable() {
+        CalculateBill();
+        StoreBill();
+        UpdateMenu();
+        return menu;
+    }
 }
