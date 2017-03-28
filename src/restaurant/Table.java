@@ -6,9 +6,10 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Table {
+  
     private String order[];
     private int orderNum[];
     private Map<String, MenuItem> menu = new HashMap<>();

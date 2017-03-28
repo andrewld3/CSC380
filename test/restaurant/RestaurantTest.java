@@ -17,40 +17,45 @@ public class RestaurantTest {
         //Test to see if value is laoded into hamburger slot match the actual values
         @Test
         public void testLoadMenu() {
-                Restaurant rms = new Restaurant();
-                rms.loadMenu("hamburger", 12.5, 50);
-                assertEquals("hamburger" , rms.menu.get("hamburger").getName());
-                assertEquals(12.5, rms.menu.get("hamburger").getPrice(), 0);
-                assertEquals(50, rms.menu.get("hamburger").getInventory());
+                Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+                menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+                menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+                
+                assertEquals("Hamburger" , menu.get("Hamburger").getName());
+                assertEquals(10.5, menu.get("Hamburger").getPrice(), 0);
+                assertEquals(50, menu.get("Hamburger").getInventory());
                 
         }
         
         //Testing getting price as well as updating price
         @Test
         public void testPrice(){
-                Restaurant rms = new Restaurant();
-                rms.loadMenu("hamburger", 12.5, 50);
-                assertEquals(12.5, rms.menu.get("hamburger").getPrice(), 0);
+                Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+                menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+                menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
                 
-                rms.menu.get("hamburger").setPrice(13.5);
-                assertEquals(13.5, rms.menu.get("hamburger").getPrice(), 0);
+                assertEquals(10.5, menu.get("Hamburger").getPrice(), 0);
+                
+                menu.get("Hamburger").setPrice(13.5);
+                assertEquals(13.5, menu.get("Hamburger").getPrice(), 0);
                 
         }
         
         //Test to make sure updating inventory works as expected (I.E. removing an adding
         @Test
         public void testInventory(){
-            Restaurant rms = new Restaurant();
-            rms.loadMenu("hamburger", 12.5, 50);
+            Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+            menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+            menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
             
-            rms.menu.get("hamburger").setInventory(0);
-            assertEquals(50, rms.menu.get("hamburger").getInventory());
+            menu.get("Hamburger").setInventory(0);
+            assertEquals(50, menu.get("Hamburger").getInventory());
             
-            rms.menu.get("hamburger").setInventory(-1);
-            assertEquals(49, rms.menu.get("hamburger").getInventory());
+            menu.get("Hamburger").setInventory(-1);
+            assertEquals(49, menu.get("Hamburger").getInventory());
             
-            rms.menu.get("hamburger").setInventory(1);
-            assertEquals(50, rms.menu.get("hamburger").getInventory());
+            menu.get("Hamburger").setInventory(1);
+            assertEquals(50, menu.get("Hamburger").getInventory());
 
         }
     

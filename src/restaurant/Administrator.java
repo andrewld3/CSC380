@@ -22,6 +22,7 @@ import java.util.Scanner;
  */
 public class Administrator {
 
+    
     FileWriter fileWriter = null;
     PrintWriter printWriter = null;
     BufferedReader buffReader = null;
@@ -46,6 +47,7 @@ public class Administrator {
         printWriter.print("\n" + username + pin);
         printWriter.close();
         fileWriter.close();
+        System.out.println(username + "'s account has been added to User Accounts.");
     }
 
     public void deleteUser(String u, String p) throws IOException {
@@ -65,8 +67,8 @@ public class Administrator {
         boolean addNewLine = false;
 
         while ((lineFromUserFile = buffReader.readLine()) != null) {
-            if (!lineFromUserFile.trim().equals(lineToRemoveFromFile)) {
-                if(addNewLine) {
+            if (!lineFromUserFile.equals(lineToRemoveFromFile)) {
+                if (addNewLine) {
                     buffWriter.newLine();
                 }
                 addNewLine = true;
@@ -78,12 +80,60 @@ public class Administrator {
 
         boolean removed = temporaryFile.renameTo(userAccountFolder);
         if (removed == true) {
-            System.out.println(username + "'s account has been removed.");
+            System.out.println(username + "'s account has been removed from User Accounts.");
         }
     }
 
-    public void changePrivilege() {
+    public void changePrivilegeFromUserToAdmin(String u, String p) throws IOException {
+        username = u;
+        pin = p;
 
+        Administrator adm = new Administrator();
+        adm.deleteUser(username, pin);
+
+        FileWriter fileWriter = new FileWriter("adminLogin.txt", true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.print("\n" + username + pin);
+        printWriter.close();
+        fileWriter.close();
+        System.out.println(username + "'s privileges have been changed to Administrator.");
+    }
+
+    public void changePrivilegeFromAdminToUser(String u, String p) throws IOException {
+        //First part of code deletes user from adminLogin.txt
+        username = u;
+        pin = p;
+
+        File userAccountFolder = new File("adminLogin.txt");
+        File temporaryFile = new File("temporaryFile.txt");
+
+        BufferedReader buffReader = new BufferedReader(new FileReader(userAccountFolder));
+        BufferedWriter buffWriter = new BufferedWriter(new FileWriter(temporaryFile));
+
+        String lineToRemoveFromFile = username + pin;
+        String lineFromUserFile;
+
+        boolean addNewLine = false;
+
+        while ((lineFromUserFile = buffReader.readLine()) != null) {
+            if (!lineFromUserFile.equals(lineToRemoveFromFile)) {
+                if (addNewLine) {
+                    buffWriter.newLine();
+                }
+                addNewLine = true;
+                buffWriter.write(lineFromUserFile);
+            }
+        }
+        buffWriter.close();
+        buffReader.close();
+
+        boolean removed = temporaryFile.renameTo(userAccountFolder);
+        if (removed == true) {
+            //adds former admin to user account
+           Administrator adm = new Administrator();
+           adm.addUser(username, pin);
+            System.out.println(username + "'s privileges have been changed to user.");
+        }
     }
 
     public void printUserLogins() throws FileNotFoundException {
@@ -105,61 +155,105 @@ public class Administrator {
             }
         }
     }
-    
-    public void updateMenu()throws IOException{
+
+    public void updateMenu() throws IOException {
         Scanner kbd = new Scanner(System.in);
         String userChoice = "";
-        while(userChoice != "q"){
+        while (userChoice != "q") {
             System.out.println("q : quit \na : add \nd : delete");
             userChoice = kbd.nextLine();
-            
-            if(userChoice == "a"){
-                addToMenu();}
-            else if(userChoice.compareTo("d") == 0){
-                deleteFromMenu();}
-            else if(userChoice == "q"){
-                System.out.print("");}
-            else{
-                System.out.println("enter valid choice");}
+
+            if (userChoice == "a") {
+                addToMenu();
+            } else if (userChoice.compareTo("d") == 0) {
+                deleteFromMenu();
+            } else if (userChoice == "q") {
+                System.out.print("");
+            } else {
+                System.out.println("enter valid choice");
+            }
         }
     }
     
-    public void deleteFromMenu()throws IOException{
+    public void deleteFromMenu(String name)throws IOException{
         File menu = new File("menu.txt");
         Scanner read = new Scanner(menu);
         Scanner kbd = new Scanner(System.in);
         ArrayList<String> temp = new ArrayList<String>();
-        
-        System.out.println("enter menu item to remove");
-        String itemToDelete = kbd.nextLine();
-        
-        while(read.hasNext()){
+
+        while (read.hasNext()) {
             temp.add(read.nextLine());
         }
         read.close();
-        
-        
+
         boolean delete = false;
-        PrintWriter write = new PrintWriter(menu);
-        while(!temp.isEmpty()){
-            if(itemToDelete.compareTo(temp.get(0)) == 0){
+        File test = new File("menuTest.txt");
+        PrintWriter write = new PrintWriter(test);
+        while (!temp.isEmpty()) {
+            if (name.compareTo(temp.get(0)) == 0) {
                 temp.remove(0);
                 temp.remove(0);
                 temp.remove(0);
                 delete = true;
-            }
-            else{
+            } else {
                 write.println(temp.get(0));
                 temp.remove(0);
-        
             }
         }
-        
+
         write.close();
         
     }
     
-    public void addToMenu(){
+    public void deleteFromMenu() throws IOException {
+        File menu = new File("menu.txt");
+        Scanner read = new Scanner(menu);
+        Scanner kbd = new Scanner(System.in);
+        ArrayList<String> temp = new ArrayList<String>();
+
+        System.out.println("enter menu item to remove");
+        String itemToDelete = kbd.nextLine();
+
+        while (read.hasNext()) {
+            temp.add(read.nextLine());
+        }
+        read.close();
+
+        boolean delete = false;
+        PrintWriter write = new PrintWriter(menu);
+        while (!temp.isEmpty()) {
+            if (itemToDelete.compareTo(temp.get(0)) == 0) {
+                temp.remove(0);
+                temp.remove(0);
+                temp.remove(0);
+                delete = true;
+            } else {
+                write.println(temp.get(0));
+                temp.remove(0);
+            }
+        }
+
+        write.close();
+
+    }
+
+    public MenuItem addToMenu() {
+        Scanner kbd = new Scanner(System.in);
+        System.out.println("Enter item name ");
+        String name = kbd.nextLine();
+        System.out.println("Enter Price");
+        Double price = kbd.nextDouble();
+        System.out.println("Enter quantity");
+        int inventory = kbd.nextInt();
+        MenuItem newItem = new MenuItem(name, price, inventory);
         
+        return newItem;
+    }
+    
+    public MenuItem addToMenu(String name, double price, int inventory) {
+        Scanner kbd = new Scanner(System.in);
+        MenuItem newItem = new MenuItem(name, price, inventory);
+        
+        return newItem;
     }
 }

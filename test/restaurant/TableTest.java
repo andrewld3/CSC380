@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import org.junit.Before;
+
 import org.junit.Test;
 import static restaurant.Restaurant.loadMenu;
 import static restaurant.Restaurant.menu;
 
 public class TableTest {
+
     public static Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
     
     @Before
