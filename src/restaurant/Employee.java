@@ -1,6 +1,10 @@
 package restaurant;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,16 +15,39 @@ import java.util.Scanner;
  */
 
 public class Employee {
-    public String employeeID;
+    public String empID;
     private Table[] tables = new Table[1000];
     private String empName;
-    private double signIn, signOut;
+    private String signIn, signOut;
     private Map<String, MenuItem> menu = new HashMap<>();
     
+    // Start Employee Constructor Methods
     public Employee(Map<String, MenuItem> theMenu) {
         menu = theMenu;
     }
+    // End Employee Constructor Methods
+    
+    // Start Employee Time Tracking Methods
+    
+    public boolean SetSignIn() {
+        signIn = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        if(signIn != null)
+            return true;
+        else
+            return false;
+    }
+    
+    public boolean SetSignOut() {
+        signOut = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        if(signOut != null)
+            return true;
+        else
+            return false;
+    }  
 
+    // End Employee Time Tracking Methods
+    
+    // Start Table Management Methods
     private int ChooseTable() {
         Scanner kbd = new Scanner(System.in);
         int tableNum;
@@ -30,34 +57,20 @@ public class Employee {
         return tableNum;
     }
     
-    public void CreateTable() {
+    public boolean CreateTable() {
         int i = 0;
         i = ChooseTable();
-        tables[i] = new Table(menu);
-        
-        
-    }
-
-    public Map<String, MenuItem> RemoveTable() throws IOException{
-        int i;
-        
-        i = ChooseTable();
-        menu = tables[i].FinishTable();
-        tables[i] = null;
-        return menu;
-    }
-
-    public void OrderFood() {
-        int i;
-        i = ChooseTable();
-        tables[i].AddOrderItem();
-    }
-   
-    public void SignIn() {
-        signIn = System.currentTimeMillis();
+        tables[i] = new Table();
+        if(tables[i] != null)
+            return true;
+        else 
+            return false;
     }
     
-    public void SignOut() {
-        signOut = System.currentTimeMillis();
-    }   
+    public boolean OrderFood() {
+        return true;
+    }
+    
+    
+    // End Table Management Methods
 }

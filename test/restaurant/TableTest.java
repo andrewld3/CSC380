@@ -1,61 +1,74 @@
 package restaurant;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
+import static org.junit.Assert.*;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.Scanner;
-import org.junit.Before;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
 public class TableTest {
 
-    public static Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
-    
-    @Before
-    public void CreateMenu() throws IOException{
-        File inFile = new File("menu.txt");
-        Scanner inFileSC = new Scanner(inFile);
-        
-        while(inFileSC.hasNext()){
-            String name = inFileSC.nextLine();
-            double price = Double.parseDouble(inFileSC.nextLine());
-            int inventory = Integer.parseInt(inFileSC.nextLine());
-            loadMenu(name, price, inventory);
-        }
-    }
-    
-    public static void loadMenu(String name, double price, int inventory){
-        
-        MenuItem item = new MenuItem(name, price ,inventory);
-        menu.put(item.getName(), item);
-    }
-    
     @Test
-    public void testAddOrderItem() {
-        Table test = new Table(menu);
-        Table test2 = new Table(menu);
-        test.AddOrderItem();
-        test2.AddOrderItem();
-    }
-    
-    @Test
-    public void testDeleteOrderItem() {
-        
-    }
-    
-    @Test
-    public void testCalculateBill() {
-        
-    }
-    
-    @Test
-    public void testStoreOrder() {
-        
+    public void testList() {
+        Table testTable = new Table();
+        Table table = new Table();
+        testTable.addToOrder("Hamburger"); 
+        table.addToOrder("Hamburger");
+        assertTrue(table.ReturnOrder().equals(testTable.ReturnOrder()));
     }
 
-    private void assertArrayEquals() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Test
+    public void testEdit() {   
+        Table testTable = new Table();
+        Table table = new Table();
+        testTable.addToOrder("Hamburger");
+        table.addToOrder("Hamburger");
+        testTable.removeFromOrder("Hamburger");
+        assertFalse(table.ReturnOrder().equals(testTable));
+    }
+
+    @Test
+    public void testSubtotal() {
+        Table testTable = new Table();
+
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+        menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+
+        testTable.addToOrder("Hamburger");
+        testTable.addToOrder("Hotdog");
+
+        assertEquals(testTable.getSubtotal(menu), 14.0, 0);
+    }
+
+    @Test
+    public void testTax(){
+        Table testTable = new Table();
+
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+        menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+
+        testTable.addToOrder("Hamburger");
+        testTable.addToOrder("Hotdog");
+
+        assertEquals(testTable.getTax(menu), 1.12, 0);
+    }
+
+    @Test
+    public void testTotal(){
+        Table testTable = new Table();
+
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
+        menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
+
+        testTable.addToOrder("Hamburger");
+        testTable.addToOrder("Hotdog");
+
+        assertEquals(15.12, testTable.ReturnTotal(menu), 0);
     }
 }
