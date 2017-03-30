@@ -1,6 +1,7 @@
 package restaurant;
 
-import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,16 +12,37 @@ import java.util.Scanner;
  */
 
 public class Employee {
-    public String employeeID;
+    public String empID;
     private Table[] tables = new Table[1000];
     private String empName;
-    private double signIn, signOut;
+    private String signIn, signOut;
     private Map<String, MenuItem> menu = new HashMap<>();
     
+    // Start Employee Constructor Methods
+    public Employee() {
+        System.out.println("Warning: Menu not loaded");
+    }
     public Employee(Map<String, MenuItem> theMenu) {
         menu = theMenu;
     }
+    
+    public void GetMenu(Map<String, MenuItem> theMenu) {
+        menu = theMenu;
+    }
+    // End Employee Constructor Methods
+    
+    // Start Employee Time Tracking Methods
+    public void SignIn() {
+        signIn = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+    }
+    
+    public void SignOut() {
+        signOut = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+    }  
 
+    // End Employee Time Tracking Methods
+    
+    // Start Table Management Methods
     private int ChooseTable() {
         Scanner kbd = new Scanner(System.in);
         int tableNum;
@@ -33,31 +55,7 @@ public class Employee {
     public void CreateTable() {
         int i = 0;
         i = ChooseTable();
-        tables[i] = new Table(menu);
-        
-        
-    }
-
-    public Map<String, MenuItem> RemoveTable() throws IOException{
-        int i;
-        
-        i = ChooseTable();
-        menu = tables[i].FinishTable();
-        tables[i] = null;
-        return menu;
-    }
-
-    public void OrderFood() {
-        int i;
-        i = ChooseTable();
-        tables[i].AddOrderItem();
-    }
-   
-    public void SignIn() {
-        signIn = System.currentTimeMillis();
-    }
-    
-    public void SignOut() {
-        signOut = System.currentTimeMillis();
-    }   
+        tables[i] = new Table();
+    } 
+    // End Table Management Methods
 }
