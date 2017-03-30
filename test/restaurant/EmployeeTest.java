@@ -18,10 +18,6 @@ import org.junit.Before;
 public class EmployeeTest {
     Map<String, MenuItem> menu = new HashMap<>();
     
-    public EmployeeTest() {
-        
-    }
-    
     @Before
     public void setUp() throws FileNotFoundException {
         File inFile = new File("menu.txt");

@@ -39,7 +39,7 @@ public class Employee {
     
     public boolean SetSignOut() {
         signOut = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-        if(signIn != null)
+        if(signOut != null)
             return true;
         else
             return false;
