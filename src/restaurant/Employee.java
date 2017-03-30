@@ -1,5 +1,8 @@
 package restaurant;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,12 +35,53 @@ public class Employee {
     // End Employee Constructor Methods
     
     // Start Employee Time Tracking Methods
-    public void SignIn() {
-        signIn = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+    public int ManageTime(boolean choice) throws IOException {
+        boolean signInResult, signOutResult, fileResult;
+        int result = 0;
+        
+        signInResult = false;
+        signOutResult = false;
+        if (choice == true) {
+            signInResult = SignIn();
+        } else {
+            signOutResult = SignOut();
+        }
+        
+        fileResult = false;
+        
+        if(signIn != null && signOut !=null) {
+            PrintWriter out = new PrintWriter(new FileWriter("EmployeeTimeSheet.txt", true));
+            out.println(empID);
+            out.println(signIn);
+            out.println(signOut);
+            out.println();
+            out.close();
+            fileResult = true;
+        }
+        
+        if(signInResult == true && signOutResult == false && fileResult == false) {
+            result = 1;    
+        } else if(signInResult == false && signOutResult == true && fileResult == true) {
+            result = 2;
+        }
+        
+        return result;
     }
     
-    public void SignOut() {
+    private boolean SignIn() {
+        signIn = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        if(signIn != null)
+            return true;
+        else
+            return false;
+    }
+    
+    private boolean SignOut() {
         signOut = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        if(signIn != null)
+            return true;
+        else
+            return false;
     }  
 
     // End Employee Time Tracking Methods
