@@ -16,8 +16,6 @@ public class Restaurant {
         Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
         
         initialize(menu);
-        Employee emp = new Employee(menu);
-        emp.SignIn();
     }
     
     public static void initialize(Map<String, MenuItem> menu)throws IOException{

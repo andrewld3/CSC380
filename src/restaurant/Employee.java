@@ -22,53 +22,14 @@ public class Employee {
     private Map<String, MenuItem> menu = new HashMap<>();
     
     // Start Employee Constructor Methods
-    public Employee() {
-        System.out.println("Warning: Menu not loaded");
-    }
     public Employee(Map<String, MenuItem> theMenu) {
-        menu = theMenu;
-    }
-    
-    public void GetMenu(Map<String, MenuItem> theMenu) {
         menu = theMenu;
     }
     // End Employee Constructor Methods
     
     // Start Employee Time Tracking Methods
-    public int ManageTime(boolean choice) throws IOException {
-        boolean signInResult, signOutResult, fileResult;
-        int result = 0;
-        
-        signInResult = false;
-        signOutResult = false;
-        if (choice == true) {
-            signInResult = SignIn();
-        } else {
-            signOutResult = SignOut();
-        }
-        
-        fileResult = false;
-        
-        if(signIn != null && signOut !=null) {
-            PrintWriter out = new PrintWriter(new FileWriter("EmployeeTimeSheet.txt", true));
-            out.println(empID);
-            out.println(signIn);
-            out.println(signOut);
-            out.println();
-            out.close();
-            fileResult = true;
-        }
-        
-        if(signInResult == true && signOutResult == false && fileResult == false) {
-            result = 1;    
-        } else if(signInResult == false && signOutResult == true && fileResult == true) {
-            result = 2;
-        }
-        
-        return result;
-    }
     
-    private boolean SignIn() {
+    public boolean SetSignIn() {
         signIn = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         if(signIn != null)
             return true;
@@ -76,7 +37,7 @@ public class Employee {
             return false;
     }
     
-    private boolean SignOut() {
+    public boolean SetSignOut() {
         signOut = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         if(signIn != null)
             return true;
@@ -96,10 +57,20 @@ public class Employee {
         return tableNum;
     }
     
-    public void CreateTable() {
+    public boolean CreateTable() {
         int i = 0;
         i = ChooseTable();
         tables[i] = new Table();
-    } 
+        if(tables[i] != null)
+            return true;
+        else 
+            return false;
+    }
+    
+    public boolean OrderFood() {
+        return true;
+    }
+    
+    
     // End Table Management Methods
 }
