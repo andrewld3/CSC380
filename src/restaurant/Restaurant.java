@@ -16,6 +16,12 @@ public class Restaurant {
         Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
         
         initialize(menu);
+        
+        Employee test = new Employee();
+        test.loadMenu(menu);
+        test.createTable(1);
+        test.orderFood(1, "Hamburger");
+        test.finishTable(1);
     }
     
     public static void initialize(Map<String, MenuItem> menu)throws IOException{
