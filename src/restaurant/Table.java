@@ -30,7 +30,7 @@ public class Table {
         return billInfo;
     }
 
-    public ArrayList ReturnOrder() {
+    public ArrayList returnOrder() {
         return orderDesc;
     }
 
