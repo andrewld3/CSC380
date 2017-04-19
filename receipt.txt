@@ -1,8 +1,15 @@
 BILL SUMMARY
+-----------------------
+Date: 2017.04.18
+Server: Chris N
 
-Ordered Items
+Ordered Items:
 Hamburger     10.5
+Hamburger     10.5
+Small Children     3.5
 
-Subtotal: 10.5
-Tax: 0.84
-Total: 11.34
+Subtotal: 24.5
+Tax: 1.96
+Total: 26.46
+
+Have a nice day!

@@ -28,8 +28,8 @@ public class Administrator {
     BufferedReader buffReader = null;
     BufferedWriter buffWriter = null;
 
-    String username;
-    String pin;
+    private String username;
+    private String pin;
 
     //add user to list
     //set priveleges to selected value
