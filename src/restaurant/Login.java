@@ -16,8 +16,15 @@ import java.util.Scanner;
  */
 public class Login {
 
+    //Table table1 = new Table();
+    private boolean isLoggedIn = false;
+    boolean isAdmin = false;
+    Employee emp;
+    
     public Login() throws FileNotFoundException, IOException {
+    }
 
+    public void signIn() throws FileNotFoundException, IOException {
         boolean isLoggedIn = false;
         boolean isAdmin = false;
 
@@ -92,7 +99,8 @@ public class Login {
                                     System.out.println("What is the account's pin?");
                                     String pinToSwitch = scanner.nextLine();
                                     adm.changePrivilegeFromAdminToUser(usernameToSwitch, pinToSwitch);
-                                }   break;
+                                }
+                                break;
                             case "close":
                                 break;
                             default:
@@ -101,8 +109,20 @@ public class Login {
                     }
                 } else {
                     System.out.println(UsernameTextField + " has been logged in as an authorized user.");
+                    String employeeName = UsernameTextField;
+                    emp = new Employee(employeeName);
+                    
                 }
             }
         }
     }
+
+     public Employee getEmployee() {
+        return emp;
+    }
 }
+
+//ifLogin = true
+//return Employee with priviliges
+//ifAdmin = true employee has admin priviliges
+

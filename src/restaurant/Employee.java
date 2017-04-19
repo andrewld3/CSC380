@@ -23,8 +23,8 @@ public class Employee {
     private Map<String, MenuItem> menu = new HashMap<>();
     
     // Start Employee Constructor Methods
-    public Employee() {
-        
+    public Employee(String e) {
+        empName = e;
     }
     // End Employee Constructor Methods
     
@@ -95,9 +95,13 @@ public class Employee {
         order = tables[table].getBillInfo(menu);
         
         //Bill
+       
         out.println("BILL SUMMARY");
+        out.println("-----------------------");
+        out.println("Date: "+ signIn.substring(0, 10));
+        out.println("Server: " + empName);
         out.println();
-        out.println("Ordered Items");
+        out.println("Ordered Items:");
         for(int i = 0; i < order.size(); i++) {
             out.println(order.get(i).getName() + "     " + order.get(i).getPrice());
         }
@@ -105,6 +109,8 @@ public class Employee {
         out.println("Subtotal: " + tables[table].getSubtotal(menu));
         out.println("Tax: " + tables[table].getTax(menu));
         out.println("Total: " + tables[table].ReturnTotal(menu));
+        out.println();
+        out.println("Have a nice day!");
         out.close();
         //End Bill
         
