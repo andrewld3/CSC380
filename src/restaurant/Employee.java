@@ -16,15 +16,17 @@ import java.util.Scanner;
  */
 
 public class Employee {
-    public String empID;
+   // public String empID;
     private Table[] tables = new Table[1000];
-    private String empName;
+    public String empName;
     private String signIn, signOut;
     private Map<String, MenuItem> menu = new HashMap<>();
+    public boolean admin;
     
     // Start Employee Constructor Methods
-    public Employee(String e) {
+    public Employee(String e, boolean priv) {
         empName = e;
+        admin = priv;
     }
     // End Employee Constructor Methods
     
