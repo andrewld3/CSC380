@@ -12,7 +12,9 @@ public class Table {
     private ArrayList<String> orderDesc = new ArrayList<String>();
 
     public Boolean addToOrder(String name) {
+       // System.out.println(name + " has been added to order.");
         return orderDesc.add(name);
+        
     }
 
     public Boolean removeFromOrder(String name) {
@@ -22,7 +24,7 @@ public class Table {
 
     public ArrayList getBillInfo(Map<String, MenuItem> menu){
         ArrayList<MenuItem> billInfo = new ArrayList<MenuItem>();
-
+        //System.out.println(orderDesc);
         for(int i = 0; i < orderDesc.size(); i++){
             billInfo.add(menu.get(orderDesc.get(i)));
         }
@@ -39,6 +41,7 @@ public class Table {
 
         for(int i = 0; i < orderDesc.size(); i++){
             subtotal = menu.get(orderDesc.get(i)).getPrice() + subtotal;
+           
         }
 
         return subtotal;

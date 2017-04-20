@@ -1,15 +1,6 @@
-Hamburger
-10.50
-50
-Hotdog
-3.50
-50
-Corndog
-4.00
-50
-Steak
-1200.00
-3000
-Small Children
-3.50
-1
+Hamburger/10.50/50
+Hotdog/3.50/50
+Corndog/4.00/50
+Pepsi/2.00/200
+Steak/1200.00/3000
+Small Children/3.51/1
