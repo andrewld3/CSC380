@@ -25,6 +25,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
     static Employee emp;
     public static Map<String, MenuItem> menu;
+    public static Map<String, Employee> employees;
 
     /**
      * Creates new form RestaurantGUI
@@ -53,8 +54,12 @@ public class RestaurantGUI extends javax.swing.JFrame {
         PinLabel = new javax.swing.JLabel();
         EmployeeContentPane = new javax.swing.JPanel();
         EmployeePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         EmployeeSignOutButton = new javax.swing.JButton();
+        TimeButton = new javax.swing.JButton();
+        TimePanel = new javax.swing.JPanel();
+        TimeInButton = new javax.swing.JButton();
+        TimeOutButton = new javax.swing.JButton();
+        OrderPanel = new javax.swing.JPanel();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         AdminOptionPanel = new javax.swing.JPanel();
@@ -110,7 +115,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
         LoginPanel.setMaximumSize(new java.awt.Dimension(1200, 700));
         LoginPanel.setMinimumSize(new java.awt.Dimension(1200, 700));
         LoginPanel.setPreferredSize(new java.awt.Dimension(1200, 700));
-        LoginPanel.setSize(new java.awt.Dimension(1200, 700));
 
         LoginScreenExitButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LoginScreenExitButton.setText("EXIT");
@@ -199,12 +203,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         EmployeeContentPane.setPreferredSize(new java.awt.Dimension(1200, 750));
         EmployeeContentPane.setLayout(new java.awt.CardLayout());
 
-        EmployeePanel.setBounds(new java.awt.Rectangle(0, 0, 1200, 750));
         EmployeePanel.setPreferredSize(new java.awt.Dimension(1200, 750));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setText("Employee Options");
 
         EmployeeSignOutButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         EmployeeSignOutButton.setText("Sign Out");
@@ -214,31 +213,86 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
+        TimeButton.setText("Time");
+        TimeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EmployeePanelLayout = new javax.swing.GroupLayout(EmployeePanel);
         EmployeePanel.setLayout(EmployeePanelLayout);
         EmployeePanelLayout.setHorizontalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EmployeeSignOutButton)
+                .addContainerGap())
             .addGroup(EmployeePanelLayout.createSequentialGroup()
-                .addContainerGap(867, Short.MAX_VALUE)
-                .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
-                        .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(17, 17, 17))))
+                .addContainerGap()
+                .addComponent(TimeButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EmployeePanelLayout.setVerticalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 661, Short.MAX_VALUE)
-                .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+            .addGroup(EmployeePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TimeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(EmployeeSignOutButton))
         );
 
         EmployeeContentPane.add(EmployeePanel, "card2");
+
+        TimeInButton.setText("Time In");
+        TimeInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeInButtonActionPerformed(evt);
+            }
+        });
+
+        TimeOutButton.setText("Time Out");
+        TimeOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeOutButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TimePanelLayout = new javax.swing.GroupLayout(TimePanel);
+        TimePanel.setLayout(TimePanelLayout);
+        TimePanelLayout.setHorizontalGroup(
+            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TimePanelLayout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(TimeInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 680, Short.MAX_VALUE)
+                .addComponent(TimeOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
+        );
+        TimePanelLayout.setVerticalGroup(
+            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TimePanelLayout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addGroup(TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TimeInButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                    .addComponent(TimeOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(462, Short.MAX_VALUE))
+        );
+
+        EmployeeContentPane.add(TimePanel, "card4");
+
+        javax.swing.GroupLayout OrderPanelLayout = new javax.swing.GroupLayout(OrderPanel);
+        OrderPanel.setLayout(OrderPanelLayout);
+        OrderPanelLayout.setHorizontalGroup(
+            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 753, Short.MAX_VALUE)
+        );
+        OrderPanelLayout.setVerticalGroup(
+            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+
+        EmployeeContentPane.add(OrderPanel, "card4");
 
         ContentPane.add(EmployeeContentPane, "card3");
 
@@ -286,7 +340,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         AdminOptionPanelLayout.setHorizontalGroup(
             AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminOptionPanelLayout.createSequentialGroup()
-                .addContainerGap(655, Short.MAX_VALUE)
+                .addContainerGap(677, Short.MAX_VALUE)
                 .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
                         .addComponent(ManageMenuButton)
@@ -302,7 +356,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addGroup(AdminOptionPanelLayout.createSequentialGroup()
                     .addGap(123, 123, 123)
                     .addComponent(ManageUsersButton)
-                    .addContainerGap(650, Short.MAX_VALUE)))
+                    .addContainerGap(654, Short.MAX_VALUE)))
         );
         AdminOptionPanelLayout.setVerticalGroup(
             AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +372,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addGroup(AdminOptionPanelLayout.createSequentialGroup()
                     .addGap(264, 264, 264)
                     .addComponent(ManageUsersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(318, Short.MAX_VALUE)))
+                    .addContainerGap(268, Short.MAX_VALUE)))
         );
 
         AdminPanel.add(AdminOptionPanel, "card2");
@@ -349,14 +403,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ManageMenuPanelLayout.createSequentialGroup()
                         .addComponent(TextManageMenu)
-                        .addGap(0, 950, Short.MAX_VALUE)))
+                        .addGap(0, 945, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ManageMenuPanelLayout.setVerticalGroup(
             ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
                 .addComponent(TextManageMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 655, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 605, Short.MAX_VALUE)
                 .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -599,7 +653,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addGroup(ManageUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ManageUsersPanelLayout.createSequentialGroup()
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(ManageUsersPanelLayout.createSequentialGroup()
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -677,6 +731,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
             Login login = new Login();
             String pin = new String(PinField.getPassword());
             emp = login.signIn(UsernameTextField.getText(), pin);
+            //checking to see if employee is already in system if not adding them in
+            if(employees.get(emp.empName) != null){
+                emp = employees.get(emp.empName);
+            }
+            else{
+                employees.put(emp.empName, emp);
+            }
+
             if (emp != null) {
                 if (emp.admin == false) {
                     //logged in as authorized user
@@ -919,11 +981,29 @@ public class RestaurantGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserResponseTextField4ActionPerformed
 
+    private void TimeInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeInButtonActionPerformed
+        emp.setSignIn();
+        employees.replace(emp.empName, emp);
+        TimePanel.setVisible(false);
+        EmployeePanel.setVisible(true);
+    }//GEN-LAST:event_TimeInButtonActionPerformed
+
+    private void TimeOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeOutButtonActionPerformed
+        emp.setSignOut();
+        employees.replace(emp.empName, emp);
+    }//GEN-LAST:event_TimeOutButtonActionPerformed
+
+    private void TimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeButtonActionPerformed
+        TimePanel.setVisible(true);
+        EmployeePanel.setVisible(false);
+    }//GEN-LAST:event_TimeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         menu = new HashMap<String, MenuItem>();
+        employees = new HashMap<String, Employee>();
         initialize(menu);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -988,6 +1068,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton ManageUsersButton;
     private javax.swing.JButton ManageUsersDoneButton;
     private javax.swing.JPanel ManageUsersPanel;
+    private javax.swing.JPanel OrderPanel;
     private javax.swing.JPasswordField PinField;
     private javax.swing.JLabel PinLabel;
     private javax.swing.JTextField PinTextField;
@@ -995,6 +1076,10 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TextAdministratorOptions;
     private javax.swing.JLabel TextManageMenu;
     private javax.swing.JLabel TextManageUsers;
+    private javax.swing.JButton TimeButton;
+    private javax.swing.JButton TimeInButton;
+    private javax.swing.JButton TimeOutButton;
+    private javax.swing.JPanel TimePanel;
     private javax.swing.JComboBox<String> UserDropDown;
     private javax.swing.JTextField UserResponseTextField;
     private javax.swing.JTextField UserResponseTextField4;
@@ -1002,7 +1087,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
     private javax.swing.JTextField firstNameTextField;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
