@@ -35,9 +35,10 @@ public class LoginGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         ContentPane = new javax.swing.JPanel();
         LoginPanel = new javax.swing.JPanel();
-        ExitButton = new javax.swing.JButton();
+        LoginScreenExitButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         UsernameTextField = new javax.swing.JTextField();
         LoginButton = new javax.swing.JButton();
@@ -47,30 +48,41 @@ public class LoginGUI extends javax.swing.JFrame {
         EmployeeContentPane = new javax.swing.JPanel();
         EmployeePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        EmployeeSignOutButton = new javax.swing.JButton();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        AdminSignOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 1200, 750));
+        setMaximumSize(new java.awt.Dimension(1200, 790));
+        setPreferredSize(new java.awt.Dimension(1200, 750));
         setResizable(false);
+        setSize(new java.awt.Dimension(1200, 750));
 
-        ContentPane.setBackground(new java.awt.Color(102, 102, 102));
+        ContentPane.setBackground(new java.awt.Color(0, 102, 255));
+        ContentPane.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        ContentPane.setMaximumSize(new java.awt.Dimension(1200, 800));
+        ContentPane.setMinimumSize(new java.awt.Dimension(1200, 800));
         ContentPane.setPreferredSize(new java.awt.Dimension(1200, 750));
-        ContentPane.setSize(new java.awt.Dimension(1200, 750));
+        ContentPane.setRequestFocusEnabled(false);
         ContentPane.setLayout(new java.awt.CardLayout());
 
         LoginPanel.setBackground(new java.awt.Color(102, 102, 102));
         LoginPanel.setBorder(new javax.swing.border.MatteBorder(null));
-        LoginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        LoginPanel.setMaximumSize(new java.awt.Dimension(1200, 700));
+        LoginPanel.setMinimumSize(new java.awt.Dimension(1200, 700));
+        LoginPanel.setPreferredSize(new java.awt.Dimension(1200, 700));
+        LoginPanel.setSize(new java.awt.Dimension(1200, 700));
 
-        ExitButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        ExitButton.setText("EXIT");
-        ExitButton.addActionListener(new java.awt.event.ActionListener() {
+        LoginScreenExitButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        LoginScreenExitButton.setText("EXIT");
+        LoginScreenExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitButtonActionPerformed(evt);
+                LoginScreenExitButtonActionPerformed(evt);
             }
         });
-        LoginPanel.add(ExitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1368, 744, 150, 60));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -105,7 +117,7 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(PinField, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(UsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(UsernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,67 +135,113 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
-        LoginPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 500, 320));
+        javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
+        LoginPanel.setLayout(LoginPanelLayout);
+        LoginPanelLayout.setHorizontalGroup(
+            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginPanelLayout.createSequentialGroup()
+                .addGap(381, 381, 381)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(355, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LoginScreenExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        LoginPanelLayout.setVerticalGroup(
+            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginPanelLayout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(LoginScreenExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
 
         ContentPane.add(LoginPanel, "card3");
 
+        EmployeeContentPane.setPreferredSize(new java.awt.Dimension(1200, 750));
         EmployeeContentPane.setLayout(new java.awt.CardLayout());
 
+        EmployeePanel.setBounds(new java.awt.Rectangle(0, 0, 1200, 750));
         EmployeePanel.setPreferredSize(new java.awt.Dimension(1200, 750));
-        EmployeePanel.setSize(new java.awt.Dimension(1200, 750));
 
         jLabel1.setText("Employee");
+
+        EmployeeSignOutButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        EmployeeSignOutButton.setText("Sign Out");
+        EmployeeSignOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmployeeSignOutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout EmployeePanelLayout = new javax.swing.GroupLayout(EmployeePanel);
         EmployeePanel.setLayout(EmployeePanelLayout);
         EmployeePanelLayout.setHorizontalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1526, Short.MAX_VALUE)
-            .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EmployeePanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(EmployeePanelLayout.createSequentialGroup()
+                .addGap(562, 562, 562)
+                .addComponent(jLabel1)
+                .addContainerGap(578, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         EmployeePanelLayout.setVerticalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
-            .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EmployeePanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
+                .addGap(342, 342, 342)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         EmployeeContentPane.add(EmployeePanel, "card2");
 
         ContentPane.add(EmployeeContentPane, "card3");
 
+        AdminContentPane.setMinimumSize(new java.awt.Dimension(1200, 750));
         AdminContentPane.setPreferredSize(new java.awt.Dimension(1200, 750));
-        AdminContentPane.setSize(new java.awt.Dimension(1200, 750));
         AdminContentPane.setLayout(new java.awt.CardLayout());
 
+        AdminPanel.setBounds(new java.awt.Rectangle(0, 0, 1200, 750));
+        AdminPanel.setMaximumSize(new java.awt.Dimension(1200, 750));
+        AdminPanel.setMinimumSize(new java.awt.Dimension(1200, 750));
+
         jLabel2.setText("Admin");
+
+        AdminSignOutButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        AdminSignOutButton.setText("Sign Out");
+        AdminSignOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminSignOutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AdminPanelLayout = new javax.swing.GroupLayout(AdminPanel);
         AdminPanel.setLayout(AdminPanelLayout);
         AdminPanelLayout.setHorizontalGroup(
             AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1526, Short.MAX_VALUE)
-            .addGroup(AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(AdminPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(AdminPanelLayout.createSequentialGroup()
+                .addGap(552, 552, 552)
+                .addComponent(jLabel2)
+                .addContainerGap(607, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         AdminPanelLayout.setVerticalGroup(
             AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
-            .addGroup(AdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(AdminPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(AdminPanelLayout.createSequentialGroup()
+                .addGap(327, 327, 327)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
+                .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         AdminContentPane.add(AdminPanel, "card2");
@@ -194,11 +252,13 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1526, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(ContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,15 +284,36 @@ public class LoginGUI extends javax.swing.JFrame {
                     AdminContentPane.setVisible(true);
                 }
             }
-
+            UsernameTextField.setText("");
+            PinField.setText("");
         } catch (IOException ex) {
             System.out.println("IO Exception.");
         }
     }//GEN-LAST:event_LoginButtonActionPerformed
 
-    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+    private void LoginScreenExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginScreenExitButtonActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_ExitButtonActionPerformed
+    }//GEN-LAST:event_LoginScreenExitButtonActionPerformed
+
+    private void AdminSignOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignOutButtonActionPerformed
+        LoginPanel.setVisible(true);
+        AdminContentPane.setVisible(false);
+        EmployeeContentPane.setVisible(false);
+        
+        //clears details
+        UsernameTextField.setText("");
+        PinField.setText("");
+        
+    }//GEN-LAST:event_AdminSignOutButtonActionPerformed
+
+    private void EmployeeSignOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeSignOutButtonActionPerformed
+        LoginPanel.setVisible(true);
+        AdminContentPane.setVisible(false);
+        EmployeeContentPane.setVisible(false);
+        
+        UsernameTextField.setText("");
+        PinField.setText("");
+    }//GEN-LAST:event_EmployeeSignOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,12 +358,14 @@ public class LoginGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminContentPane;
     private javax.swing.JPanel AdminPanel;
+    private javax.swing.JButton AdminSignOutButton;
     private javax.swing.JPanel ContentPane;
     private javax.swing.JPanel EmployeeContentPane;
     private javax.swing.JPanel EmployeePanel;
-    private javax.swing.JButton ExitButton;
+    private javax.swing.JButton EmployeeSignOutButton;
     private javax.swing.JButton LoginButton;
     private javax.swing.JPanel LoginPanel;
+    private javax.swing.JButton LoginScreenExitButton;
     private javax.swing.JPasswordField PinField;
     private javax.swing.JLabel PinLabel;
     private javax.swing.JLabel UsernameLabel;
@@ -290,5 +373,6 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }
