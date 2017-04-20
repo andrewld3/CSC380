@@ -136,24 +136,30 @@ public class Administrator {
         }
     }
 
-    public void printUserLogins() throws FileNotFoundException {
+    public ArrayList printUserLogins() throws FileNotFoundException {
+        ArrayList<String> userLogins = new ArrayList(); 
         try (Scanner userAccountFolder = new Scanner(new File("userLogin.txt"))) {
-            System.out.println("User logins include:");
+            //System.out.println("User logins include:");
             while (userAccountFolder.hasNextLine()) {
                 String lineFromUserFile = userAccountFolder.nextLine();
-                System.out.println(lineFromUserFile);
+                //System.out.println(lineFromUserFile);
+                userLogins.add(lineFromUserFile);
             }
         }
+        return userLogins;
     }
 
-    public void printAdminLogins() throws FileNotFoundException {
+    public ArrayList printAdminLogins() throws FileNotFoundException {
+        ArrayList<String> adminLogins = new ArrayList();
         try (Scanner adminAccountFolder = new Scanner(new File("adminLogin.txt"))) {
-            System.out.println("Admin logins include:");
+           // System.out.println("Admin logins include:");
             while (adminAccountFolder.hasNextLine()) {
                 String lineFromAdminFile = adminAccountFolder.nextLine();
-                System.out.println(lineFromAdminFile);
+                //System.out.println(lineFromAdminFile);
+                adminLogins.add(lineFromAdminFile);
             }
         }
+        return adminLogins;
     }
 
     public void updateMenu() throws IOException {

@@ -20,7 +20,7 @@ public class Employee {
     private Table[] tables = new Table[1000];
     public String empName;
     private String signIn, signOut;
-    private Map<String, MenuItem> menu = new HashMap<>();
+    
     public boolean admin;
     
     // Start Employee Constructor Methods
@@ -34,7 +34,7 @@ public class Employee {
     public boolean loadMenu(Map<String, MenuItem> theMenu) {
         boolean value = false;
         if(theMenu != null) {
-            menu = theMenu;
+            RestaurantGUI.menu = theMenu;
             value = true;
         } else {
             value = false;
@@ -82,11 +82,14 @@ public class Employee {
     
     public boolean orderFood(int table, String name) {
         tables[table].addToOrder(name);
+        //System.out.println("ordered " + name);
+        RestaurantGUI.menu.get(name).setInventory(-1);
         return true;
     }
     
     public boolean removeFood(int table, String name) {
         tables[table].removeFromOrder(name);
+        RestaurantGUI.menu.get(name).setInventory(+1);
         return true;
     }
     
@@ -94,23 +97,26 @@ public class Employee {
         boolean value = false;
         ArrayList<MenuItem> order;
         PrintWriter out = new PrintWriter("receipt.txt");
-        order = tables[table].getBillInfo(menu);
-        
+        //System.out.println(tables[table].getBillInfo(RestaurantGUI.menu));
+        order = tables[table].getBillInfo(RestaurantGUI.menu);
+       
+        //System.out.println("order: " + order);
+        //System.out.println("size: " + order.size());
         //Bill
        
         out.println("BILL SUMMARY");
         out.println("-----------------------");
         out.println("Date: "+ signIn.substring(0, 10));
-        out.println("Server: " + empName);
-        out.println();
+        out.println("Server: " + empName + "\n");
         out.println("Ordered Items:");
         for(int i = 0; i < order.size(); i++) {
+            //System.out.println("order: " + order.get(i) + " item name: " + order.get(i).getName() + " price: " + order.get(i).getPrice());
             out.println(order.get(i).getName() + "     " + order.get(i).getPrice());
         }
         out.println();
-        out.println("Subtotal: " + tables[table].getSubtotal(menu));
-        out.println("Tax: " + tables[table].getTax(menu));
-        out.println("Total: " + tables[table].ReturnTotal(menu));
+        out.println("Subtotal: " + tables[table].getSubtotal(RestaurantGUI.menu));
+        out.println("Tax: " + tables[table].getTax(RestaurantGUI.menu));
+        out.println("Total: " + tables[table].ReturnTotal(RestaurantGUI.menu));
         out.println();
         out.println("Have a nice day!");
         out.close();
