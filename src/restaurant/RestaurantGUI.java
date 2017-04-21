@@ -8,6 +8,7 @@ package restaurant;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,8 +27,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
     static Employee emp;
     public static Map<String, MenuItem> menu;
-    public static Map<String, Employee> employees;
-
+    public static ArrayList<String> menuItems;
+    
     /**
      * Creates new form RestaurantGUI
      */
@@ -54,33 +56,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
         PinLabel = new javax.swing.JLabel();
         EmployeeContentPane = new javax.swing.JPanel();
         EmployeePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         EmployeeSignOutButton = new javax.swing.JButton();
-        TimeButton = new javax.swing.JButton();
-        EmployeeOrderButton = new javax.swing.JButton();
-        TimePanel = new javax.swing.JPanel();
-        TimeInButton = new javax.swing.JButton();
-        TimeOutButton = new javax.swing.JButton();
-        TimeBackButton = new javax.swing.JButton();
-        OrderPanel = new javax.swing.JPanel();
-        AddOrderButton = new javax.swing.JButton();
-        EditOrderButton = new javax.swing.JButton();
-        RemoveOrderButton = new javax.swing.JButton();
-        OrderBackButton = new javax.swing.JButton();
-        TableListAdd = new javax.swing.JPanel();
-        Table1Button = new javax.swing.JButton();
-        Table2Button = new javax.swing.JButton();
-        Table3Button = new javax.swing.JButton();
-        Table4Button = new javax.swing.JButton();
-        TableListEdit = new javax.swing.JPanel();
-        Table1EditButton = new javax.swing.JButton();
-        Table2EditButton = new javax.swing.JButton();
-        Table3EditButton = new javax.swing.JButton();
-        Table4EditButton = new javax.swing.JButton();
-        TableListRemove = new javax.swing.JPanel();
-        Table1RemoveButton = new javax.swing.JButton();
-        Table2RemoveButton = new javax.swing.JButton();
-        Table3RemoveButton = new javax.swing.JButton();
-        Table4RemoveButton = new javax.swing.JButton();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         AdminOptionPanel = new javax.swing.JPanel();
@@ -91,6 +68,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
         ManageMenuPanel = new javax.swing.JPanel();
         DoneButton1 = new javax.swing.JButton();
         TextManageMenu = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        StockTable = new javax.swing.JTable();
         ManageUsersPanel = new javax.swing.JPanel();
         TextManageUsers = new javax.swing.JLabel();
         ManageUsersDoneButton = new javax.swing.JButton();
@@ -120,7 +100,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 1200, 750));
-        setMaximumSize(new java.awt.Dimension(1200, 790));
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 750));
 
@@ -136,6 +115,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         LoginPanel.setMaximumSize(new java.awt.Dimension(1200, 700));
         LoginPanel.setMinimumSize(new java.awt.Dimension(1200, 700));
         LoginPanel.setPreferredSize(new java.awt.Dimension(1200, 700));
+        LoginPanel.setSize(new java.awt.Dimension(1200, 700));
 
         LoginScreenExitButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LoginScreenExitButton.setText("EXIT");
@@ -214,7 +194,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
             .addGroup(LoginPanelLayout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(LoginScreenExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -224,7 +204,12 @@ public class RestaurantGUI extends javax.swing.JFrame {
         EmployeeContentPane.setPreferredSize(new java.awt.Dimension(1200, 750));
         EmployeeContentPane.setLayout(new java.awt.CardLayout());
 
+        EmployeePanel.setBounds(new java.awt.Rectangle(0, 0, 1200, 750));
         EmployeePanel.setPreferredSize(new java.awt.Dimension(1200, 750));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("Employee Options");
 
         EmployeeSignOutButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         EmployeeSignOutButton.setText("Sign Out");
@@ -234,272 +219,31 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
-        TimeButton.setText("Time");
-        TimeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimeButtonActionPerformed(evt);
-            }
-        });
-
-        EmployeeOrderButton.setText("Order");
-        EmployeeOrderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmployeeOrderButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout EmployeePanelLayout = new javax.swing.GroupLayout(EmployeePanel);
         EmployeePanel.setLayout(EmployeePanelLayout);
         EmployeePanelLayout.setHorizontalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EmployeePanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EmployeeOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(TimeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 890, Short.MAX_VALUE)
-                .addComponent(EmployeeSignOutButton)
-                .addContainerGap())
+                .addContainerGap(867, Short.MAX_VALUE)
+                .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
+                        .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(17, 17, 17))))
         );
         EmployeePanelLayout.setVerticalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeePanelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TimeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 599, Short.MAX_VALUE)
-                .addComponent(EmployeeOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 611, Short.MAX_VALUE)
+                .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         EmployeeContentPane.add(EmployeePanel, "card2");
-
-        TimeInButton.setText("Time In");
-        TimeInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimeInButtonActionPerformed(evt);
-            }
-        });
-
-        TimeOutButton.setText("Time Out");
-        TimeOutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimeOutButtonActionPerformed(evt);
-            }
-        });
-
-        TimeBackButton.setText("Back");
-        TimeBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimeBackButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout TimePanelLayout = new javax.swing.GroupLayout(TimePanel);
-        TimePanel.setLayout(TimePanelLayout);
-        TimePanelLayout.setHorizontalGroup(
-            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TimePanelLayout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(TimeInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 680, Short.MAX_VALUE)
-                .addComponent(TimeOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TimePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TimeBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187))
-        );
-        TimePanelLayout.setVerticalGroup(
-            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TimePanelLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addGroup(TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TimeInButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(TimeOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-                .addComponent(TimeBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
-        );
-
-        EmployeeContentPane.add(TimePanel, "card4");
-
-        AddOrderButton.setText("Add Order");
-
-        EditOrderButton.setText("Edit Order");
-
-        RemoveOrderButton.setText("Remove Order");
-
-        OrderBackButton.setText("Back");
-        OrderBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OrderBackButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout OrderPanelLayout = new javax.swing.GroupLayout(OrderPanel);
-        OrderPanel.setLayout(OrderPanelLayout);
-        OrderPanelLayout.setHorizontalGroup(
-            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrderPanelLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RemoveOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(AddOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
-                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EditOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(OrderBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(308, 308, 308))
-        );
-        OrderPanelLayout.setVerticalGroup(
-            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrderPanelLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EditOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(AddOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(149, 149, 149)
-                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RemoveOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(OrderBackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(331, Short.MAX_VALUE))
-        );
-
-        EmployeeContentPane.add(OrderPanel, "card4");
-
-        Table1Button.setText("Table 1");
-
-        Table2Button.setText("Table 2");
-        Table2Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Table2ButtonActionPerformed(evt);
-            }
-        });
-
-        Table3Button.setText("Table 3");
-
-        Table4Button.setText("Table 4");
-
-        javax.swing.GroupLayout TableListAddLayout = new javax.swing.GroupLayout(TableListAdd);
-        TableListAdd.setLayout(TableListAddLayout);
-        TableListAddLayout.setHorizontalGroup(
-            TableListAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TableListAddLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(TableListAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Table3Button)
-                    .addComponent(Table1Button))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
-                .addGroup(TableListAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Table4Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Table2Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(201, 201, 201))
-        );
-        TableListAddLayout.setVerticalGroup(
-            TableListAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TableListAddLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(TableListAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Table1Button)
-                    .addComponent(Table2Button))
-                .addGap(210, 210, 210)
-                .addGroup(TableListAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Table3Button)
-                    .addComponent(Table4Button))
-                .addContainerGap(489, Short.MAX_VALUE))
-        );
-
-        EmployeeContentPane.add(TableListAdd, "card5");
-
-        Table1EditButton.setText("Table 1");
-
-        Table2EditButton.setText("Table 2");
-        Table2EditButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Table2EditButtonActionPerformed(evt);
-            }
-        });
-
-        Table3EditButton.setText("Table 3");
-
-        Table4EditButton.setText("Table 4");
-
-        javax.swing.GroupLayout TableListEditLayout = new javax.swing.GroupLayout(TableListEdit);
-        TableListEdit.setLayout(TableListEditLayout);
-        TableListEditLayout.setHorizontalGroup(
-            TableListEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TableListEditLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(TableListEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Table3EditButton)
-                    .addComponent(Table1EditButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
-                .addGroup(TableListEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Table4EditButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Table2EditButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(201, 201, 201))
-        );
-        TableListEditLayout.setVerticalGroup(
-            TableListEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TableListEditLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(TableListEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Table1EditButton)
-                    .addComponent(Table2EditButton))
-                .addGap(210, 210, 210)
-                .addGroup(TableListEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Table3EditButton)
-                    .addComponent(Table4EditButton))
-                .addContainerGap(489, Short.MAX_VALUE))
-        );
-
-        EmployeeContentPane.add(TableListEdit, "card5");
-
-        Table1RemoveButton.setText("Table 1");
-
-        Table2RemoveButton.setText("Table 2");
-        Table2RemoveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Table2RemoveButtonActionPerformed(evt);
-            }
-        });
-
-        Table3RemoveButton.setText("Table 3");
-
-        Table4RemoveButton.setText("Table 4");
-
-        javax.swing.GroupLayout TableListRemoveLayout = new javax.swing.GroupLayout(TableListRemove);
-        TableListRemove.setLayout(TableListRemoveLayout);
-        TableListRemoveLayout.setHorizontalGroup(
-            TableListRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TableListRemoveLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(TableListRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Table3RemoveButton)
-                    .addComponent(Table1RemoveButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
-                .addGroup(TableListRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Table4RemoveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Table2RemoveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(201, 201, 201))
-        );
-        TableListRemoveLayout.setVerticalGroup(
-            TableListRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TableListRemoveLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(TableListRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Table1RemoveButton)
-                    .addComponent(Table2RemoveButton))
-                .addGap(210, 210, 210)
-                .addGroup(TableListRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Table3RemoveButton)
-                    .addComponent(Table4RemoveButton))
-                .addContainerGap(489, Short.MAX_VALUE))
-        );
-
-        EmployeeContentPane.add(TableListRemove, "card5");
 
         ContentPane.add(EmployeeContentPane, "card3");
 
@@ -547,7 +291,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         AdminOptionPanelLayout.setHorizontalGroup(
             AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminOptionPanelLayout.createSequentialGroup()
-                .addContainerGap(677, Short.MAX_VALUE)
+                .addContainerGap(655, Short.MAX_VALUE)
                 .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
                         .addComponent(ManageMenuButton)
@@ -563,14 +307,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addGroup(AdminOptionPanelLayout.createSequentialGroup()
                     .addGap(123, 123, 123)
                     .addComponent(ManageUsersButton)
-                    .addContainerGap(654, Short.MAX_VALUE)))
+                    .addContainerGap(650, Short.MAX_VALUE)))
         );
         AdminOptionPanelLayout.setVerticalGroup(
             AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TextAdministratorOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addComponent(ManageMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(188, 188, 188)
                 .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -598,6 +342,45 @@ public class RestaurantGUI extends javax.swing.JFrame {
         TextManageMenu.setForeground(new java.awt.Color(153, 153, 153));
         TextManageMenu.setText("Manage Menu");
 
+        StockTable.setBackground(new java.awt.Color(204, 204, 204));
+        StockTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        StockTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        StockTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item", "Price/Unit", "              Quantity"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        StockTable.setGridColor(new java.awt.Color(153, 153, 153));
+        StockTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
+        StockTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        StockTable.setShowGrid(true);
+        StockTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(StockTable);
+        StockTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (StockTable.getColumnModel().getColumnCount() > 0) {
+            StockTable.getColumnModel().getColumn(0).setResizable(false);
+            StockTable.getColumnModel().getColumn(1).setResizable(false);
+            StockTable.getColumnModel().getColumn(2).setResizable(false);
+        }
+
         javax.swing.GroupLayout ManageMenuPanelLayout = new javax.swing.GroupLayout(ManageMenuPanel);
         ManageMenuPanel.setLayout(ManageMenuPanelLayout);
         ManageMenuPanelLayout.setHorizontalGroup(
@@ -606,18 +389,28 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                        .addComponent(TextManageMenu)
-                        .addGap(0, 945, Short.MAX_VALUE)))
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextManageMenu)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 80, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ManageMenuPanelLayout.setVerticalGroup(
             ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
                 .addComponent(TextManageMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 605, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -937,21 +730,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
             Login login = new Login();
             String pin = new String(PinField.getPassword());
-            try{
             emp = login.signIn(UsernameTextField.getText(), pin);
-            //checking to see if employee is already in system if not adding them in
-            if(employees.get(emp.empName) != null){
-                emp = employees.get(emp.empName);
-                System.out.println("found");
-            }
-            else{
-                employees.put(emp.empName, emp);
-            }
-            }
-            catch(NullPointerException e){
-            }
-            
-
             if (emp != null) {
                 if (emp.admin == false) {
                     //logged in as authorized user
@@ -1037,14 +816,18 @@ public class RestaurantGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ManageUsersButtonActionPerformed
 
-    private void DoneButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoneButton1ActionPerformed
-        ManageMenuPanel.setVisible(false);
-        AdminOptionPanel.setVisible(true);
-    }//GEN-LAST:event_DoneButton1ActionPerformed
-
     private void ManageMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageMenuButtonActionPerformed
         AdminOptionPanel.setVisible(false);
         ManageMenuPanel.setVisible((true));
+        DecimalFormat df = new DecimalFormat(".00");
+        
+        DefaultTableModel stockTable = (DefaultTableModel)StockTable.getModel();
+        stockTable.isCellEditable(ERROR, NORMAL);
+        for (int i = 0; i < menuItems.size(); i++) {
+           
+           stockTable.addRow(new Object[]{menuItems.get(i), df.format(menu.get(menuItems.get(i)).getPrice()), menu.get(menuItems.get(i)).getInventory()}); 
+        }
+        
     }//GEN-LAST:event_ManageMenuButtonActionPerformed
 
     private void ManageUsersDoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageUsersDoneButtonActionPerformed
@@ -1194,58 +977,17 @@ public class RestaurantGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserResponseTextField4ActionPerformed
 
-    private void TimeInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeInButtonActionPerformed
-        emp.setSignIn();
-        employees.replace(emp.empName, emp);
-        TimePanel.setVisible(false);
-        EmployeePanel.setVisible(true);
-    }//GEN-LAST:event_TimeInButtonActionPerformed
-
-    private void TimeOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeOutButtonActionPerformed
-        emp.setSignOut();
-        employees.replace(emp.empName, emp);
-        TimePanel.setVisible(false);
-        EmployeePanel.setVisible(true);
-    }//GEN-LAST:event_TimeOutButtonActionPerformed
-
-    private void TimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeButtonActionPerformed
-        TimePanel.setVisible(true);
-        EmployeePanel.setVisible(false);
-    }//GEN-LAST:event_TimeButtonActionPerformed
-
-    private void TimeBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeBackButtonActionPerformed
-        TimePanel.setVisible(false);
-        EmployeePanel.setVisible(true);
-    }//GEN-LAST:event_TimeBackButtonActionPerformed
-
-    private void OrderBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderBackButtonActionPerformed
-        OrderPanel.setVisible(false);
-        EmployeePanel.setVisible(true);
-    }//GEN-LAST:event_OrderBackButtonActionPerformed
-
-    private void EmployeeOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeOrderButtonActionPerformed
-        EmployeePanel.setVisible(false);
-        OrderPanel.setVisible(true);
-    }//GEN-LAST:event_EmployeeOrderButtonActionPerformed
-
-    private void Table2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table2ButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Table2ButtonActionPerformed
-
-    private void Table2EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table2EditButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Table2EditButtonActionPerformed
-
-    private void Table2RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table2RemoveButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Table2RemoveButtonActionPerformed
+    private void DoneButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoneButton1ActionPerformed
+        ManageMenuPanel.setVisible(false);
+        AdminOptionPanel.setVisible(true);
+    }//GEN-LAST:event_DoneButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         menu = new HashMap<String, MenuItem>();
-        employees = new HashMap<String, Employee>();
+        menuItems = new ArrayList<String>();
         initialize(menu);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1268,10 +1010,11 @@ public class RestaurantGUI extends javax.swing.JFrame {
 //            int inventory = Integer.parseInt(inFileSC.nextLine());
             String[] arr = menuItemInfo.split("/");
             String name = arr[0];
+           
             double price = Double.parseDouble(arr[1]);
             int inventory = Integer.parseInt(arr[2]);
             System.out.println(name + " " + price + " " + inventory);
-
+            menuItems.add(name);
             loadMenu(name, price, inventory, menu);
         }
     }
@@ -1288,7 +1031,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddOrderButton;
     private javax.swing.JButton AddUserButton;
     private javax.swing.JPanel AdminContentPane;
     private javax.swing.JComboBox<String> AdminDropDown;
@@ -1300,9 +1042,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton AdminToUserButton;
     private javax.swing.JPanel ContentPane;
     private javax.swing.JButton DoneButton1;
-    private javax.swing.JButton EditOrderButton;
     private javax.swing.JPanel EmployeeContentPane;
-    private javax.swing.JButton EmployeeOrderButton;
     private javax.swing.JPanel EmployeePanel;
     private javax.swing.JButton EmployeeSignOutButton;
     private javax.swing.JButton LoginButton;
@@ -1313,36 +1053,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton ManageUsersButton;
     private javax.swing.JButton ManageUsersDoneButton;
     private javax.swing.JPanel ManageUsersPanel;
-    private javax.swing.JButton OrderBackButton;
-    private javax.swing.JPanel OrderPanel;
     private javax.swing.JPasswordField PinField;
     private javax.swing.JLabel PinLabel;
     private javax.swing.JTextField PinTextField;
-    private javax.swing.JButton RemoveOrderButton;
     private javax.swing.JButton RemoveUserButton;
-    private javax.swing.JButton Table1Button;
-    private javax.swing.JButton Table1EditButton;
-    private javax.swing.JButton Table1RemoveButton;
-    private javax.swing.JButton Table2Button;
-    private javax.swing.JButton Table2EditButton;
-    private javax.swing.JButton Table2RemoveButton;
-    private javax.swing.JButton Table3Button;
-    private javax.swing.JButton Table3EditButton;
-    private javax.swing.JButton Table3RemoveButton;
-    private javax.swing.JButton Table4Button;
-    private javax.swing.JButton Table4EditButton;
-    private javax.swing.JButton Table4RemoveButton;
-    private javax.swing.JPanel TableListAdd;
-    private javax.swing.JPanel TableListEdit;
-    private javax.swing.JPanel TableListRemove;
+    private javax.swing.JTable StockTable;
     private javax.swing.JLabel TextAdministratorOptions;
     private javax.swing.JLabel TextManageMenu;
     private javax.swing.JLabel TextManageUsers;
-    private javax.swing.JButton TimeBackButton;
-    private javax.swing.JButton TimeButton;
-    private javax.swing.JButton TimeInButton;
-    private javax.swing.JButton TimeOutButton;
-    private javax.swing.JPanel TimePanel;
     private javax.swing.JComboBox<String> UserDropDown;
     private javax.swing.JTextField UserResponseTextField;
     private javax.swing.JTextField UserResponseTextField4;
@@ -1350,14 +1068,17 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
     private javax.swing.JTextField firstNameTextField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
