@@ -250,25 +250,29 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="EmployeeOrderButton" pref="148" max="32767" attributes="0"/>
+                              <Component id="TimeButton" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="890" max="32767" attributes="0"/>
                           <Component id="EmployeeSignOutButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TimeButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="EmployeeSignOutButton" max="32767" attributes="0"/>
+                              <Component id="TimeButton" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="599" max="32767" attributes="0"/>
+                          <Component id="EmployeeOrderButton" min="-2" pref="58" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TimeButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="EmployeeSignOutButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -293,6 +297,14 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimeButtonActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="EmployeeOrderButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Order"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmployeeOrderButtonActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="TimePanel">
@@ -312,6 +324,11 @@
                           <Component id="TimeOutButton" min="-2" pref="154" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="TimeBackButton" min="-2" pref="154" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -322,7 +339,9 @@
                               <Component id="TimeInButton" pref="80" max="32767" attributes="0"/>
                               <Component id="TimeOutButton" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="462" max="32767" attributes="0"/>
+                          <EmptySpace pref="222" max="32767" attributes="0"/>
+                          <Component id="TimeBackButton" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -344,6 +363,14 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimeOutButtonActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="TimeBackButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Back"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimeBackButtonActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="OrderPanel">
@@ -356,15 +383,271 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="753" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="RemoveOrderButton" pref="144" max="32767" attributes="0"/>
+                              <Component id="AddOrderButton" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="485" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="EditOrderButton" pref="144" max="32767" attributes="0"/>
+                              <Component id="OrderBackButton" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="308" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="420" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="EditOrderButton" pref="85" max="32767" attributes="0"/>
+                              <Component id="AddOrderButton" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="RemoveOrderButton" pref="85" max="32767" attributes="0"/>
+                              <Component id="OrderBackButton" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="331" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="AddOrderButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Add Order"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="EditOrderButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Edit Order"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="RemoveOrderButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Remove Order"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="OrderBackButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Back"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OrderBackButtonActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="TableListAdd">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                  <CardConstraints cardName="card5"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="Table3Button" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table1Button" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="574" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Table4Button" max="32767" attributes="0"/>
+                              <Component id="Table2Button" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Table1Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table2Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Table3Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table4Button" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="489" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="Table1Button">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table2Button">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 2"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Table2ButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table3Button">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table4Button">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 4"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="TableListEdit">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                  <CardConstraints cardName="card5"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="Table3EditButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table1EditButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="574" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Table4EditButton" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Table2EditButton" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Table1EditButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table2EditButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Table3EditButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table4EditButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="489" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="Table1EditButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table2EditButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 2"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Table2EditButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table3EditButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table4EditButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 4"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="TableListRemove">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                  <CardConstraints cardName="card5"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="Table3RemoveButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table1RemoveButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="574" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Table4RemoveButton" alignment="0" max="32767" attributes="0"/>
+                              <Component id="Table2RemoveButton" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Table1RemoveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table2RemoveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Table3RemoveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Table4RemoveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="489" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="Table1RemoveButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table2RemoveButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 2"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Table2RemoveButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table3RemoveButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="Table4RemoveButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Table 4"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
