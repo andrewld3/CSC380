@@ -4,13 +4,12 @@ Date: 2017.04.21
 Server: Chris N
 
 Ordered Items:
-Hamburger     10.5
-Hamburger     10.5
-Small Children     3.51
-Pepsi     2.0
+Hamburger           10.50
+Hamburger           10.50
+Small Children      3.51
+Pepsi               2.00
 
-Subtotal: 26.509999999999998
-Tax: 2.1208
-Total: 28.630799999999997
-
+Subtotal: 26.51
+Tax: 2.12
+Total: 28.63
 Have a nice day!
