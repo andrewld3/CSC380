@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Employee {
    // public String empID;
-    private Table[] tables = new Table[1000];
+    public Table[] tables = new Table[4];
     public String empName;
     private String signIn, signOut;
     
@@ -27,20 +27,11 @@ public class Employee {
     public Employee(String e, boolean priv) {
         empName = e;
         admin = priv;
+        for(int i = 0; i <4; i++){
+        tables[i] = new Table();
+        }
     }
     // End Employee Constructor Methods
-    
-    //Load Menu
-    public boolean loadMenu(Map<String, MenuItem> theMenu) {
-        boolean value = false;
-        if(theMenu != null) {
-            RestaurantGUI.menu = theMenu;
-            value = true;
-        } else {
-            value = false;
-        }
-        return value;
-    }
     
     // Start Employee Time Tracking Methods
     
@@ -68,17 +59,6 @@ public class Employee {
         return signOut;
     }
     // End Employee Time Tracking Methods
-    
-    // Start Table Management Methods
-    public boolean createTable(int table) {
-        boolean value = false;
-        tables[table] = new Table();
-        if (tables[table] != null)
-            value = true;
-        else
-            value = false;
-        return value;
-    }
     
     public boolean orderFood(int table, String name) {
         tables[table].addToOrder(name);
