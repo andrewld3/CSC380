@@ -111,12 +111,15 @@ public class Employee {
         out.println("Ordered Items:");
         for(int i = 0; i < order.size(); i++) {
             //System.out.println("order: " + order.get(i) + " item name: " + order.get(i).getName() + " price: " + order.get(i).getPrice());
-            out.println(order.get(i).getName() + "     " + order.get(i).getPrice());
+            out.printf("%-20s%.2f", order.get(i).getName(),order.get(i).getPrice());
+            out.println();
         }
         out.println();
-        out.println("Subtotal: " + tables[table].getSubtotal(RestaurantGUI.menu));
-        out.println("Tax: " + tables[table].getTax(RestaurantGUI.menu));
-        out.println("Total: " + tables[table].ReturnTotal(RestaurantGUI.menu));
+        out.printf("Subtotal: %.2f", tables[table].getSubtotal(RestaurantGUI.menu));
+        out.println();
+        out.printf("Tax: %.2f", tables[table].getTax(RestaurantGUI.menu));
+        out.println();
+        out.printf("Total: %.2f", tables[table].ReturnTotal(RestaurantGUI.menu));
         out.println();
         out.println("Have a nice day!");
         out.close();
