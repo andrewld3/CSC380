@@ -1,6 +1,13 @@
-Hamburger/10.50/50
+Hamburger/6.00/50
+Cheeseburger/7.00/50
 Hotdog/3.50/50
 Corndog/4.00/50
-Pepsi/2.00/200
-Steak/1200.00/3000
+Steak/15.00/50
+French Fries/2.50/200
 Small Children/3.51/1
+Pepsi/2.00/200
+Coke/2.00/200
+Root Beer/2.00/200
+Gingerale/2.00/200
+Fruit Punch/2.00/200
+Mountain Dew/2.00/200
