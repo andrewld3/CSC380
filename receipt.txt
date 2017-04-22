@@ -2,7 +2,6 @@ BILL SUMMARY
 -----------------------
 Date: 2017.04.22
 Server: Chris N
-
 Ordered Items:
 Hamburger           6.00
 Hamburger           6.00
@@ -13,3 +12,4 @@ Subtotal: 17.51
 Tax: 1.40
 Total: 18.91
 Have a nice day!
+

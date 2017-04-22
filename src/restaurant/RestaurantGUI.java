@@ -29,7 +29,10 @@ public class RestaurantGUI extends javax.swing.JFrame {
     public static Map<String, MenuItem> menu;
     public static ArrayList<String> menuItems;
     public static Map<String, Employee> employees;
+
     private DefaultTableModel stockTable;
+    public static Table table;
+    
 
     /**
      * Creates new form RestaurantGUI
@@ -61,6 +64,20 @@ public class RestaurantGUI extends javax.swing.JFrame {
         EmployeePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         EmployeeSignOutButton = new javax.swing.JButton();
+        TimeButton = new javax.swing.JButton();
+        OrdersButton = new javax.swing.JButton();
+        TimePanel = new javax.swing.JPanel();
+        TimeInButton = new javax.swing.JButton();
+        TimeOutButton = new javax.swing.JButton();
+        TimePanelBackButton = new javax.swing.JButton();
+        TablesPanel = new javax.swing.JPanel();
+        Table1Button = new javax.swing.JButton();
+        Table2Button = new javax.swing.JButton();
+        Table3Button = new javax.swing.JButton();
+        Table4Button = new javax.swing.JButton();
+        TableBackButton = new javax.swing.JButton();
+        OrderPanel = new javax.swing.JPanel();
+        OrderBackButton = new javax.swing.JButton();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         AdminOptionPanel = new javax.swing.JPanel();
@@ -240,12 +257,26 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
+        TimeButton.setText("Time");
+        TimeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeButtonActionPerformed(evt);
+            }
+        });
+
+        OrdersButton.setText("Orders");
+        OrdersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrdersButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EmployeePanelLayout = new javax.swing.GroupLayout(EmployeePanel);
         EmployeePanel.setLayout(EmployeePanelLayout);
         EmployeePanelLayout.setHorizontalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EmployeePanelLayout.createSequentialGroup()
-                .addContainerGap(867, Short.MAX_VALUE)
+                .addContainerGap(870, Short.MAX_VALUE)
                 .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
                         .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,18 +284,179 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(17, 17, 17))))
+            .addGroup(EmployeePanelLayout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addGroup(EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(OrdersButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TimeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         EmployeePanelLayout.setVerticalGroup(
             EmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EmployeePanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 611, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
+                .addComponent(TimeButton)
+                .addGap(119, 119, 119)
+                .addComponent(OrdersButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                 .addComponent(EmployeeSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
         EmployeeContentPane.add(EmployeePanel, "card2");
+
+        TimeInButton.setText("Time In");
+        TimeInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeInButtonActionPerformed(evt);
+            }
+        });
+
+        TimeOutButton.setText("Time Out");
+        TimeOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimeOutButtonActionPerformed(evt);
+            }
+        });
+
+        TimePanelBackButton.setText("Back");
+        TimePanelBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimePanelBackButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TimePanelLayout = new javax.swing.GroupLayout(TimePanel);
+        TimePanel.setLayout(TimePanelLayout);
+        TimePanelLayout.setHorizontalGroup(
+            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TimePanelLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(TimeInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                .addComponent(TimeOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TimePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TimePanelBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(228, 228, 228))
+        );
+        TimePanelLayout.setVerticalGroup(
+            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TimePanelLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addGroup(TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TimeInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TimeOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addComponent(TimePanelBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155))
+        );
+
+        EmployeeContentPane.add(TimePanel, "card3");
+
+        Table1Button.setText("Table 1");
+        Table1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table1ButtonActionPerformed(evt);
+            }
+        });
+
+        Table2Button.setText("Table 2");
+        Table2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table2ButtonActionPerformed(evt);
+            }
+        });
+
+        Table3Button.setText("Table 3");
+        Table3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table3ButtonActionPerformed(evt);
+            }
+        });
+
+        Table4Button.setText("Table 4");
+        Table4Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Table4ButtonActionPerformed(evt);
+            }
+        });
+
+        TableBackButton.setText("Back");
+        TableBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TableBackButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TablesPanelLayout = new javax.swing.GroupLayout(TablesPanel);
+        TablesPanel.setLayout(TablesPanelLayout);
+        TablesPanelLayout.setHorizontalGroup(
+            TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TablesPanelLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addGroup(TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Table1Button)
+                    .addComponent(Table3Button))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 497, Short.MAX_VALUE)
+                .addGroup(TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Table2Button)
+                    .addComponent(Table4Button))
+                .addGap(229, 229, 229))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TablesPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TableBackButton)
+                .addGap(123, 123, 123))
+        );
+        TablesPanelLayout.setVerticalGroup(
+            TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TablesPanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Table1Button)
+                    .addComponent(Table2Button))
+                .addGroup(TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TablesPanelLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(Table3Button))
+                    .addGroup(TablesPanelLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(Table4Button)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+                .addComponent(TableBackButton)
+                .addGap(51, 51, 51))
+        );
+
+        EmployeeContentPane.add(TablesPanel, "card4");
+
+        OrderBackButton.setText("Back");
+        OrderBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderBackButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OrderPanelLayout = new javax.swing.GroupLayout(OrderPanel);
+        OrderPanel.setLayout(OrderPanelLayout);
+        OrderPanelLayout.setHorizontalGroup(
+            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
+                .addContainerGap(873, Short.MAX_VALUE)
+                .addComponent(OrderBackButton)
+                .addGap(138, 138, 138))
+        );
+        OrderPanelLayout.setVerticalGroup(
+            OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
+                .addContainerGap(419, Short.MAX_VALUE)
+                .addComponent(OrderBackButton)
+                .addGap(50, 50, 50))
+        );
+
+        EmployeeContentPane.add(OrderPanel, "card5");
 
         ContentPane.add(EmployeeContentPane, "card3");
 
@@ -392,8 +584,10 @@ public class RestaurantGUI extends javax.swing.JFrame {
         StockTable.setSelectionBackground(new java.awt.Color(102, 102, 102));
         StockTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
         StockTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
         StockTable.setShowGrid(false);
         StockTable.setShowVerticalLines(false);
+
         StockTable.getTableHeader().setReorderingAllowed(false);
         StockTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -518,6 +712,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DoneButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                     .addGroup(ManageMenuPanelLayout.createSequentialGroup()
                         .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(ManageMenuPanelLayout.createSequentialGroup()
@@ -970,8 +1166,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     Employee test = emp;
                     test.setSignIn();
 
-                    test.loadMenu(menu);
-                    test.createTable(1);
+
                     //table number, food item test
                     test.orderFood(1, "Hamburger");
                     test.orderFood(1, "Hamburger");
@@ -1315,6 +1510,68 @@ public class RestaurantGUI extends javax.swing.JFrame {
       UpdateStockTextField.setText(stock3);
     }//GEN-LAST:event_InventorySubtractButtonActionPerformed
 
+    private void TimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeButtonActionPerformed
+        TimePanel.setVisible(true);
+        EmployeePanel.setVisible(false);
+    }//GEN-LAST:event_TimeButtonActionPerformed
+
+    private void TimePanelBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimePanelBackButtonActionPerformed
+        TimePanel.setVisible(false);
+        EmployeePanel.setVisible(true);
+    }//GEN-LAST:event_TimePanelBackButtonActionPerformed
+
+    private void TimeInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeInButtonActionPerformed
+        emp.setSignIn();
+        employees.replace(emp.empName, emp);
+        TimePanel.setVisible(false);
+        EmployeePanel.setVisible(true);
+    }//GEN-LAST:event_TimeInButtonActionPerformed
+
+    private void TimeOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeOutButtonActionPerformed
+        emp.setSignOut();
+        employees.replace(emp.empName, emp);
+        TimePanel.setVisible(false);
+        EmployeePanel.setVisible(true);
+    }//GEN-LAST:event_TimeOutButtonActionPerformed
+
+    private void OrdersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersButtonActionPerformed
+        TablesPanel.setVisible(true);
+        EmployeePanel.setVisible(false);
+    }//GEN-LAST:event_OrdersButtonActionPerformed
+
+    private void TableBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TableBackButtonActionPerformed
+        TablesPanel.setVisible(false);
+        EmployeePanel.setVisible(true);
+    }//GEN-LAST:event_TableBackButtonActionPerformed
+
+    private void OrderBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderBackButtonActionPerformed
+        OrderPanel.setVisible(false);
+        TablesPanel.setVisible(true);
+    }//GEN-LAST:event_OrderBackButtonActionPerformed
+
+    private void Table1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table1ButtonActionPerformed
+        table = emp.tables[0];
+        OrderPanel.setVisible(true);
+        TablesPanel.setVisible(false);
+    }//GEN-LAST:event_Table1ButtonActionPerformed
+
+    private void Table2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table2ButtonActionPerformed
+        table = emp.tables[1];
+        OrderPanel.setVisible(true);
+        TablesPanel.setVisible(false);
+    }//GEN-LAST:event_Table2ButtonActionPerformed
+
+    private void Table3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table3ButtonActionPerformed
+        table = emp.tables[2];
+        OrderPanel.setVisible(true);
+        TablesPanel.setVisible(false);
+    }//GEN-LAST:event_Table3ButtonActionPerformed
+
+    private void Table4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table4ButtonActionPerformed
+        table = emp.tables[3];
+        OrderPanel.setVisible(true);
+        TablesPanel.setVisible(false);
+    }//GEN-LAST:event_Table4ButtonActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1396,6 +1653,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton ManageUsersButton;
     private javax.swing.JButton ManageUsersDoneButton;
     private javax.swing.JPanel ManageUsersPanel;
+    private javax.swing.JButton OrderBackButton;
+    private javax.swing.JPanel OrderPanel;
+    private javax.swing.JButton OrdersButton;
     private javax.swing.JPasswordField PinField;
     private javax.swing.JLabel PinLabel;
     private javax.swing.JTextField PinTextField;
@@ -1404,11 +1664,25 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JLabel RemoveWarningLabel;
     private javax.swing.JTextField SelectedInventoryTextField;
     private javax.swing.JTable StockTable;
+    private javax.swing.JButton Table1Button;
+    private javax.swing.JButton Table2Button;
+    private javax.swing.JButton Table3Button;
+    private javax.swing.JButton Table4Button;
+    private javax.swing.JButton TableBackButton;
+    private javax.swing.JPanel TablesPanel;
     private javax.swing.JLabel TextAdministratorOptions;
     private javax.swing.JLabel TextManageMenu;
     private javax.swing.JLabel TextManageUsers;
+
     private javax.swing.JButton UpdateInventoryButton;
     private javax.swing.JTextField UpdateStockTextField;
+
+    private javax.swing.JButton TimeButton;
+    private javax.swing.JButton TimeInButton;
+    private javax.swing.JButton TimeOutButton;
+    private javax.swing.JPanel TimePanel;
+    private javax.swing.JButton TimePanelBackButton;
+
     private javax.swing.JComboBox<String> UserDropDown;
     private javax.swing.JTextField UserResponseTextField;
     private javax.swing.JTextField UserResponseTextField4;
