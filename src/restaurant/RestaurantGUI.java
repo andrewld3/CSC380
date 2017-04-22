@@ -32,6 +32,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
     private DefaultTableModel stockTable;
     public static Table table;
+    private DefaultTableModel menuTable;
+    private DefaultTableModel tableBill;
     
 
     /**
@@ -78,6 +80,12 @@ public class RestaurantGUI extends javax.swing.JFrame {
         TableBackButton = new javax.swing.JButton();
         OrderPanel = new javax.swing.JPanel();
         OrderBackButton = new javax.swing.JButton();
+        Menu = new javax.swing.JScrollPane();
+        MenuItems = new javax.swing.JTable();
+        OrderAddButton = new javax.swing.JButton();
+        Ordered = new javax.swing.JScrollPane();
+        TableBill = new javax.swing.JTable();
+        OrderRemove = new javax.swing.JButton();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         AdminOptionPanel = new javax.swing.JPanel();
@@ -439,21 +447,115 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
+        MenuItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Menu.setViewportView(MenuItems);
+        if (MenuItems.getColumnModel().getColumnCount() > 0) {
+            MenuItems.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        OrderAddButton.setText("Add");
+        OrderAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderAddButtonActionPerformed(evt);
+            }
+        });
+
+        TableBill.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Current Order"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Ordered.setViewportView(TableBill);
+        if (TableBill.getColumnModel().getColumnCount() > 0) {
+            TableBill.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        OrderRemove.setText("Remove");
+        OrderRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderRemoveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout OrderPanelLayout = new javax.swing.GroupLayout(OrderPanel);
         OrderPanel.setLayout(OrderPanelLayout);
         OrderPanelLayout.setHorizontalGroup(
             OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
-                .addContainerGap(873, Short.MAX_VALUE)
-                .addComponent(OrderBackButton)
-                .addGap(138, 138, 138))
+            .addGroup(OrderPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OrderPanelLayout.createSequentialGroup()
+                        .addComponent(OrderAddButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OrderBackButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
+                                .addComponent(OrderRemove)
+                                .addGap(370, 370, 370))))
+                    .addGroup(OrderPanelLayout.createSequentialGroup()
+                        .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                        .addComponent(Ordered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
         );
         OrderPanelLayout.setVerticalGroup(
             OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
-                .addContainerGap(419, Short.MAX_VALUE)
-                .addComponent(OrderBackButton)
-                .addGap(50, 50, 50))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ordered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OrderPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(OrderRemove)
+                        .addGap(9, 9, 9)
+                        .addComponent(OrderBackButton)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OrderAddButton)
+                        .addGap(28, 28, 28))))
         );
 
         EmployeeContentPane.add(OrderPanel, "card5");
@@ -1163,17 +1265,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     System.out.println(emp);
                     System.out.println(emp.empName);
 
-                    Employee test = emp;
-                    test.setSignIn();
-
-
-                    //table number, food item test
-                    test.orderFood(1, "Hamburger");
-                    test.orderFood(1, "Hamburger");
-                    test.orderFood(1, "Small Children");
-                    test.orderFood(1, "Pepsi");
-                    test.finishTable(1);
-
                 } else {
                     LoginPanel.setVisible(false);
                     EmployeeContentPane.setVisible(false);
@@ -1553,25 +1644,158 @@ public class RestaurantGUI extends javax.swing.JFrame {
         table = emp.tables[0];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
+        menuTable = (DefaultTableModel)MenuItems.getModel();
+        menuTable.isCellEditable(ERROR, NORMAL);
+        if (menuTable.getRowCount() > 0) {
+            for (int i = menuTable.getRowCount() - 1; i > -1; i--) {
+                menuTable.removeRow(i);
+            }
+        }
+        for (int i = 0; i < menuItems.size(); i++) {
+           
+           menuTable.addRow(new Object[]{menuItems.get(i)}); 
+        }
+        tableBill = (DefaultTableModel)TableBill.getModel();
+        tableBill.isCellEditable(ERROR, NORMAL);
+        if (tableBill.getRowCount() > 0) {
+            for (int i = tableBill.getRowCount() - 1; i > -1; i--) {
+                tableBill.removeRow(i);
+            }
+        }
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+           
+           tableBill.addRow(new Object[]{table.returnOrder().get(i)}); 
+        }
     }//GEN-LAST:event_Table1ButtonActionPerformed
 
     private void Table2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table2ButtonActionPerformed
         table = emp.tables[1];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
+        menuTable = (DefaultTableModel)MenuItems.getModel();
+        menuTable.isCellEditable(ERROR, NORMAL);
+        if (menuTable.getRowCount() > 0) {
+            for (int i = menuTable.getRowCount() - 1; i > -1; i--) {
+                menuTable.removeRow(i);
+            }
+        }
+        for (int i = 0; i < menuItems.size(); i++) {
+           
+           menuTable.addRow(new Object[]{menuItems.get(i)}); 
+        }
+        tableBill = (DefaultTableModel)TableBill.getModel();
+        tableBill.isCellEditable(ERROR, NORMAL);
+        if (tableBill.getRowCount() > 0) {
+            for (int i = tableBill.getRowCount() - 1; i > -1; i--) {
+                tableBill.removeRow(i);
+            }
+        }
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+           
+           tableBill.addRow(new Object[]{table.returnOrder().get(i)}); 
+        }
     }//GEN-LAST:event_Table2ButtonActionPerformed
 
     private void Table3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table3ButtonActionPerformed
         table = emp.tables[2];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
+        menuTable = (DefaultTableModel)MenuItems.getModel();
+        menuTable.isCellEditable(ERROR, NORMAL);
+        if (menuTable.getRowCount() > 0) {
+            for (int i = menuTable.getRowCount() - 1; i > -1; i--) {
+                menuTable.removeRow(i);
+            }
+        }
+        for (int i = 0; i < menuItems.size(); i++) {
+           
+           menuTable.addRow(new Object[]{menuItems.get(i)}); 
+        }
+        tableBill = (DefaultTableModel)TableBill.getModel();
+        tableBill.isCellEditable(ERROR, NORMAL);
+        if (tableBill.getRowCount() > 0) {
+            for (int i = tableBill.getRowCount() - 1; i > -1; i--) {
+                tableBill.removeRow(i);
+            }
+        }
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+           
+           tableBill.addRow(new Object[]{table.returnOrder().get(i)}); 
+        }
     }//GEN-LAST:event_Table3ButtonActionPerformed
 
     private void Table4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table4ButtonActionPerformed
         table = emp.tables[3];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
+        menuTable = (DefaultTableModel)MenuItems.getModel();
+        menuTable.isCellEditable(ERROR, NORMAL);
+        if (menuTable.getRowCount() > 0) {
+            for (int i = menuTable.getRowCount() - 1; i > -1; i--) {
+                menuTable.removeRow(i);
+            }
+        }
+        for (int i = 0; i < menuItems.size(); i++) {
+           
+           menuTable.addRow(new Object[]{menuItems.get(i)}); 
+        }
+        tableBill = (DefaultTableModel)TableBill.getModel();
+        tableBill.isCellEditable(ERROR, NORMAL);
+        if (tableBill.getRowCount() > 0) {
+            for (int i = tableBill.getRowCount() - 1; i > -1; i--) {
+                tableBill.removeRow(i);
+            }
+        }
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+           
+           tableBill.addRow(new Object[]{table.returnOrder().get(i)}); 
+        }
     }//GEN-LAST:event_Table4ButtonActionPerformed
+
+    private void OrderAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderAddButtonActionPerformed
+        if(MenuItems.getSelectedRow() != -1){
+        if(menu.get(menuTable.getValueAt(MenuItems.getSelectedRow(), MenuItems.getSelectedColumn()).toString()).getInventory() > 0){
+        menu.get(menuTable.getValueAt(MenuItems.getSelectedRow(), MenuItems.getSelectedColumn()).toString()).setInventory(-1);
+        table.addToOrder(menuTable.getValueAt(MenuItems.getSelectedRow(),MenuItems.getSelectedColumn()).toString());
+        tableBill = (DefaultTableModel)TableBill.getModel();
+        tableBill.isCellEditable(ERROR, NORMAL);
+        if (tableBill.getRowCount() > 0) {
+            for (int i = tableBill.getRowCount() - 1; i > -1; i--) {
+                tableBill.removeRow(i);
+            }
+        }
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+           
+           tableBill.addRow(new Object[]{table.returnOrder().get(i)}); 
+        }
+        }
+        }
+        //System.out.println(menuTable.getValueAt(MenuItems.getSelectedRow(),MenuItems.getSelectedColumn()).toString());
+    }//GEN-LAST:event_OrderAddButtonActionPerformed
+
+    private void OrderRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderRemoveActionPerformed
+        if(TableBill.getSelectedRow() != -1){
+            
+            menu.get(tableBill.getValueAt(TableBill.getSelectedRow(), TableBill.getSelectedColumn()).toString()).setInventory(1);
+            table.removeFromOrder(tableBill.getValueAt(TableBill.getSelectedRow(), TableBill.getSelectedColumn()).toString());
+            
+            tableBill = (DefaultTableModel)TableBill.getModel();
+            tableBill.isCellEditable(ERROR, NORMAL);
+            
+        if (tableBill.getRowCount() > 0) {
+            for (int i = tableBill.getRowCount() - 1; i > -1; i--) {
+                tableBill.removeRow(i);
+            }
+        }
+        
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+           
+           tableBill.addRow(new Object[]{table.returnOrder().get(i)}); 
+        }
+        }
+    }//GEN-LAST:event_OrderRemoveActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -1653,8 +1877,13 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton ManageUsersButton;
     private javax.swing.JButton ManageUsersDoneButton;
     private javax.swing.JPanel ManageUsersPanel;
+    private javax.swing.JScrollPane Menu;
+    private javax.swing.JTable MenuItems;
+    private javax.swing.JButton OrderAddButton;
     private javax.swing.JButton OrderBackButton;
     private javax.swing.JPanel OrderPanel;
+    private javax.swing.JButton OrderRemove;
+    private javax.swing.JScrollPane Ordered;
     private javax.swing.JButton OrdersButton;
     private javax.swing.JPasswordField PinField;
     private javax.swing.JLabel PinLabel;
@@ -1669,6 +1898,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton Table3Button;
     private javax.swing.JButton Table4Button;
     private javax.swing.JButton TableBackButton;
+    private javax.swing.JTable TableBill;
     private javax.swing.JPanel TablesPanel;
     private javax.swing.JLabel TextAdministratorOptions;
     private javax.swing.JLabel TextManageMenu;
