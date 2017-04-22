@@ -21,7 +21,7 @@ import java.util.Scanner;
  * @author RandyNguyen
  */
 public class Administrator {
-
+   
     
     FileWriter fileWriter = null;
     PrintWriter printWriter = null;
@@ -162,104 +162,17 @@ public class Administrator {
         return adminLogins;
     }
 
-    public void updateMenu() throws IOException {
-        Scanner kbd = new Scanner(System.in);
-        String userChoice = "";
-        while (userChoice != "q") {
-            System.out.println("q : quit \na : add \nd : delete");
-            userChoice = kbd.nextLine();
-
-            if (userChoice == "a") {
-                addToMenu();
-            } else if (userChoice.compareTo("d") == 0) {
-                deleteFromMenu();
-            } else if (userChoice == "q") {
-                System.out.print("");
-            } else {
-                System.out.println("enter valid choice");
-            }
-        }
+    
+    public void deleteFromMenu(String name){
+     RestaurantGUI.menu.remove(name);
+      System.out.println(name + " has been removed from the menu.");
+        System.out.println("Updated Menu size: " + RestaurantGUI.menu.size());
     }
     
-    public void deleteFromMenu(String name)throws IOException{
-        File menu = new File("menu.txt");
-        Scanner read = new Scanner(menu);
-        Scanner kbd = new Scanner(System.in);
-        ArrayList<String> temp = new ArrayList<String>();
-
-        while (read.hasNext()) {
-            temp.add(read.nextLine());
-        }
-        read.close();
-
-        boolean delete = false;
-        File test = new File("menuTest.txt");
-        PrintWriter write = new PrintWriter(test);
-        while (!temp.isEmpty()) {
-            if (name.compareTo(temp.get(0)) == 0) {
-                temp.remove(0);
-                temp.remove(0);
-                temp.remove(0);
-                delete = true;
-            } else {
-                write.println(temp.get(0));
-                temp.remove(0);
-            }
-        }
-
-        write.close();
-        
-    }
-    
-    public void deleteFromMenu() throws IOException {
-        File menu = new File("menu.txt");
-        Scanner read = new Scanner(menu);
-        Scanner kbd = new Scanner(System.in);
-        ArrayList<String> temp = new ArrayList<String>();
-
-        System.out.println("enter menu item to remove");
-        String itemToDelete = kbd.nextLine();
-
-        while (read.hasNext()) {
-            temp.add(read.nextLine());
-        }
-        read.close();
-
-        boolean delete = false;
-        PrintWriter write = new PrintWriter(menu);
-        while (!temp.isEmpty()) {
-            if (itemToDelete.compareTo(temp.get(0)) == 0) {
-                temp.remove(0);
-                temp.remove(0);
-                temp.remove(0);
-                delete = true;
-            } else {
-                write.println(temp.get(0));
-                temp.remove(0);
-            }
-        }
-
-        write.close();
-
-    }
-
-    public MenuItem addToMenu() {
-        Scanner kbd = new Scanner(System.in);
-        System.out.println("Enter item name ");
-        String name = kbd.nextLine();
-        System.out.println("Enter Price");
-        Double price = kbd.nextDouble();
-        System.out.println("Enter quantity");
-        int inventory = kbd.nextInt();
+    public void addToMenu(String name, double price, int inventory) {
         MenuItem newItem = new MenuItem(name, price, inventory);
-        
-        return newItem;
-    }
-    
-    public MenuItem addToMenu(String name, double price, int inventory) {
-        Scanner kbd = new Scanner(System.in);
-        MenuItem newItem = new MenuItem(name, price, inventory);
-        
-        return newItem;
+        System.out.println("Menu size: " + RestaurantGUI.menu.size());
+        RestaurantGUI.menu.put(name, newItem);
+        System.out.println("Updated Menu size: " + RestaurantGUI.menu.size());
     }
 }

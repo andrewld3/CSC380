@@ -29,8 +29,11 @@ public class RestaurantGUI extends javax.swing.JFrame {
     public static Map<String, MenuItem> menu;
     public static ArrayList<String> menuItems;
     public static Map<String, Employee> employees;
+
+    private DefaultTableModel stockTable;
     public static Table table;
     
+
     /**
      * Creates new form RestaurantGUI
      */
@@ -47,6 +50,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator7 = new javax.swing.JSeparator();
         ContentPane = new javax.swing.JPanel();
         LoginPanel = new javax.swing.JPanel();
         LoginScreenExitButton = new javax.swing.JButton();
@@ -87,6 +91,26 @@ public class RestaurantGUI extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         StockTable = new javax.swing.JTable();
+        RemoveMenuItemButton = new javax.swing.JButton();
+        ItemPriceTextField = new javax.swing.JTextField();
+        UpdateStockTextField = new javax.swing.JTextField();
+        ItemQuantityTextField = new javax.swing.JTextField();
+        ItemNameLabel = new javax.swing.JLabel();
+        ItemPriceLabel = new javax.swing.JLabel();
+        ItemQuantityLabel = new javax.swing.JLabel();
+        RemoveWarningLabel = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        AddMenuItemButton = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        ItemNameLabel1 = new javax.swing.JLabel();
+        ItemAddTextField = new javax.swing.JTextField();
+        InventorySubtractButton = new javax.swing.JButton();
+        InventoryAddButton = new javax.swing.JButton();
+        SelectedInventoryTextField = new javax.swing.JTextField();
+        ItemNameLabel2 = new javax.swing.JLabel();
+        UpdateInventoryButton = new javax.swing.JButton();
         ManageUsersPanel = new javax.swing.JPanel();
         TextManageUsers = new javax.swing.JLabel();
         ManageUsersDoneButton = new javax.swing.JButton();
@@ -479,19 +503,19 @@ public class RestaurantGUI extends javax.swing.JFrame {
         AdminOptionPanel.setLayout(AdminOptionPanelLayout);
         AdminOptionPanelLayout.setHorizontalGroup(
             AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AdminOptionPanelLayout.createSequentialGroup()
-                .addContainerGap(655, Short.MAX_VALUE)
-                .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
-                        .addComponent(ManageMenuButton)
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
-                        .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 802, Short.MAX_VALUE)
                 .addComponent(TextAdministratorOptions)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
+                        .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
+                        .addComponent(ManageMenuButton)
+                        .addGap(184, 184, 184))))
             .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AdminOptionPanelLayout.createSequentialGroup()
                     .addGap(123, 123, 123)
@@ -503,9 +527,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TextAdministratorOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                 .addComponent(ManageMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188)
+                .addGap(182, 182, 182)
                 .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
             .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,8 +556,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         TextManageMenu.setText("Manage Menu");
 
         StockTable.setBackground(new java.awt.Color(204, 204, 204));
-        StockTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        StockTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        StockTable.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         StockTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -557,10 +580,20 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        StockTable.setGridColor(new java.awt.Color(153, 153, 153));
+        StockTable.setGridColor(new java.awt.Color(204, 204, 204));
+        StockTable.setSelectionBackground(new java.awt.Color(102, 102, 102));
         StockTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
         StockTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        StockTable.setShowGrid(false);
+        StockTable.setShowVerticalLines(false);
+
         StockTable.getTableHeader().setReorderingAllowed(false);
+        StockTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StockTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(StockTable);
         StockTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (StockTable.getColumnModel().getColumnCount() > 0) {
@@ -569,6 +602,101 @@ public class RestaurantGUI extends javax.swing.JFrame {
             StockTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        RemoveMenuItemButton.setText("Remove");
+        RemoveMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveMenuItemButtonActionPerformed(evt);
+            }
+        });
+
+        ItemPriceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemPriceTextFieldActionPerformed(evt);
+            }
+        });
+
+        UpdateStockTextField.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        UpdateStockTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        UpdateStockTextField.setBorder(null);
+        UpdateStockTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateStockTextFieldActionPerformed(evt);
+            }
+        });
+
+        ItemQuantityTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemQuantityTextFieldActionPerformed(evt);
+            }
+        });
+
+        ItemNameLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ItemNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ItemNameLabel.setText("Item Name:");
+
+        ItemPriceLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ItemPriceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ItemPriceLabel.setText("Price/Unit:");
+
+        ItemQuantityLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ItemQuantityLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ItemQuantityLabel.setText("Quantity:");
+
+        RemoveWarningLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        RemoveWarningLabel.setText("Warning! The selected item will be removed.");
+
+        AddMenuItemButton.setText("Add");
+        AddMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddMenuItemButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("UPDATE INVENTORY");
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("ADD NEW ITEM");
+
+        ItemNameLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ItemNameLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemNameLabel1.setText("Selected Item: ");
+
+        InventorySubtractButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        InventorySubtractButton.setText("-");
+        InventorySubtractButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventorySubtractButtonActionPerformed(evt);
+            }
+        });
+
+        InventoryAddButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        InventoryAddButton.setText("+");
+        InventoryAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventoryAddButtonActionPerformed(evt);
+            }
+        });
+
+        SelectedInventoryTextField.setEditable(false);
+        SelectedInventoryTextField.setBackground(new java.awt.Color(204, 204, 204));
+        SelectedInventoryTextField.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        SelectedInventoryTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SelectedInventoryTextField.setBorder(null);
+
+        ItemNameLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ItemNameLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        ItemNameLabel2.setText("Stock:");
+
+        UpdateInventoryButton.setText("Update");
+        UpdateInventoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateInventoryButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ManageMenuPanelLayout = new javax.swing.GroupLayout(ManageMenuPanel);
         ManageMenuPanel.setLayout(ManageMenuPanelLayout);
         ManageMenuPanelLayout.setHorizontalGroup(
@@ -576,29 +704,128 @@ public class RestaurantGUI extends javax.swing.JFrame {
             .addGroup(ManageMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DoneButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator6)
                     .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                        .addComponent(TextManageMenu)
+                        .addGap(0, 950, Short.MAX_VALUE))
+                    .addComponent(jSeparator5)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DoneButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(RemoveWarningLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(RemoveMenuItemButton))
+                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextManageMenu)
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 80, Short.MAX_VALUE)))
+                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(AddMenuItemButton)
+                                        .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(ItemNameLabel)
+                                                .addComponent(ItemPriceLabel))
+                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                                    .addGap(13, 13, 13)
+                                                    .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(ItemQuantityLabel)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(ItemQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(ItemAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(53, 53, 53))
+                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(UpdateInventoryButton)
+                                        .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(ItemNameLabel1)
+                                                .addComponent(ItemNameLabel2))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(SelectedInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(UpdateStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                .addGap(129, 129, 129)
+                                .addComponent(InventorySubtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(InventoryAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
+                    .addContainerGap(919, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(102, 102, 102)))
         );
         ManageMenuPanelLayout.setVerticalGroup(
             ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
                 .addComponent(TextManageMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RemoveMenuItemButton)
+                            .addComponent(RemoveWarningLabel)
+                            .addComponent(UpdateInventoryButton))
+                        .addGap(32, 32, 32))
+                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ItemNameLabel)
+                            .addComponent(ItemAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItemQuantityLabel)
+                            .addComponent(ItemPriceLabel)
+                            .addComponent(ItemQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AddMenuItemButton)
+                        .addGap(71, 71, 71)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SelectedInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItemNameLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UpdateStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ItemNameLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(InventorySubtractButton)
+                            .addComponent(InventoryAddButton))
+                        .addGap(78, 78, 78)))
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
+            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                    .addGap(94, 94, 94)
+                    .addComponent(jLabel7)
+                    .addContainerGap(628, Short.MAX_VALUE)))
         );
 
         AdminPanel.add(ManageMenuPanel, "card3");
@@ -916,18 +1143,16 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
             Login login = new Login();
             String pin = new String(PinField.getPassword());
-            try{
-            emp = login.signIn(UsernameTextField.getText(), pin);
-            //checking to see if employee is already in system if not adding them in
-            if(employees.get(emp.empName) != null){
-                emp = employees.get(emp.empName);
-                System.out.println("found");
-            }
-            else{
-                employees.put(emp.empName, emp);
-            }
-            }
-            catch(NullPointerException e){
+            try {
+                emp = login.signIn(UsernameTextField.getText(), pin);
+                //checking to see if employee is already in system if not adding them in
+                if (employees.get(emp.empName) != null) {
+                    emp = employees.get(emp.empName);
+                    System.out.println("found");
+                } else {
+                    employees.put(emp.empName, emp);
+                }
+            } catch (NullPointerException e) {
             }
             if (emp != null) {
                 if (emp.admin == false) {
@@ -948,7 +1173,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     test.orderFood(1, "Small Children");
                     test.orderFood(1, "Pepsi");
                     test.finishTable(1);
-                   
 
                 } else {
                     LoginPanel.setVisible(false);
@@ -1016,15 +1240,20 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private void ManageMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageMenuButtonActionPerformed
         AdminOptionPanel.setVisible(false);
         ManageMenuPanel.setVisible((true));
+        SelectedInventoryTextField.setText("");
+        UpdateStockTextField.setText("");
+        RemoveWarningLabel.setText("Warning! The selected item will be removed!");
         DecimalFormat df = new DecimalFormat(".00");
-        
-        DefaultTableModel stockTable = (DefaultTableModel)StockTable.getModel();
-        stockTable.isCellEditable(ERROR, NORMAL);
-        for (int i = 0; i < menuItems.size(); i++) {
-           
-           stockTable.addRow(new Object[]{menuItems.get(i), df.format(menu.get(menuItems.get(i)).getPrice()), menu.get(menuItems.get(i)).getInventory()}); 
+
+        stockTable = (DefaultTableModel) StockTable.getModel();
+
+        if (stockTable.getRowCount() == 0) {
+            for (int i = 0; i < menuItems.size(); i++) {
+
+                stockTable.addRow(new Object[]{menuItems.get(i), df.format(menu.get(menuItems.get(i)).getPrice()), menu.get(menuItems.get(i)).getInventory()});
+            }
         }
-        
+
     }//GEN-LAST:event_ManageMenuButtonActionPerformed
 
     private void ManageUsersDoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageUsersDoneButtonActionPerformed
@@ -1174,10 +1403,112 @@ public class RestaurantGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserResponseTextField4ActionPerformed
 
+    private void ItemQuantityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemQuantityTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemQuantityTextFieldActionPerformed
+
+    private void ItemPriceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemPriceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemPriceTextFieldActionPerformed
+
     private void DoneButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoneButton1ActionPerformed
         ManageMenuPanel.setVisible(false);
         AdminOptionPanel.setVisible(true);
     }//GEN-LAST:event_DoneButton1ActionPerformed
+
+    private void RemoveMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveMenuItemButtonActionPerformed
+        Administrator admin = new Administrator();
+        if (StockTable.getSelectedRow() != -1) {
+            StockTable.getSelectedRow();
+            String itemToRemove = stockTable.getValueAt(StockTable.getSelectedRow(), 0).toString();
+            stockTable.removeRow(StockTable.getSelectedRow());
+            SelectedInventoryTextField.setText("");
+            UpdateStockTextField.setText("");
+            menuItems.remove(itemToRemove);
+            admin.deleteFromMenu(itemToRemove);
+           
+
+        } else {
+
+            RemoveWarningLabel.setText("You have not selected a row to remove!");
+
+        }
+
+
+    }//GEN-LAST:event_RemoveMenuItemButtonActionPerformed
+
+    private void UpdateStockTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateStockTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UpdateStockTextFieldActionPerformed
+
+    private void StockTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StockTableMouseClicked
+        int selectedRow = StockTable.getSelectedRow();
+        String selectedItem = StockTable.getValueAt(selectedRow,0).toString();
+        int inventory = menu.get(selectedItem).getInventory();
+        String inventory2 = Integer.toString(inventory);
+        UpdateStockTextField.setText(inventory2);
+        SelectedInventoryTextField.setText(selectedItem);
+    }//GEN-LAST:event_StockTableMouseClicked
+
+    private void AddMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddMenuItemButtonActionPerformed
+        
+        Administrator admin = new Administrator();
+       
+        
+        if (!ItemAddTextField.getText().equals("") && !ItemPriceTextField.getText().equals("") && !ItemQuantityTextField.getText().equals("")) {
+        String itemToAdd = ItemAddTextField.getText();
+        String priceToAdd = ItemPriceTextField.getText();
+        String quantityToAdd  = ItemQuantityTextField.getText();
+        Double price = Double.parseDouble(priceToAdd);
+        Integer quantity = Integer.parseInt(quantityToAdd);
+        
+        stockTable.addRow(new Object[]{itemToAdd, priceToAdd, quantityToAdd});
+        menuItems.add(itemToAdd);
+       admin.addToMenu(itemToAdd, price, quantity);
+       
+       ItemAddTextField.setText("");
+        ItemPriceTextField.setText("");
+        ItemQuantityTextField.setText("");
+       // System.out.println("item added: " + itemToAdd + " " + price + " " + quantity);
+        }
+    }//GEN-LAST:event_AddMenuItemButtonActionPerformed
+
+    private void UpdateInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateInventoryButtonActionPerformed
+       
+        if (!SelectedInventoryTextField.getText().equals("") && !UpdateStockTextField.getText().equals("")) {
+        String selectedItem = SelectedInventoryTextField.getText();
+        String stock = UpdateStockTextField.getText();
+        int stock2 = Integer.parseInt(stock);
+        int quantity = menu.get(selectedItem).getInventory();
+      
+        int quantityUpdate = stock2 - quantity;
+        System.out.println("Quantity Update: " + quantityUpdate);
+        menu.get(selectedItem).setInventory(quantityUpdate);
+        System.out.println(menu.get(selectedItem).getInventory());
+       
+        int storedInventory = menu.get(StockTable.getValueAt(StockTable.getSelectedRow(),0)).getInventory();
+        String inventory = Integer.toString(storedInventory);
+        StockTable.setValueAt(inventory, StockTable.getSelectedRow(),2);
+        }
+    }//GEN-LAST:event_UpdateInventoryButtonActionPerformed
+
+    private void InventoryAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventoryAddButtonActionPerformed
+     
+      String stock = UpdateStockTextField.getText();
+      int stock2 = Integer.parseInt(stock);
+      stock2++;
+      String stock3 = Integer.toString(stock2);
+      UpdateStockTextField.setText(stock3);
+      
+    }//GEN-LAST:event_InventoryAddButtonActionPerformed
+
+    private void InventorySubtractButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventorySubtractButtonActionPerformed
+      String stock = UpdateStockTextField.getText();
+      int stock2 = Integer.parseInt(stock);
+      stock2--;
+      String stock3 = Integer.toString(stock2);
+      UpdateStockTextField.setText(stock3);
+    }//GEN-LAST:event_InventorySubtractButtonActionPerformed
 
     private void TimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeButtonActionPerformed
         TimePanel.setVisible(true);
@@ -1241,7 +1572,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
     }//GEN-LAST:event_Table4ButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1257,8 +1587,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
-    
-
     }
 
     public static void initialize(Map<String, MenuItem> menu) throws IOException {
@@ -1271,7 +1599,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
 //            int inventory = Integer.parseInt(inFileSC.nextLine());
             String[] arr = menuItemInfo.split("/");
             String name = arr[0];
-           
+
             double price = Double.parseDouble(arr[1]);
             int inventory = Integer.parseInt(arr[2]);
             System.out.println(name + " " + price + " " + inventory);
@@ -1292,6 +1620,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddMenuItemButton;
     private javax.swing.JButton AddUserButton;
     private javax.swing.JPanel AdminContentPane;
     private javax.swing.JComboBox<String> AdminDropDown;
@@ -1306,6 +1635,16 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JPanel EmployeeContentPane;
     private javax.swing.JPanel EmployeePanel;
     private javax.swing.JButton EmployeeSignOutButton;
+    private javax.swing.JButton InventoryAddButton;
+    private javax.swing.JButton InventorySubtractButton;
+    private javax.swing.JTextField ItemAddTextField;
+    private javax.swing.JLabel ItemNameLabel;
+    private javax.swing.JLabel ItemNameLabel1;
+    private javax.swing.JLabel ItemNameLabel2;
+    private javax.swing.JLabel ItemPriceLabel;
+    private javax.swing.JTextField ItemPriceTextField;
+    private javax.swing.JLabel ItemQuantityLabel;
+    private javax.swing.JTextField ItemQuantityTextField;
     private javax.swing.JButton LoginButton;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JButton LoginScreenExitButton;
@@ -1320,7 +1659,10 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField PinField;
     private javax.swing.JLabel PinLabel;
     private javax.swing.JTextField PinTextField;
+    private javax.swing.JButton RemoveMenuItemButton;
     private javax.swing.JButton RemoveUserButton;
+    private javax.swing.JLabel RemoveWarningLabel;
+    private javax.swing.JTextField SelectedInventoryTextField;
     private javax.swing.JTable StockTable;
     private javax.swing.JButton Table1Button;
     private javax.swing.JButton Table2Button;
@@ -1331,11 +1673,16 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TextAdministratorOptions;
     private javax.swing.JLabel TextManageMenu;
     private javax.swing.JLabel TextManageUsers;
+
+    private javax.swing.JButton UpdateInventoryButton;
+    private javax.swing.JTextField UpdateStockTextField;
+
     private javax.swing.JButton TimeButton;
     private javax.swing.JButton TimeInButton;
     private javax.swing.JButton TimeOutButton;
     private javax.swing.JPanel TimePanel;
     private javax.swing.JButton TimePanelBackButton;
+
     private javax.swing.JComboBox<String> UserDropDown;
     private javax.swing.JTextField UserResponseTextField;
     private javax.swing.JTextField UserResponseTextField4;
@@ -1347,6 +1694,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -1354,6 +1703,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
