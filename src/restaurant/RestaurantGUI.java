@@ -290,19 +290,19 @@ public class RestaurantGUI extends javax.swing.JFrame {
         AdminOptionPanel.setLayout(AdminOptionPanelLayout);
         AdminOptionPanelLayout.setHorizontalGroup(
             AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AdminOptionPanelLayout.createSequentialGroup()
-                .addContainerGap(655, Short.MAX_VALUE)
-                .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
-                        .addComponent(ManageMenuButton)
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
-                        .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 802, Short.MAX_VALUE)
                 .addComponent(TextAdministratorOptions)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
+                        .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
+                        .addComponent(ManageMenuButton)
+                        .addGap(184, 184, 184))))
             .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(AdminOptionPanelLayout.createSequentialGroup()
                     .addGap(123, 123, 123)
@@ -314,9 +314,9 @@ public class RestaurantGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AdminOptionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TextAdministratorOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                 .addComponent(ManageMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(188, 188, 188)
+                .addGap(182, 182, 182)
                 .addComponent(AdminSignOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
             .addGroup(AdminOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +368,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        StockTable.setGridColor(new java.awt.Color(153, 153, 153));
+        StockTable.setGridColor(new java.awt.Color(204, 204, 204));
+        StockTable.setSelectionBackground(new java.awt.Color(102, 102, 102));
         StockTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
         StockTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         StockTable.setShowGrid(true);
@@ -388,9 +389,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
             .addGroup(ManageMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DoneButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ManageMenuPanelLayout.createSequentialGroup()
                         .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextManageMenu)
