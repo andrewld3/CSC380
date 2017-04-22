@@ -28,6 +28,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     static Employee emp;
     public static Map<String, MenuItem> menu;
     public static ArrayList<String> menuItems;
+    public static Map<String, Employee> employees;
     
     /**
      * Creates new form RestaurantGUI
@@ -730,7 +731,19 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
             Login login = new Login();
             String pin = new String(PinField.getPassword());
+            try{
             emp = login.signIn(UsernameTextField.getText(), pin);
+            //checking to see if employee is already in system if not adding them in
+            if(employees.get(emp.empName) != null){
+                emp = employees.get(emp.empName);
+                System.out.println("found");
+            }
+            else{
+                employees.put(emp.empName, emp);
+            }
+            }
+            catch(NullPointerException e){
+            }
             if (emp != null) {
                 if (emp.admin == false) {
                     //logged in as authorized user
@@ -988,6 +1001,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     public static void main(String[] args) throws IOException, InterruptedException {
         menu = new HashMap<String, MenuItem>();
         menuItems = new ArrayList<String>();
+        employees = new HashMap<String, Employee>();
         initialize(menu);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
