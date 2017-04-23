@@ -2315,7 +2315,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, message , "WARNING", dialogButton);
         if (dialogResult == 0) {
-   
+            
+            cashTextField.setText("0.00");
             CheckoutPanel.setVisible(true);
             OrderPanel.setVisible(false);
 
