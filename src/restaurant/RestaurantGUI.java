@@ -1426,27 +1426,13 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginScreenExitButtonActionPerformed
 
     private void EmployeeSignOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeSignOutButtonActionPerformed
-        if (TimeInTextField.getText().equals("") && TimeOutTextField.getText().equals("")) {
-            LoginPanel.setVisible(true);
-            AdminContentPane.setVisible(false);
-            EmployeeContentPane.setVisible(false);
-            TimeInTextField.setText("");
-            TimeOutTextField.setText("");
-            UsernameTextField.setText("");
-            PinField.setText("");
 
-        } else if (TimeOutTextField.getText().equals("")) {
-            String message = "There is no recorded time out.";
-            JOptionPane.showMessageDialog(null, message);
-        } else {
-            LoginPanel.setVisible(true);
-            AdminContentPane.setVisible(false);
-            EmployeeContentPane.setVisible(false);
-            TimeInTextField.setText("");
-            TimeOutTextField.setText("");
-            UsernameTextField.setText("");
-            PinField.setText("");
-        }
+        LoginPanel.setVisible(true);
+        AdminContentPane.setVisible(false);
+        EmployeeContentPane.setVisible(false);
+        UsernameTextField.setText("");
+        PinField.setText("");
+
     }//GEN-LAST:event_EmployeeSignOutButtonActionPerformed
 
     private void AdminSignOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignOutButtonActionPerformed
@@ -1757,6 +1743,18 @@ public class RestaurantGUI extends javax.swing.JFrame {
         TimePanel.setVisible(true);
         EmployeePanel.setVisible(false);
         TimeEmployeeTextField.setText("You are currently logged in as: " + emp.empName);
+
+        if (emp.returnSignIn() == null) {
+            TimeInTextField.setText("");
+            
+        } else {
+            String signInTime = emp.returnSignIn();
+            String date = signInTime.substring(0, 10);
+            String time = signInTime.substring(11);
+            TimeInTextField.setText("Sign In:      Date: " + date + "        Time: " + time);
+
+        }
+
     }//GEN-LAST:event_TimeButtonActionPerformed
 
     private void TimePanelBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimePanelBackButtonActionPerformed
@@ -1765,57 +1763,53 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TimePanelBackButtonActionPerformed
 
     private void TimeInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeInButtonActionPerformed
-        if (!TimeInTextField.getText().equals("")) {
-            String message = "There is no recorded time out!";
-            JOptionPane.showMessageDialog(null, message);
-        }
-        TimeOutTextField.setText("");
 
-        emp.setSignIn();
-        employees.replace(emp.empName, emp);
-
-        String signInTime = emp.returnSignIn();
-        String date = signInTime.substring(0, 10);
-        String time = signInTime.substring(11);
-        TimeInTextField.setText("Sign In:      Date: " + date + "        Time: " + time);
-        String signIn = "Sign In";
         try {
+            emp.setSignIn();
+            employees.replace(emp.empName, emp);
+
+            String signInTime = emp.returnSignIn();
+            String date = signInTime.substring(0, 10);
+            String time = signInTime.substring(11);
+            TimeInTextField.setText("Sign In:      Date: " + date + "        Time: " + time);
+            String signIn = "Sign In";
+
             emp.writeTimeToFile(emp, signIn, signInTime);
-        } catch (FileNotFoundException ex) {
-            System.out.println("File not found.");
+
+            TimePanel.setVisible(false);
+            EmployeePanel.setVisible(true);
         } catch (IOException ex) {
-            System.out.println("IO exception.");;
+            System.out.println("IO EXCEPTION");
         }
-        TimePanel.setVisible(false);
-        EmployeePanel.setVisible(true);
 
     }//GEN-LAST:event_TimeInButtonActionPerformed
 
     private void TimeOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeOutButtonActionPerformed
-        if (TimeInTextField.getText().equals("Sign In time:")) {
-            System.out.println("No sign in found.");
-        } else if (TimeInTextField.getText().equals("")) {
-            System.out.println("No sign in found");
-        } else {
-            emp.setSignOut();
-            employees.replace(emp.empName, emp);
 
-            String signOutTime = emp.returnSignOut();
-            String date = signOutTime.substring(0, 10);
-            String time = signOutTime.substring(11);
-            TimeOutTextField.setText("Sign Out:      Date: " + date + "       Time: " + time);
-            String signOut = "Sign Out";
+        if (emp.tables[0].returnOrder().size() == 0 && emp.tables[1].returnOrder().size() == 0 && emp.tables[2].returnOrder().size() == 0 && emp.tables[3].returnOrder().size() == 0) {
             try {
-                emp.writeTimeToFile(emp, signOut, signOutTime);
-            } catch (FileNotFoundException ex) {
-                System.out.println("File not found.");
-            } catch (IOException ex) {
-                System.out.println("IO exception");
-            }
-            TimePanel.setVisible(false);
-            EmployeePanel.setVisible(true);
+                emp.setSignOut();
+                employees.replace(emp.empName, emp);
 
+                String signOutTime = emp.returnSignOut();
+                String date = signOutTime.substring(0, 10);
+                String time = signOutTime.substring(11);
+                TimeOutTextField.setText("Sign Out:      Date: " + date + "       Time: " + time);
+                String signOut = "Sign Out";
+
+                emp.writeTimeToFile(emp, signOut, signOutTime);
+                emp = null;
+                TimePanel.setVisible(false);
+                LoginPanel.setVisible(true);
+                UsernameTextField.setText("");
+                PinField.setText("");
+                TimeInTextField.setText("");
+                TimeOutTextField.setText("");
+            } catch (IOException ex) {
+                System.out.println("IO EXCEPTION");
+            }
         }
+
     }//GEN-LAST:event_TimeOutButtonActionPerformed
 
     private void OrdersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersButtonActionPerformed
