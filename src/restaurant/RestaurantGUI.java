@@ -1798,9 +1798,10 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 String signOut = "Sign Out";
 
                 emp.writeTimeToFile(emp, signOut, signOutTime);
+                employees.remove(emp.empName);
                 emp = null;
                 TimePanel.setVisible(false);
-                LoginPanel.setVisible(true);
+                EmployeePanel.setVisible(true);
                 UsernameTextField.setText("");
                 PinField.setText("");
                 TimeInTextField.setText("");
