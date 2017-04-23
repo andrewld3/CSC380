@@ -1,0 +1,12 @@
+Hotdog
+3.50
+50
+Corndog
+4.00
+50
+Steak
+1200.00
+3000
+Small Children
+3.50
+1

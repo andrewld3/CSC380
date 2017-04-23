@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -110,6 +112,13 @@ public class Employee {
         value = true;
         return value;
     }
-    
-    // End Table Management Methods
+       public void writeTimeToFile(Employee employee, String inOrOut, String time) throws FileNotFoundException, IOException{
+        FileWriter fw = new FileWriter("employeeTime.txt",true);
+        PrintWriter out = new PrintWriter(fw);
+        out.write("\n" + employee.empName + " " + inOrOut + " " + time);
+  
+        out.close();
+        fw.close();
+    }
+ 
 }
