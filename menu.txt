@@ -1,35 +1,36 @@
 
-Pepsi/1.75/200
-Diet Pepsi/1.75/200
-Mountain Dew/1.75/200
-Root Beer/1.75/200
-Orange Crush/1.75/200
-Dr. Pepper/1.75/200
-Fruit Punch/1.75/200
 Iced Tea/1.75/200
-Lemonade/1.75/200
-Gatorade/1.75/200
-Milk/2.00/100
-Coffee/1.50/200
-Hot Tea/1.50/100
-Hot Chocolate/1.50/100
-Bottled Water/1.25/300
-Hamburger/3.00/150
-Cheeseburger/3.25/150
-Double Cheeseburger/6.50/150
-Veggie Burger/3.75/100
-Hot Dog/2.25/200
-Steak Sandwich/5.50/125
-Sausage & Pepper Sandwich/4.50/75
-Melted Cheese Sandwhich/2.25/150
-Fried Dough/3.50/100
-Nacho Cheese Chips/3.50/120
-French Fries/2.50/200
-Onion Rings/3.00/170
-Cup of cole slaw/1.50/120
-Fish Fry/4.50/100
-Clam Fry/4.50/100
-Shrimp Fry/4.50/100
-Grilled Chicken Breast Sandwich/4.50/150
 Chicken Tender Sandwich/3.75/150
-One-Half Dozen Chicken Wings/4.00/80
+Pepsi/1.75/200
+Clam Fry/4.5/100
+Fruit Punch/1.75/200
+Coffee/1.5/200
+Hot Chocolate/1.5/100
+Hamburger/3.0/150
+Lemonade/1.75/200
+Cheeseburger/3.25/150
+Gatorade/1.75/200
+French Fries/2.5/200
+Double Cheeseburger/6.5/150
+Root Beer/1.75/200
+Mountain Dew/1.75/200
+Orange Crush/1.75/200
+Cup of cole slaw/1.5/120
+Milk/2.0/100
+Hot Tea/1.5/100
+Dr. Pepper/1.75/200
+Fish Fry/4.5/100
+Fried Dough/3.5/100
+Nacho Cheese Chips/3.5/120
+One-Half Dozen Chicken Wings/4.0/80
+Diet Pepsi/1.75/200
+Veggie Burger/3.75/100
+Sausage & Pepper Sandwich/4.5/75
+Small Children/0.99/2
+Melted Cheese Sandwhich/2.25/150
+Hot Dog/2.25/200
+Shrimp Fry/4.5/100
+Bottled Water/1.25/300
+Steak Sandwich/5.5/125
+Grilled Chicken Breast Sandwich/4.5/150
+Onion Rings/3.0/170
