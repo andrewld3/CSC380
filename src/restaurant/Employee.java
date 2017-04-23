@@ -108,7 +108,7 @@ public class Employee {
         //End Bill
         
         //Clear Table
-        tables[table] = null;
+        tables[table] = new Table();
         value = true;
         return value;
     }

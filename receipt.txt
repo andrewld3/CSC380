@@ -4,10 +4,11 @@ Date: 2017.04.23
 Server: Chris N
 
 Ordered Items:
-Veggie Burger       3.75
-Steak Sandwich      5.50
+Cheeseburger        3.25
+Cheeseburger        3.25
+Cheeseburger        3.25
 
-Subtotal: 9.25
-Tax: 0.74
-Total: 9.99
+Subtotal: 9.75
+Tax: 0.78
+Total: 10.53
 Have a nice day!
