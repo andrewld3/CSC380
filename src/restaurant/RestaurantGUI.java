@@ -5,7 +5,6 @@
  */
 package restaurant;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,9 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -122,6 +118,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         amountDueTextField1 = new javax.swing.JTextField();
         debit1 = new javax.swing.JButton();
         cashTextField = new javax.swing.JTextField();
+        CheckOutBackButton = new javax.swing.JButton();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         AdminOptionPanel = new javax.swing.JPanel();
@@ -472,7 +469,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         TimePanelLayout.setVerticalGroup(
             TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TimePanelLayout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137)
                 .addComponent(TimePanelBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -562,7 +559,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addGroup(TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Table1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Table2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE))
                     .addGroup(TablesPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(TablesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -861,6 +858,15 @@ public class RestaurantGUI extends javax.swing.JFrame {
         cashTextField.setText("0.00");
         cashTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        CheckOutBackButton.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        CheckOutBackButton.setForeground(java.awt.Color.red);
+        CheckOutBackButton.setText("Cancel");
+        CheckOutBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckOutBackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CheckoutPanelLayout = new javax.swing.GroupLayout(CheckoutPanel);
         CheckoutPanel.setLayout(CheckoutPanelLayout);
         CheckoutPanelLayout.setHorizontalGroup(
@@ -925,8 +931,13 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addContainerGap(75, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckoutPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(amountDueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))))
+                        .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckoutPanelLayout.createSequentialGroup()
+                                .addComponent(amountDueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(151, 151, 151))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckoutPanelLayout.createSequentialGroup()
+                                .addComponent(CheckOutBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59))))))
             .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CheckoutPanelLayout.createSequentialGroup()
                     .addGap(694, 694, 694)
@@ -936,7 +947,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         CheckoutPanelLayout.setVerticalGroup(
             CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CheckoutPanelLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CheckoutPanelLayout.createSequentialGroup()
                         .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -962,9 +973,11 @@ public class RestaurantGUI extends javax.swing.JFrame {
                                 .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(totalField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
-                                .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(37, Short.MAX_VALUE))
+                                .addGap(15, 15, 15)
+                                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CheckOutBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(28, Short.MAX_VALUE))
                             .addGroup(CheckoutPanelLayout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(amountDueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -982,7 +995,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                                     .addComponent(amountDueTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(69, 69, 69)
                                 .addComponent(FinishTransactionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(195, 195, 195))))))
+                                .addGap(204, 204, 204))))))
             .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CheckoutPanelLayout.createSequentialGroup()
                     .addGap(83, 83, 83)
@@ -1674,7 +1687,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 //checking to see if employee is already in system if not adding them in
                 if (employees.get(emp.empName) != null) {
                     emp = employees.get(emp.empName);
-                    System.out.println("found");
+                    //System.out.println("found");
                 } else {
                     employees.put(emp.empName, emp);
                 }
@@ -1686,8 +1699,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     LoginPanel.setVisible(false);
                     AdminContentPane.setVisible(false);
                     EmployeeContentPane.setVisible(true);
-                    System.out.println(emp);
-                    System.out.println(emp.empName);
+                    //System.out.println(emp);
+                    //System.out.println(emp.empName);
 
                 } else {
                     LoginPanel.setVisible(false);
@@ -2283,7 +2296,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 }
             }
             else{
-                String message = menuTable.getValueAt(MenuItems.getSelectedRow(), MenuItems.getSelectedColumn()).toString() + " :out of stock";
+                String message = menuTable.getValueAt(MenuItems.getSelectedRow(), MenuItems.getSelectedColumn()).toString() + ": Out of stock";
                 JOptionPane.showMessageDialog(null, message);
             }
         }
@@ -2321,7 +2334,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(this, message , "WARNING", dialogButton);
         if (dialogResult == 0) {
-   
+            
+            cashTextField.setText("0.00");
             CheckoutPanel.setVisible(true);
             OrderPanel.setVisible(false);
 
@@ -2330,7 +2344,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
             receiptTable.isCellEditable(ERROR, NORMAL);
             DecimalFormat df = new DecimalFormat(".00");
 
-            System.out.println("# of rows: " + billList.getRowCount());
+            //System.out.println("# of rows: " + billList.getRowCount());
             if (receiptTable.getRowCount() > 0) {
                 for (int i = receiptTable.getRowCount() - 1; i > -1; i--) {
                     receiptTable.removeRow(i);
@@ -2338,7 +2352,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
             for (int i = 0; i < table.returnOrder().size(); i++) {
                 receiptTable.addRow(new Object[]{table.returnOrder().get(i), df.format(menu.get(table.returnOrder().get(i)).getPrice())});
-                System.out.println(table.returnOrder().get(i) + " " + df.format(menu.get(table.returnOrder().get(i)).getPrice()));
+                //System.out.println(table.returnOrder().get(i) + " " + df.format(menu.get(table.returnOrder().get(i)).getPrice()));
             }
 
             subtotalField.setText(String.valueOf(df.format(table.getSubtotal(menu))));
@@ -2361,6 +2375,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_printActionPerformed
 
     private void FinishTransactionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinishTransactionButtonActionPerformed
+       
+       if(amountDueTextField.getText().equals("")){
         try {
             emp.finishTable(tableNum);
         } catch (IOException ex) {
@@ -2369,10 +2385,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
         CheckoutPanel.setVisible(false);
         TablesPanel.setVisible(true);
-
+       }else{
+           String message = "There is still a remaining balance.";
+                JOptionPane.showMessageDialog(null, message);
+       }
     }//GEN-LAST:event_FinishTransactionButtonActionPerformed
 
     private void cashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashActionPerformed
+        
         String amountDue = amountDueTextField.getText();
         Double amount = Double.parseDouble(amountDue);
         String cashPaid = cashTextField.getText();
@@ -2380,11 +2400,12 @@ public class RestaurantGUI extends javax.swing.JFrame {
         Double due = amount - cash;
         DecimalFormat df = new DecimalFormat(".00");
         String due2 = df.format(due);
-        if (due >= 0) {
+        cashTextField.setText("");
+        if (due > 0) {
             amountDueTextField.setText(due2);
             amountDueTextField1.setText("0.00");
         } else {
-            amountDueTextField.setText("0.00");
+            amountDueTextField.setText("");
             amountDueTextField1.setText(due2);
         }
 
@@ -2392,14 +2413,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
     private void creditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditActionPerformed
         if (!amountDueTextField.getText().equals("0.00")) {
-            amountDueTextField.setText("0.00");
+            amountDueTextField.setText("");
             amountDueTextField1.setText("0.00");
         }
     }//GEN-LAST:event_creditActionPerformed
 
     private void debit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debit1ActionPerformed
         if (!amountDueTextField.getText().equals("0.00")) {
-            amountDueTextField.setText("0.00");
+            amountDueTextField.setText("");
             amountDueTextField1.setText("0.00");
         }
     }//GEN-LAST:event_debit1ActionPerformed
@@ -2407,6 +2428,11 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private void totalField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalField1ActionPerformed
 
     }//GEN-LAST:event_totalField1ActionPerformed
+
+    private void CheckOutBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutBackButtonActionPerformed
+        CheckoutPanel.setVisible(false);
+        OrderPanel.setVisible(true);
+    }//GEN-LAST:event_CheckOutBackButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2466,6 +2492,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JTextField AdminResponseTextField2;
     private javax.swing.JButton AdminSignOutButton;
     private javax.swing.JButton AdminToUserButton;
+    private javax.swing.JButton CheckOutBackButton;
     private javax.swing.JPanel CheckoutPanel;
     private javax.swing.JPanel ContentPane;
     private javax.swing.JButton DoneButton1;
