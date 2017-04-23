@@ -4,14 +4,10 @@ Date: 2017.04.23
 Server: Chris N
 
 Ordered Items:
-Diet Pepsi          1.75
-Diet Pepsi          1.75
-Diet Pepsi          1.75
-Double Cheeseburger 6.50
-Orange Crush        1.75
-Milk                2.00
+Veggie Burger       3.75
+Steak Sandwich      5.50
 
-Subtotal: 15.50
-Tax: 1.24
-Total: 16.74
+Subtotal: 9.25
+Tax: 0.74
+Total: 9.99
 Have a nice day!
