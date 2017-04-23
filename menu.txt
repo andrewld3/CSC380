@@ -1,14 +1,35 @@
 
-Hotdog/3.5/50
-Coke/2.0/199
-Pepsi/2.0/200
-Steak/15.0/50
-Fruit Punch/2.0/200
-Hamburger/6.0/50
-Cheeseburger/7.0/50
-Corndog/4.0/50
-Small Children/3.51/1
-French Fries/2.5/199
-Root Beer/2.0/200
-Gingerale/2.0/200
-Mountain Dew/2.0/200
+Pepsi/1.75/200
+Diet Pepsi/1.75/200
+Mountain Dew/1.75/200
+Root Beer/1.75/200
+Orange Crush/1.75/200
+Dr. Pepper/1.75/200
+Fruit Punch/1.75/200
+Iced Tea/1.75/200
+Lemonade/1.75/200
+Gatorade/1.75/200
+Milk/2.00/100
+Coffee/1.50/200
+Hot Tea/1.50/100
+Hot Chocolate/1.50/100
+Bottled Water/1.25/300
+Hamburger/3.00/150
+Cheeseburger/3.25/150
+Double Cheeseburger/6.50/150
+Veggie Burger/3.75/100
+Hot Dog/2.25/200
+Steak Sandwich/5.50/125
+Sausage & Pepper Sandwich/4.50/75
+Melted Cheese Sandwhich/2.25/150
+Fried Dough/3.50/100
+Nacho Cheese Chips/3.50/120
+French Fries/2.50/200
+Onion Rings/3.00/170
+Cup of cole slaw/1.50/120
+Fish Fry/4.50/100
+Clam Fry/4.50/100
+Shrimp Fry/4.50/100
+Grilled Chicken Breast Sandwich/4.50/150
+Chicken Tender Sandwich/3.75/150
+One-Half Dozen Chicken Wings/4.00/80
