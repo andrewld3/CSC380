@@ -17,20 +17,20 @@ Mountain Dew/1.75/200
 Orange Crush/1.75/200
 Cup of cole slaw/1.5/120
 Milk/2.0/100
-Hot Tea/1.5/100
-Dr. Pepper/1.75/200
-Fish Fry/4.5/100
+Hot Tea/1.5/99
+Dr. Pepper/1.75/199
+Fish Fry/4.5/99
 Fried Dough/3.5/100
 Nacho Cheese Chips/3.5/120
 One-Half Dozen Chicken Wings/4.0/80
 Diet Pepsi/1.75/200
-Veggie Burger/3.75/100
+Veggie Burger/3.75/99
 Sausage & Pepper Sandwich/4.5/75
 Small Children/0.99/2
-Melted Cheese Sandwhich/2.25/150
-Hot Dog/2.25/200
-Shrimp Fry/4.5/100
+Melted Cheese Sandwhich/2.25/149
+Hot Dog/2.25/199
+Shrimp Fry/4.5/99
 Bottled Water/1.25/300
-Steak Sandwich/5.5/125
+Steak Sandwich/5.5/124
 Grilled Chicken Breast Sandwich/4.5/150
 Onion Rings/3.0/170
