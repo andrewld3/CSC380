@@ -2282,6 +2282,10 @@ public class RestaurantGUI extends javax.swing.JFrame {
                     tableBill.addRow(new Object[]{table.returnOrder().get(i)});
                 }
             }
+            else{
+                String message = menuTable.getValueAt(MenuItems.getSelectedRow(), MenuItems.getSelectedColumn()).toString() + " :out of stock";
+                JOptionPane.showMessageDialog(null, message);
+            }
         }
         //System.out.println(menuTable.getValueAt(MenuItems.getSelectedRow(),MenuItems.getSelectedColumn()).toString());
     }//GEN-LAST:event_OrderAddButtonActionPerformed
@@ -2328,7 +2332,11 @@ public class RestaurantGUI extends javax.swing.JFrame {
             DecimalFormat df = new DecimalFormat(".00");
 
             System.out.println("# of rows: " + billList.getRowCount());
-
+            if (receiptTable.getRowCount() > 0) {
+                for (int i = receiptTable.getRowCount() - 1; i > -1; i--) {
+                    receiptTable.removeRow(i);
+                }
+            }
             for (int i = 0; i < table.returnOrder().size(); i++) {
                 receiptTable.addRow(new Object[]{table.returnOrder().get(i), df.format(menu.get(table.returnOrder().get(i)).getPrice())});
                 System.out.println(table.returnOrder().get(i) + " " + df.format(menu.get(table.returnOrder().get(i)).getPrice()));
@@ -2339,13 +2347,8 @@ public class RestaurantGUI extends javax.swing.JFrame {
             totalField1.setText(String.valueOf(df.format(table.ReturnTotal(menu))));
             amountDueTextField.setText(String.valueOf(df.format(table.ReturnTotal(menu))));
             
-            menuTable = (DefaultTableModel) MenuItems.getModel();
-            menuTable.isCellEditable(ERROR, NORMAL);
-            if (menuTable.getRowCount() > 0) {
-                for (int i = menuTable.getRowCount() - 1; i > -1; i--) {
-                    menuTable.removeRow(i);
-                }
-            }
+            
+            
         } else {
             CheckoutPanel.setVisible(false);
             OrderPanel.setVisible(true);
