@@ -1,15 +1,17 @@
 BILL SUMMARY
 -----------------------
-Date: 2017.04.22
+Date: 2017.04.23
 Server: Chris N
+
 Ordered Items:
-Hamburger           6.00
-Hamburger           6.00
-Small Children      3.51
-Pepsi               2.00
+Diet Pepsi          1.75
+Diet Pepsi          1.75
+Diet Pepsi          1.75
+Double Cheeseburger 6.50
+Orange Crush        1.75
+Milk                2.00
 
-Subtotal: 17.51
-Tax: 1.40
-Total: 18.91
+Subtotal: 15.50
+Tax: 1.24
+Total: 16.74
 Have a nice day!
-

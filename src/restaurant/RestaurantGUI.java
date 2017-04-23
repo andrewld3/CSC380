@@ -34,6 +34,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
 
     private DefaultTableModel stockTable;
     public static Table table;
+    private int tableNum;
     private DefaultTableModel menuTable;
     private DefaultTableModel tableBill;
 
@@ -95,7 +96,25 @@ public class RestaurantGUI extends javax.swing.JFrame {
         Ordered = new javax.swing.JScrollPane();
         TableBill = new javax.swing.JTable();
         OrderRemove = new javax.swing.JButton();
+        checkout = new javax.swing.JButton();
         CheckoutPanel = new javax.swing.JPanel();
+        print = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        billList = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        serverName = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        taxField = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        subtotalField = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        totalField = new javax.swing.JTextArea();
         AdminContentPane = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         AdminOptionPanel = new javax.swing.JPanel();
@@ -408,7 +427,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .addComponent(TimeInTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TimeOutTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -633,6 +652,14 @@ public class RestaurantGUI extends javax.swing.JFrame {
             }
         });
 
+        checkout.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        checkout.setText("Checkout");
+        checkout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout OrderPanelLayout = new javax.swing.GroupLayout(OrderPanel);
         OrderPanel.setLayout(OrderPanelLayout);
         OrderPanelLayout.setHorizontalGroup(
@@ -647,14 +674,13 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addComponent(OrderAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(141, 141, 141)
                 .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(OrderPanelLayout.createSequentialGroup()
-                        .addComponent(OrderRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(OrderPanelLayout.createSequentialGroup()
-                        .addComponent(Ordered, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 173, Short.MAX_VALUE))))
+                    .addComponent(OrderRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ordered, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(339, 339, 339)
+                .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(OrderBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -669,22 +695,145 @@ public class RestaurantGUI extends javax.swing.JFrame {
                 .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OrderAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OrderRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(OrderBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(OrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OrderBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
 
         EmployeeContentPane.add(OrderPanel, "card5");
+
+        print.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        print.setText("Print");
+        print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printActionPerformed(evt);
+            }
+        });
+
+        billList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        billList.setShowHorizontalLines(false);
+        billList.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(billList);
+        if (billList.getColumnModel().getColumnCount() > 0) {
+            billList.getColumnModel().getColumn(0).setResizable(false);
+            billList.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel5.setText("Server:");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jTextArea1.setRows(1);
+        jTextArea1.setText("                           Receipt");
+        jScrollPane3.setViewportView(jTextArea1);
+
+        serverName.setColumns(20);
+        serverName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        serverName.setRows(1);
+        jScrollPane4.setViewportView(serverName);
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel8.setText("Subtotal:");
+
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel9.setText("Tax:");
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel10.setText("Total:");
+
+        taxField.setColumns(20);
+        taxField.setRows(1);
+        jScrollPane5.setViewportView(taxField);
+
+        subtotalField.setColumns(20);
+        subtotalField.setRows(1);
+        jScrollPane6.setViewportView(subtotalField);
+
+        totalField.setColumns(20);
+        totalField.setRows(1);
+        jScrollPane7.setViewportView(totalField);
 
         javax.swing.GroupLayout CheckoutPanelLayout = new javax.swing.GroupLayout(CheckoutPanel);
         CheckoutPanel.setLayout(CheckoutPanelLayout);
         CheckoutPanelLayout.setHorizontalGroup(
             CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(CheckoutPanelLayout.createSequentialGroup()
+                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CheckoutPanelLayout.createSequentialGroup()
+                        .addGap(388, 388, 388)
+                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CheckoutPanelLayout.createSequentialGroup()
+                        .addGap(308, 308, 308)
+                        .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CheckoutPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CheckoutPanelLayout.createSequentialGroup()
+                                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(440, Short.MAX_VALUE))
         );
         CheckoutPanelLayout.setVerticalGroup(
             CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckoutPanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CheckoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         EmployeeContentPane.add(CheckoutPanel, "card6");
@@ -815,7 +964,6 @@ public class RestaurantGUI extends javax.swing.JFrame {
         StockTable.setSelectionBackground(new java.awt.Color(102, 102, 102));
         StockTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
         StockTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        StockTable.setShowGrid(false);
         StockTable.getTableHeader().setReorderingAllowed(false);
         StockTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -938,57 +1086,56 @@ public class RestaurantGUI extends javax.swing.JFrame {
                         .addGap(0, 950, Short.MAX_VALUE))
                     .addComponent(jSeparator5)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(DoneButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                .addComponent(RemoveWarningLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(RemoveMenuItemButton))
-                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 7, Short.MAX_VALUE)
                         .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(DoneButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
+                                .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                        .addComponent(RemoveWarningLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(RemoveMenuItemButton))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(AddMenuItemButton)
-                                        .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(ItemNameLabel)
-                                                .addComponent(ItemPriceLabel))
-                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                                    .addGap(13, 13, 13)
-                                                    .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(ItemQuantityLabel)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(ItemQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(ItemAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(53, 53, 53))
-                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(UpdateInventoryButton)
-                                        .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(ItemNameLabel1)
-                                                .addComponent(ItemNameLabel2))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(SelectedInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(UpdateStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addGroup(ManageMenuPanelLayout.createSequentialGroup()
-                                .addGap(129, 129, 129)
-                                .addComponent(InventorySubtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(InventoryAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(AddMenuItemButton)
+                                                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(ItemNameLabel)
+                                                        .addComponent(ItemPriceLabel))
+                                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                                            .addGap(13, 13, 13)
+                                                            .addComponent(ItemPriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(ItemQuantityLabel)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(ItemQuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                            .addComponent(ItemAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addGap(53, 53, 53))
+                                            .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(UpdateInventoryButton)
+                                                .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ItemNameLabel1)
+                                                        .addComponent(ItemNameLabel2))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(SelectedInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(UpdateStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(ManageMenuPanelLayout.createSequentialGroup()
+                                        .addGap(129, 129, 129)
+                                        .addComponent(InventorySubtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(InventoryAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
             .addGroup(ManageMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManageMenuPanelLayout.createSequentialGroup()
@@ -1839,7 +1986,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_OrderBackButtonActionPerformed
 
     private void Table1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table1ButtonActionPerformed
-
+        tableNum = 0;
         table = emp.tables[0];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
@@ -1870,6 +2017,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Table1ButtonActionPerformed
 
     private void Table2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table2ButtonActionPerformed
+        tableNum = 1;
         table = emp.tables[1];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
@@ -1900,6 +2048,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Table2ButtonActionPerformed
 
     private void Table3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table3ButtonActionPerformed
+        tableNum = 2;
         table = emp.tables[2];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
@@ -1930,6 +2079,7 @@ public class RestaurantGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Table3ButtonActionPerformed
 
     private void Table4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Table4ButtonActionPerformed
+        tableNum = 3;
         table = emp.tables[3];
         OrderPanel.setVisible(true);
         TablesPanel.setVisible(false);
@@ -2005,6 +2155,33 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private void TimeInTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeInTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TimeInTextFieldActionPerformed
+
+    private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
+        CheckoutPanel.setVisible(true);
+        OrderPanel.setVisible(false);
+        serverName.setText(emp.empName);
+        DefaultTableModel receiptTable = (DefaultTableModel) billList.getModel();
+        receiptTable.isCellEditable(ERROR, NORMAL);
+        DecimalFormat df = new DecimalFormat(".00");
+        for (int i = 0; i < table.returnOrder().size(); i++) {
+                receiptTable.addRow(new Object[]{table.returnOrder().get(i), df.format(menu.get(table.returnOrder().get(i)).getPrice())});
+        }
+        subtotalField.setText(String.valueOf(df.format(table.getSubtotal(menu))));
+        taxField.setText(String.valueOf(df.format(table.getTax(menu))));
+        totalField.setText(String.valueOf(df.format(table.ReturnTotal(menu))));
+        try {
+            emp.finishTable(tableNum);
+        }
+        catch(IOException ex) {
+            System.out.println("IOException");
+        }
+        
+    }//GEN-LAST:event_checkoutActionPerformed
+
+    private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
+        EmployeePanel.setVisible(true);
+        OrderPanel.setVisible(false);
+    }//GEN-LAST:event_printActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2131,16 +2308,28 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JButton UserToAdminButton;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
+    private javax.swing.JTable billList;
+    private javax.swing.JButton checkout;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
@@ -2151,10 +2340,16 @@ public class RestaurantGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField lastInitialTextField;
+    private javax.swing.JButton print;
+    private javax.swing.JTextArea serverName;
+    private javax.swing.JTextArea subtotalField;
+    private javax.swing.JTextArea taxField;
+    private javax.swing.JTextArea totalField;
     // End of variables declaration//GEN-END:variables
 }
