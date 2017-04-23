@@ -26,6 +26,7 @@ One-Half Dozen Chicken Wings/4.0/80
 Diet Pepsi/1.75/200
 Veggie Burger/3.75/100
 Sausage & Pepper Sandwich/4.5/75
+Small Children/0.99/2
 Melted Cheese Sandwhich/2.25/150
 Hot Dog/2.25/200
 Shrimp Fry/4.5/100
