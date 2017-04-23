@@ -1,0 +1,13 @@
+BILL SUMMARY
+-----------------------
+Date: 2017.04.23
+Server: Chris N
+
+Ordered Items:
+Dr. Pepper          1.75
+Fried Dough         3.50
+
+Subtotal: 5.25
+Tax: 0.42
+Total: 5.67
+Have a nice day!

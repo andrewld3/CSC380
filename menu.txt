@@ -11,18 +11,18 @@ Lemonade/1.75/200
 Cheeseburger/3.25/150
 Gatorade/1.75/200
 French Fries/2.5/200
-Double Cheeseburger/6.5/150
+Double Cheeseburger/6.5/149
 Root Beer/1.75/200
-Mountain Dew/1.75/200
-Orange Crush/1.75/200
+Mountain Dew/1.75/199
+Orange Crush/1.75/198
 Cup of cole slaw/1.5/120
-Milk/2.0/100
-Hot Tea/1.5/99
-Dr. Pepper/1.75/199
-Fish Fry/4.5/99
-Fried Dough/3.5/100
-Nacho Cheese Chips/3.5/120
-One-Half Dozen Chicken Wings/4.0/80
+Milk/2.0/98
+Hot Tea/1.5/97
+Dr. Pepper/1.75/197
+Fish Fry/4.5/97
+Fried Dough/3.5/98
+Nacho Cheese Chips/3.5/119
+One-Half Dozen Chicken Wings/4.0/79
 Diet Pepsi/1.75/200
 Veggie Burger/3.75/99
 Sausage & Pepper Sandwich/4.5/75
