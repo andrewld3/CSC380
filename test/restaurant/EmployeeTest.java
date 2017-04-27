@@ -17,32 +17,17 @@ import org.junit.Before;
  */
 
 public class EmployeeTest {
-    Map<String, MenuItem> menu = new HashMap<>();
-    
-    @Before
-    public void setUp() throws FileNotFoundException {
-        File inFile = new File("menu.txt");
-        Scanner inFileSC = new Scanner(inFile);
-        
-        while(inFileSC.hasNext()){
-            String name = inFileSC.nextLine();
-            double price = Double.parseDouble(inFileSC.nextLine());
-            int inventory = Integer.parseInt(inFileSC.nextLine());
-            MenuItem item = new MenuItem(name, price ,inventory);
-            menu.put(item.getName(), item);
-        }
-    }
    
     @Test
     public void testEmployeeConstruct() {
-        Employee test = new Employee();
+        Employee test = new Employee("Chris N", false);
         test = null;
         assertTrue(test == null);
     }
     
     @Test
     public void testSignIn() {
-        Employee test = new Employee();
+        Employee test = new Employee("Chris N", false);
         boolean result;
         result = test.setSignIn();
         if(result)
@@ -53,7 +38,7 @@ public class EmployeeTest {
     
     @Test
     public void testSignOut() {
-        Employee test = new Employee();
+        Employee test = new Employee("Chris N", false);
         boolean result;
         result = test.setSignOut();
         if(result)
@@ -65,10 +50,7 @@ public class EmployeeTest {
     @Test
     public void testOrderFood() throws IOException{
         boolean value;
-        setUp();
-        Employee testEmployee = new Employee();
-        testEmployee.loadMenu(menu);
-        value = testEmployee.createTable(1);
+        Employee testEmployee = new Employee("Chris N", false);
         value = testEmployee.orderFood(1, "hamburger");
         if(value == true)
             assertTrue(true);
@@ -78,10 +60,7 @@ public class EmployeeTest {
     @Test
     public void testRemoveFood() throws IOException {
         boolean value;
-        setUp();
-        Employee testEmployee = new Employee();
-        testEmployee.loadMenu(menu);
-        value = testEmployee.createTable(1);
+        Employee testEmployee = new Employee("Chris N", false);
         testEmployee.orderFood(1, "hamburger");
         value = testEmployee.removeFood(1, "hamburger");
         if(value == true)
@@ -91,10 +70,7 @@ public class EmployeeTest {
     @Test
     public void testFinishFood() throws IOException {
         boolean value;
-        setUp();
-        Employee testEmployee = new Employee();
-        testEmployee.loadMenu(menu);
-        value = testEmployee.createTable(1);
+        Employee testEmployee = new Employee("Chris N", false);
         value = testEmployee.orderFood(1, "hamburger");
         value = testEmployee.finishTable(1);
     }

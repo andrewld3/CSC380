@@ -2457,14 +2457,11 @@ public class RestaurantGUI extends javax.swing.JFrame {
         inFileSC.nextLine();
         while (inFileSC.hasNext()) {
             String menuItemInfo = inFileSC.nextLine();
-//            double price = Double.parseDouble(inFileSC.nextLine());
-//            int inventory = Integer.parseInt(inFileSC.nextLine());
             String[] arr = menuItemInfo.split("/");
             String name = arr[0];
 
             double price = Double.parseDouble(arr[1]);
             int inventory = Integer.parseInt(arr[2]);
-            // System.out.println(name + " " + price + " " + inventory);
             menuItems.add(name);
             loadMenu(name, price, inventory, menu);
         }

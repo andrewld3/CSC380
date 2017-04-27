@@ -109,7 +109,8 @@ public class Employee {
         value = true;
         return value;
     }
-       public void writeTimeToFile(Employee employee, String inOrOut, String time) throws FileNotFoundException, IOException{
+       
+    public void writeTimeToFile(Employee employee, String inOrOut, String time) throws FileNotFoundException, IOException{
         FileWriter fw = new FileWriter("employeeTime.txt",true);
         PrintWriter out = new PrintWriter(fw);
         out.write("\n" + employee.empName + " " + inOrOut + " " + time);
