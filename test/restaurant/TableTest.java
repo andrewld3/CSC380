@@ -66,6 +66,6 @@ public class TableTest {
         testTable.addToOrder("Hamburger");
         testTable.addToOrder("Hotdog");
 
-        assertEquals(15.12, testTable.ReturnTotal(menu), 0);
+        assertEquals(15.12, testTable.ReturnTotal(menu), .01);
     }
 }
