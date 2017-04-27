@@ -205,7 +205,7 @@ public class AdministratorTest {
         }
         
         Administrator temp = new Administrator();
-        menu.put("Hamburger", temp.addToMenu("Hamburger", 10.5, 50));
+        temp.addToMenu("Hamburger", 10.5, 50);
         assertEquals(menu.get("Hamburger").getName(), "Hamburger");
         assertEquals(menu.get("Hamburger").getPrice(), 10.5, 0);
         assertEquals(menu.get("Hamburger").getInventory(), 50, 0);

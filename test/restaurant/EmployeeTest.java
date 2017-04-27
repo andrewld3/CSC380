@@ -35,14 +35,14 @@ public class EmployeeTest {
    
     @Test
     public void testEmployeeConstruct() {
-        Employee test = new Employee();
+        Employee test = new Employee("Chris N", false);
         test = null;
         assertTrue(test == null);
     }
     
     @Test
     public void testSignIn() {
-        Employee test = new Employee();
+        Employee test = new Employee("Chris N", false);
         boolean result;
         result = test.setSignIn();
         if(result)
@@ -53,7 +53,7 @@ public class EmployeeTest {
     
     @Test
     public void testSignOut() {
-        Employee test = new Employee();
+        Employee test = new Employee("Chris N", false);
         boolean result;
         result = test.setSignOut();
         if(result)
@@ -66,7 +66,7 @@ public class EmployeeTest {
     public void testOrderFood() throws IOException{
         boolean value;
         setUp();
-        Employee testEmployee = new Employee();
+        Employee testEmployee = new Employee("Chris N", false);
         testEmployee.loadMenu(menu);
         value = testEmployee.createTable(1);
         value = testEmployee.orderFood(1, "hamburger");
@@ -79,7 +79,7 @@ public class EmployeeTest {
     public void testRemoveFood() throws IOException {
         boolean value;
         setUp();
-        Employee testEmployee = new Employee();
+        Employee testEmployee = new Employee("Chris N", false);
         testEmployee.loadMenu(menu);
         value = testEmployee.createTable(1);
         testEmployee.orderFood(1, "hamburger");
@@ -92,7 +92,7 @@ public class EmployeeTest {
     public void testFinishFood() throws IOException {
         boolean value;
         setUp();
-        Employee testEmployee = new Employee();
+        Employee testEmployee = new Employee("Chris N", false);
         testEmployee.loadMenu(menu);
         value = testEmployee.createTable(1);
         value = testEmployee.orderFood(1, "hamburger");

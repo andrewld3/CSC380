@@ -1,11 +1,8 @@
 package restaurant;
 
 import static org.junit.Assert.*;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -17,7 +14,7 @@ public class TableTest {
         Table table = new Table();
         testTable.addToOrder("Hamburger"); 
         table.addToOrder("Hamburger");
-        assertTrue(table.ReturnOrder().equals(testTable.ReturnOrder()));
+        assertTrue(table.returnOrder().equals(testTable.returnOrder()));
     }
 
     @Test
@@ -27,7 +24,7 @@ public class TableTest {
         testTable.addToOrder("Hamburger");
         table.addToOrder("Hamburger");
         testTable.removeFromOrder("Hamburger");
-        assertFalse(table.ReturnOrder().equals(testTable));
+        assertFalse(table.returnOrder().equals(testTable));
     }
 
     @Test
