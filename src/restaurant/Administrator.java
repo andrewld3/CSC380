@@ -132,7 +132,7 @@ public class Administrator {
     }
 
     public ArrayList printUserLogins() throws FileNotFoundException {
-        ArrayList<String> userLogins = new ArrayList(); 
+        ArrayList<String> userLogins = new ArrayList<String>(); 
         try (Scanner userAccountFolder = new Scanner(new File("userLogin.txt"))) {
             //System.out.println("User logins include:");
             while (userAccountFolder.hasNextLine()) {
@@ -145,7 +145,7 @@ public class Administrator {
     }
 
     public ArrayList printAdminLogins() throws FileNotFoundException {
-        ArrayList<String> adminLogins = new ArrayList();
+        ArrayList<String> adminLogins = new ArrayList<String>();
         try (Scanner adminAccountFolder = new Scanner(new File("adminLogin.txt"))) {
            // System.out.println("Admin logins include:");
             while (adminAccountFolder.hasNextLine()) {

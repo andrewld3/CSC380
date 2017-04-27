@@ -19,7 +19,7 @@ public class Table {
     }
 
 
-    public ArrayList getBillInfo(Map<String, MenuItem> menu){
+    public ArrayList<MenuItem> getBillInfo(Map<String, MenuItem> menu){
         ArrayList<MenuItem> billInfo = new ArrayList<MenuItem>();
         //System.out.println(orderDesc);
         for(int i = 0; i < orderDesc.size(); i++){
