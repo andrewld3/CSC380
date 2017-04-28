@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,29 +55,45 @@ public class Administrator {
         File temporaryFile = new File("temporaryFile.txt");
 
         BufferedReader buffReader = new BufferedReader(new FileReader(userAccountFolder));
-        BufferedWriter buffWriter = new BufferedWriter(new FileWriter(temporaryFile));
+        
 
         String lineToRemoveFromFile = username + pin;
         String lineFromUserFile;
 
         boolean addNewLine = false;
-
+        ArrayList<String> users = new ArrayList<>();
         while ((lineFromUserFile = buffReader.readLine()) != null) {
             if (!lineFromUserFile.equals(lineToRemoveFromFile)) {
-                if (addNewLine) {
-                    buffWriter.newLine();
-                }
-                addNewLine = true;
-                buffWriter.write(lineFromUserFile);
+                users.add(lineFromUserFile);
             }
         }
-        buffWriter.close();
         buffReader.close();
-
-        boolean removed = temporaryFile.renameTo(userAccountFolder);
-        if (removed == true) {
-            System.out.println(username + "'s account has been removed from User Accounts.");
+        BufferedWriter buffWriter = new BufferedWriter(new FileWriter(userAccountFolder));
+        for(int i = 0; i < users.size(); i++){
+           if(addNewLine){
+               buffWriter.newLine();
+           }
+           addNewLine = true;
+           buffWriter.write(users.get(i));
         }
+        
+        buffWriter.close();
+        
+        /*File employee = new File("userLogin.txt");
+        Scanner employeeSC = new Scanner(employee);
+        ArrayList<String> users = new ArrayList<>();
+        while(employeeSC.hasNext()){
+            users.add(employeeSC.nextLine());
+        }
+        employeeSC.close();
+        employee = new File("userLogin.txt");
+        PrintWriter employeePW = new PrintWriter(employee);
+        for(int i = 0; i < users.size(); i++){
+            if(users.get(i).compareTo(username + pin) != 0){
+            employeePW.println(users.get(i));
+        }
+        }
+        employeePW.close();*/
     }
 
     public void changePrivilegeFromUserToAdmin(String u, String p) throws IOException {
