@@ -1,13 +1,13 @@
 BILL SUMMARY
 -----------------------
-Date: 2017.04.23
+Date: 2017.04.27
 Server: Chris N
 
 Ordered Items:
-Dr. Pepper          1.75
-Fried Dough         3.50
+Small Children      0.99
+Small Children      0.99
 
-Subtotal: 5.25
-Tax: 0.42
-Total: 5.67
+Subtotal: 1.98
+Tax: 0.16
+Total: 2.14
 Have a nice day!
