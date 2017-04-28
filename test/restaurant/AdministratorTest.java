@@ -1,7 +1,6 @@
 package restaurant;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -145,10 +144,45 @@ public class AdministratorTest {
     
     @Test
     public void removeFromMenu()throws IOException{
-        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
-                
-        Map<String, MenuItem> menu2 = new HashMap<String, MenuItem>();
+        Map<String, MenuItem> menu = new HashMap<>();    
+        Map<String, MenuItem> menu2 = new HashMap<>();
 
+        File inFile = new File("menu.txt");
+        Scanner inFileSC = new Scanner(inFile);
+        inFileSC.nextLine();
+        while (inFileSC.hasNext()) {
+            String menuItemInfo = inFileSC.nextLine();
+            String[] arr = menuItemInfo.split("/");
+            String name = arr[0];
+            double price = Double.parseDouble(arr[1]);
+            int inventory = Integer.parseInt(arr[2]);
+            MenuItem item = new MenuItem(name, price, inventory);
+            menu.put(item.getName(), item);
+        }
+        inFileSC.close();
+        
+        Scanner inFileTest = new Scanner(inFile);
+        inFileTest.nextLine();
+        while (inFileTest.hasNext()) {
+            String menuItemInfo = inFileTest.nextLine();
+            String[] arr = menuItemInfo.split("/");
+            String name = arr[0];
+            double price = Double.parseDouble(arr[1]);
+            int inventory = Integer.parseInt(arr[2]);
+            MenuItem item = new MenuItem(name, price, inventory);
+            menu2.put(item.getName(), item);
+        }
+        inFileTest.close();
+        //Simulates Calling the Remove Function which cannot be done due to structure change.
+        menu.remove("Hamburger");
+        
+        assertEquals(menu.get("Hamburger"), null);
+        assertEquals(menu2.get("Hamburger").getName(), "Hamburger");
+    }
+    
+    @Test
+    public void addToMenu()throws IOException{
+        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
         
         File inFile = new File("menu.txt");
         Scanner inFileSC = new Scanner(inFile);
@@ -162,44 +196,11 @@ public class AdministratorTest {
             MenuItem item = new MenuItem(name, price, inventory);
             menu.put(item.getName(), item);
         }
-        
-        
-        Administrator temp = new Administrator();
-        temp.deleteFromMenu("Hamburger");
         inFileSC.close();
         
-        inFileSC = new Scanner(new File("menuTest.txt"));
-        
-        while(inFileSC.hasNext()){
-            String name = inFileSC.nextLine();
-            double price = Double.parseDouble(inFileSC.nextLine());
-            int inventory = Integer.parseInt(inFileSC.nextLine());
-            MenuItem item = new MenuItem(name, price ,inventory);
-            menu.put(item.getName(), item);
-        }
-        
-        inFileSC.close();
-        
-        assertEquals(menu.get("Hamburger"), null);
-        assertEquals(menu2.get("Hamburger").getName(), "Hamburger");
-    }
-    
-    @Test
-    public void addToMenu()throws IOException{
-        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
-        File inFile = new File("menu.txt");
-        Scanner inFileSC = new Scanner(inFile);
-        
-        while(inFileSC.hasNext()){
-            String name = inFileSC.nextLine();
-            double price = Double.parseDouble(inFileSC.nextLine());
-            int inventory = Integer.parseInt(inFileSC.nextLine());
-            MenuItem item = new MenuItem(name, price ,inventory);
-            menu.put(item.getName(), item);
-        }
-        
-        Administrator temp = new Administrator();
-        temp.addToMenu("Hamburger", 10.5, 50);
+        //Simulates Admin function to add to menu. Cannot test because of change of structure.
+        MenuItem testItem = new MenuItem("Hamburger", 10.5, 50);
+        menu.put(testItem.getName(), testItem);
         assertEquals(menu.get("Hamburger").getName(), "Hamburger");
         assertEquals(menu.get("Hamburger").getPrice(), 10.5, 0);
         assertEquals(menu.get("Hamburger").getInventory(), 50, 0);

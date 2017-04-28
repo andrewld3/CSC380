@@ -106,6 +106,25 @@ public class Employee {
         out.close();
         //End Bill
         
+        //Bill Log
+        PrintWriter outBL = new PrintWriter(new FileWriter("billlog.txt", true));
+        outBL.println("Server: " + empName);
+        outBL.println("Date: " + signIn.substring(0,10));
+        for(int i = 0; i < order.size(); i++) {
+            outBL.printf("%-20s%.2f", order.get(i).getName(),order.get(i).getPrice());
+            outBL.println();
+        }
+        outBL.println();
+        outBL.printf("Subtotal: %.2f", tables[table].getSubtotal(RestaurantGUI.menu));
+        outBL.println();
+        outBL.printf("Tax: %.2f", tables[table].getTax(RestaurantGUI.menu));
+        outBL.println();
+        outBL.printf("Total: %.2f", tables[table].ReturnTotal(RestaurantGUI.menu));
+        outBL.println();
+        outBL.println();
+        outBL.close();
+        //End Bill Log
+        
         //Clear Table
         tables[table] = new Table();
         value = true;
