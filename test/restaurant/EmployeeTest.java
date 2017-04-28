@@ -53,8 +53,7 @@ public class EmployeeTest {
         Employee testEmployee = new Employee("Chris N", false);
         value = testEmployee.orderFood(1, "hamburger");
         if(value == true)
-            assertTrue(true);
-        
+            assertTrue(true); 
     }
     
     @Test
