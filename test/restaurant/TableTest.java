@@ -31,7 +31,7 @@ public class TableTest {
     public void testSubtotal() {
         Table testTable = new Table();
 
-        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        Map<String, MenuItem> menu = new HashMap<>();
         menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
         menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
 
@@ -45,7 +45,7 @@ public class TableTest {
     public void testTax(){
         Table testTable = new Table();
 
-        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        Map<String, MenuItem> menu = new HashMap<>();
         menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
         menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
 
@@ -59,7 +59,7 @@ public class TableTest {
     public void testTotal(){
         Table testTable = new Table();
 
-        Map<String, MenuItem> menu = new HashMap<String, MenuItem>();
+        Map<String, MenuItem> menu = new HashMap<>();
         menu.put("Hamburger", new MenuItem("Hamburger", 10.50, 50));
         menu.put("Hotdog", new MenuItem("Hotdog", 3.50, 50));
 

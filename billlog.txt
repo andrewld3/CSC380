@@ -1,0 +1,21 @@
+Server: Chris N
+Date: 2017.04.28
+Double Cheeseburger 6.50
+Dr. Pepper          1.75
+Dr. Pepper          1.75
+
+Subtotal: 10.00
+Tax: 0.80
+Total: 10.80
+
+Server: Chris N
+Date: 2017.04.28
+Milk                2.00
+Fried Dough         3.50
+Nacho Cheese Chips  3.50
+
+Subtotal: 9.00
+Tax: 0.72
+Total: 9.72
+
+
