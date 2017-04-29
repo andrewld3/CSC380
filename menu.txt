@@ -8,19 +8,19 @@ Coffee/1.5/199
 Hot Chocolate/1.5/100
 Hamburger/3.0/149
 Lemonade/1.75/200
-Cheeseburger/3.25/150
+Cheeseburger/3.25/149
 Gatorade/1.75/200
 French Fries/2.5/200
 Double Cheeseburger/6.5/148
-Root Beer/1.75/200
+Root Beer/1.75/199
 Mountain Dew/1.75/199
 Orange Crush/1.75/198
 Cup of cole slaw/1.5/120
-Milk/2.0/96
-Hot Tea/1.5/97
-Dr. Pepper/1.75/195
+Milk/2.0/95
+Hot Tea/1.5/96
+Dr. Pepper/1.75/194
 Fish Fry/4.5/97
-Fried Dough/3.5/97
+Fried Dough/3.5/96
 Nacho Cheese Chips/3.5/118
 One-Half Dozen Chicken Wings/4.0/79
 Diet Pepsi/1.75/200
