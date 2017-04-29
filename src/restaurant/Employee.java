@@ -64,13 +64,24 @@ public class Employee {
     public boolean orderFood(int table, String name) {
         tables[table].addToOrder(name);
         //System.out.println("ordered " + name);
-        RestaurantGUI.menu.get(name).setInventory(-1);
+        try {
+            RestaurantGUI.menu.get(name).setInventory(-1);
+        }
+        catch(Exception e) {
+            System.out.println("Inventory is not updated");
+        }
         return true;
     }
     
     public boolean removeFood(int table, String name) {
         tables[table].removeFromOrder(name);
-        RestaurantGUI.menu.get(name).setInventory(+1);
+        
+        try {
+            RestaurantGUI.menu.get(name).setInventory(+1);
+        }
+        catch (Exception e) {
+            System.out.println("Inventory not updated");
+        }
         return true;
     }
     

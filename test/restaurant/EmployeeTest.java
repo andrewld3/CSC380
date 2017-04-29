@@ -17,7 +17,7 @@ import org.junit.Before;
  */
 
 public class EmployeeTest {
-   
+    
     @Test
     public void testEmployeeConstruct() {
         Employee test = new Employee("Chris N", false);
