@@ -19,3 +19,19 @@ Tax: 0.72
 Total: 9.72
 
 
+Server: Chris N
+Date: 2017.04.29
+Pepsi               1.75
+
+Subtotal: 1.75
+Tax: 0.14
+Total: 1.89
+
+Server: Chris N
+Date: 2017.04.29
+Coffee              1.50
+
+Subtotal: 1.50
+Tax: 0.12
+Total: 1.62
+

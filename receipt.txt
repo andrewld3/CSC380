@@ -1,14 +1,12 @@
 BILL SUMMARY
 -----------------------
-Date: 2017.04.28
+Date: 2017.04.29
 Server: Chris N
 
 Ordered Items:
-Milk                2.00
-Fried Dough         3.50
-Nacho Cheese Chips  3.50
+Coffee              1.50
 
-Subtotal: 9.00
-Tax: 0.72
-Total: 9.72
+Subtotal: 1.50
+Tax: 0.12
+Total: 1.62
 Have a nice day!
