@@ -52,7 +52,6 @@ public class Administrator {
         pin = p;
 
         File userAccountFolder = new File("userLogin.txt");
-        File temporaryFile = new File("temporaryFile.txt");
 
         BufferedReader buffReader = new BufferedReader(new FileReader(userAccountFolder));
         
@@ -78,22 +77,6 @@ public class Administrator {
         }
         
         buffWriter.close();
-        
-        /*File employee = new File("userLogin.txt");
-        Scanner employeeSC = new Scanner(employee);
-        ArrayList<String> users = new ArrayList<>();
-        while(employeeSC.hasNext()){
-            users.add(employeeSC.nextLine());
-        }
-        employeeSC.close();
-        employee = new File("userLogin.txt");
-        PrintWriter employeePW = new PrintWriter(employee);
-        for(int i = 0; i < users.size(); i++){
-            if(users.get(i).compareTo(username + pin) != 0){
-            employeePW.println(users.get(i));
-        }
-        }
-        employeePW.close();*/
     }
 
     public void changePrivilegeFromUserToAdmin(String u, String p) throws IOException {
