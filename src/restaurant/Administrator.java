@@ -17,8 +17,7 @@ import java.util.Scanner;
  * @author RandyNguyen
  */
 public class Administrator {
-   
-    
+
     FileWriter fileWriter = null;
     PrintWriter printWriter = null;
     BufferedReader buffReader = null;
@@ -54,7 +53,6 @@ public class Administrator {
         File userAccountFolder = new File("userLogin.txt");
 
         BufferedReader buffReader = new BufferedReader(new FileReader(userAccountFolder));
-        
 
         String lineToRemoveFromFile = username + pin;
         String lineFromUserFile;
@@ -68,14 +66,14 @@ public class Administrator {
         }
         buffReader.close();
         BufferedWriter buffWriter = new BufferedWriter(new FileWriter(userAccountFolder));
-        for(int i = 0; i < users.size(); i++){
-           if(addNewLine){
-               buffWriter.newLine();
-           }
-           addNewLine = true;
-           buffWriter.write(users.get(i));
+        for (int i = 0; i < users.size(); i++) {
+            if (addNewLine) {
+                buffWriter.newLine();
+            }
+            addNewLine = true;
+            buffWriter.write(users.get(i));
         }
-        
+
         buffWriter.close();
     }
 
@@ -95,44 +93,42 @@ public class Administrator {
     }
 
     public void changePrivilegeFromAdminToUser(String u, String p) throws IOException {
-        //First part of code deletes user from adminLogin.txt
+
         username = u;
         pin = p;
 
         File userAccountFolder = new File("adminLogin.txt");
-        File temporaryFile = new File("temporaryFile.txt");
 
         BufferedReader buffReader = new BufferedReader(new FileReader(userAccountFolder));
-        BufferedWriter buffWriter = new BufferedWriter(new FileWriter(temporaryFile));
 
         String lineToRemoveFromFile = username + pin;
         String lineFromUserFile;
 
         boolean addNewLine = false;
-
+        ArrayList<String> users = new ArrayList<>();
         while ((lineFromUserFile = buffReader.readLine()) != null) {
             if (!lineFromUserFile.equals(lineToRemoveFromFile)) {
-                if (addNewLine) {
-                    buffWriter.newLine();
-                }
-                addNewLine = true;
-                buffWriter.write(lineFromUserFile);
+                users.add(lineFromUserFile);
             }
         }
-        buffWriter.close();
         buffReader.close();
-
-        boolean removed = temporaryFile.renameTo(userAccountFolder);
-        if (removed == true) {
-            //adds former admin to user account
-           Administrator adm = new Administrator();
-           adm.addUser(username, pin);
-            System.out.println(username + "'s privileges have been changed to user.");
+        BufferedWriter buffWriter = new BufferedWriter(new FileWriter(userAccountFolder));
+        for (int i = 0; i < users.size(); i++) {
+            if (addNewLine) {
+                buffWriter.newLine();
+            }
+            addNewLine = true;
+            buffWriter.write(users.get(i));
         }
+        buffWriter.close();
+        Administrator adm = new Administrator();
+        adm.addUser(username, pin);
+        System.out.println(username + "'s privileges have been changed to User.");
+        
     }
 
     public ArrayList printUserLogins() throws FileNotFoundException {
-        ArrayList<String> userLogins = new ArrayList<String>(); 
+        ArrayList<String> userLogins = new ArrayList<String>();
         try (Scanner userAccountFolder = new Scanner(new File("userLogin.txt"))) {
             //System.out.println("User logins include:");
             while (userAccountFolder.hasNextLine()) {
@@ -147,7 +143,7 @@ public class Administrator {
     public ArrayList printAdminLogins() throws FileNotFoundException {
         ArrayList<String> adminLogins = new ArrayList<String>();
         try (Scanner adminAccountFolder = new Scanner(new File("adminLogin.txt"))) {
-           // System.out.println("Admin logins include:");
+            // System.out.println("Admin logins include:");
             while (adminAccountFolder.hasNextLine()) {
                 String lineFromAdminFile = adminAccountFolder.nextLine();
                 //System.out.println(lineFromAdminFile);
@@ -157,13 +153,12 @@ public class Administrator {
         return adminLogins;
     }
 
-    
-    public void deleteFromMenu(String name){
-     RestaurantGUI.menu.remove(name);
-      System.out.println(name + " has been removed from the menu.");
+    public void deleteFromMenu(String name) {
+        RestaurantGUI.menu.remove(name);
+        System.out.println(name + " has been removed from the menu.");
         System.out.println("Updated Menu size: " + RestaurantGUI.menu.size());
     }
-    
+
     public void addToMenu(String name, double price, int inventory) {
         MenuItem newItem = new MenuItem(name, price, inventory);
         System.out.println("Menu size: " + RestaurantGUI.menu.size());

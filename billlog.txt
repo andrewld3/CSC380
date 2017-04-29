@@ -35,3 +35,30 @@ Subtotal: 1.50
 Tax: 0.12
 Total: 1.62
 
+Server: Chris N
+Date: 2017.04.29
+Cheeseburger        3.25
+Hot Tea             1.50
+Fried Dough         3.50
+
+Subtotal: 8.25
+Tax: 0.66
+Total: 8.91
+
+Server: Chris N
+Date: 2017.04.29
+Dr. Pepper          1.75
+
+Subtotal: 1.75
+Tax: 0.14
+Total: 1.89
+
+Server: Chris N
+Date: 2017.04.29
+Root Beer           1.75
+Milk                2.00
+
+Subtotal: 3.75
+Tax: 0.30
+Total: 4.05
+

@@ -4,9 +4,10 @@ Date: 2017.04.29
 Server: Chris N
 
 Ordered Items:
-Coffee              1.50
+Root Beer           1.75
+Milk                2.00
 
-Subtotal: 1.50
-Tax: 0.12
-Total: 1.62
+Subtotal: 3.75
+Tax: 0.30
+Total: 4.05
 Have a nice day!
